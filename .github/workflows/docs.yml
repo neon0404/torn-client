@@ -3,6 +3,7 @@ name: Deploy Docs to GitHub Pages
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -11,7 +12,9 @@ permissions:
 
 jobs:
   build-and-deploy-docs:
-    if: contains(github.event.head_commit.message, '[run docs]')
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' && contains(github.event.head_commit.message, '[run docs]'))
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
