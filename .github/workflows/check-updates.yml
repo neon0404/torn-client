@@ -1,0 +1,70 @@
+name: Check for Torn API Updates
+
+on:
+  schedule:
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      needs_update: ${{ steps.check_version.outputs.needs_update }}
+      new_version: ${{ steps.check_version.outputs.new_version }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check for API updates and update files
+        id: check_version
+        run: node scripts/check-version.mjs
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+
+  regenerate:
+    needs: check
+    if: needs.check.outputs.needs_update == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Regenerate API Client
+        run: pnpm api:generate
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.WORKFLOW_PAT }}
+          commit-message: "chore(api): regenerate client for API v${{ needs.check.outputs.new_version }}"
+          branch: "chore/api-update-v${{ needs.check.outputs.new_version }}"
+          title: "chore(api): regenerate client for v${{ needs.check.outputs.new_version }}"
+          body: |
+            This Pull Request was created automatically by workflow 🤖
+            
+            - **New API Version:** `${{ needs.check.outputs.new_version }}`
+            
+            The client has been regenerated to match the latest official OpenAPI specification
+            
+            Please review the changes and merge if they are correct
+          labels: automated
+          committer: Neon0404 <neon040404@gmail.com>
+          author: Neon0404 <neon040404@gmail.com>

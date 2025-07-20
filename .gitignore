@@ -1,0 +1,33 @@
+# Dependency directory
+node_modules/
+
+# Build output
+dist/
+
+# Docs are auto-generated with typedoc
+docs/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Should be fetched by generator
+openapi.json
+
+# Enviroment configuration file
+.env
+
+# Visual Studio Code configs
+.vscode/
+
+# JetBrains IDEs
+.idea/
+
+# pnpm is used for installation
+package-lock.json
+yarn.lock
+
+# MacOS stuff
+.DS_Store

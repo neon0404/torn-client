@@ -1,0 +1,75 @@
+{
+  "name": "torn-client",
+  "version": "0.1.5",
+  "description": "Fully-typed and auto-generated TypeScript client for the Torn City v2 API. Supports Node.js and browsers",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "api:check": "node scripts/check-version.mjs",
+    "api:generate": "tsx scripts/generator/index.ts && eslint . --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "pnpm test:unit && pnpm test:e2e",
+    "test:unit": "jest tests/unit",
+    "test:e2e": "jest tests/generated --runInBand",
+    "docs:generate": "typedoc src/index.ts",
+    "build": "tsup",
+    "prepublishOnly": "pnpm run lint && pnpm test && pnpm run build"
+  },
+  "keywords": [
+    "torn",
+    "torn city",
+    "api",
+    "client",
+    "typescript"
+  ],
+  "author": "neon0404",
+  "license": "MIT",
+  "homepage": "https://github.com/neon0404/torn-client#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neon0404/torn-client.git"
+  },
+  "bugs": {
+    "url": "https://github.com/neon0404/torn-client/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.13",
+    "dotenv": "^17.2.0",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-jest": "^29.0.1",
+    "eslint-plugin-prettier": "^5.5.1",
+    "fs-extra": "^11.3.0",
+    "globals": "^16.3.0",
+    "jest": "^30.0.4",
+    "openapi-typescript": "^7.8.0",
+    "prettier": "^3.6.2",
+    "ts-jest": "^29.4.0",
+    "ts-morph": "^26.0.0",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.3",
+    "typedoc": "^0.28.7",
+    "typedoc-material-theme": "^1.4.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.36.0"
+  }
+}

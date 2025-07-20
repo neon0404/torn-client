@@ -1,0 +1,21 @@
+{
+  "entryPoints": ["src/**/*.ts"],
+  "entryPointStrategy": "expand",
+  "out": "docs",
+  "name": "Torn API Client",
+  "readme": "README.md",
+  "theme": "default",
+  "plugin": ["typedoc-material-theme"],
+  "themeColor": "#769CDF",
+  "categorizeByGroup": false,
+  "categoryOrder": ["Core", "Endpoints","*"],
+  "navigationLinks": {
+    "GitHub": "https://github.com/neon0404/torn-client"
+  },
+  "searchInComments": true,
+  "searchInDocuments": true,
+  "navigation": {
+    "includeCategories": true,
+    "excludeReferences": true
+  }
+}

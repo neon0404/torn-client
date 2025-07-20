@@ -1,0 +1,445 @@
+{
+  "paths": {
+    "/user/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "Get user by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the user to retrieve.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A user object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/faction/{id}": {
+      "get": {
+        "tags": [
+          "Faction"
+        ],
+        "summary": "Get faction by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The ID of the faction to retrieve.",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A faction object.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Faction"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "rank": {
+            "type": "string",
+            "example": "Outstanding Medalist"
+          },
+          "level": {
+            "type": "integer",
+            "example": 17
+          },
+          "honor": {
+            "type": "integer",
+            "example": 210
+          },
+          "gender": {
+            "type": "string",
+            "example": "Male"
+          },
+          "property": {
+            "type": "string",
+            "example": "Private Island"
+          },
+          "signup": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2004-11-15T12:22:16Z"
+          },
+          "awards": {
+            "type": "integer",
+            "example": 1348
+          },
+          "friends": {
+            "type": "integer",
+            "example": 2310
+          },
+          "enemies": {
+            "type": "integer",
+            "example": 298
+          },
+          "forum_posts": {
+            "type": "integer",
+            "example": 28918
+          },
+          "karma": {
+            "type": "integer",
+            "example": 70496
+          },
+          "age": {
+            "type": "integer",
+            "example": 7542
+          },
+          "role": {
+            "type": "string",
+            "example": "Admin"
+          },
+          "donator": {
+            "type": "integer",
+            "example": 1
+          },
+          "player_id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "Chedburn"
+          },
+          "property_id": {
+            "type": "integer",
+            "example": 3162872
+          },
+          "revivable": {
+            "type": "integer",
+            "example": 0
+          },
+          "profile_image": {
+            "type": "string",
+            "format": "uri",
+            "example": "https://profileimages.torn.com/ceb585e0-57a2-4ff5-b359-af8f764a68ff-1.png"
+          },
+          "life": {
+            "type": "object",
+            "properties": {
+              "current": {
+                "type": "integer",
+                "example": 761
+              },
+              "maximum": {
+                "type": "integer",
+                "example": 761
+              },
+              "increment": {
+                "type": "integer",
+                "example": 43
+              },
+              "interval": {
+                "type": "integer",
+                "example": 300
+              },
+              "ticktime": {
+                "type": "integer",
+                "example": 208
+              },
+              "fulltime": {
+                "type": "integer",
+                "example": 0
+              }
+            }
+          },
+          "status": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string",
+                "example": "Okay"
+              },
+              "details": {
+                "type": "string",
+                "example": ""
+              },
+              "state": {
+                "type": "string",
+                "example": "Okay"
+              },
+              "color": {
+                "type": "string",
+                "example": "green"
+              },
+              "until": {
+                "type": "integer",
+                "example": 0
+              }
+            }
+          },
+          "job": {
+            "type": "object",
+            "properties": {
+              "job": {
+                "type": "string",
+                "example": "Director"
+              },
+              "position": {
+                "type": "string",
+                "example": "Director"
+              },
+              "company_id": {
+                "type": "integer",
+                "example": 79286
+              },
+              "company_name": {
+                "type": "string",
+                "example": "Testing Test test!!!"
+              },
+              "company_type": {
+                "type": "integer",
+                "example": 16
+              }
+            }
+          },
+          "faction": {
+            "type": "object",
+            "properties": {
+              "position": {
+                "type": "string",
+                "example": "Scripted Attacker"
+              },
+              "faction_id": {
+                "type": "integer",
+                "example": 11747
+              },
+              "days_in_faction": {
+                "type": "integer",
+                "example": 51
+              },
+              "faction_name": {
+                "type": "string",
+                "example": "Natural Selection II"
+              },
+              "faction_tag": {
+                "type": "string",
+                "example": "NS"
+              },
+              "faction_tag_image": {
+                "type": "string",
+                "example": "11747-62519.png"
+              }
+            }
+          },
+          "married": {
+            "type": "object",
+            "properties": {
+              "spouse_id": {
+                "type": "integer",
+                "example": 2103253
+              },
+              "spouse_name": {
+                "type": "string",
+                "example": "Evaline"
+              },
+              "duration": {
+                "type": "integer",
+                "example": 150
+              }
+            }
+          },
+          "basicicons": {
+            "type": "object",
+            "properties": {
+              "icon6": {
+                "type": "string",
+                "example": "Male"
+              },
+              "icon4": {
+                "type": "string",
+                "example": "Subscriber"
+              },
+              "icon11": {
+                "type": "string",
+                "example": "Staff - Admin"
+              },
+              "icon10": {
+                "type": "string",
+                "example": "Player Committee - Member"
+              },
+              "icon8": {
+                "type": "string",
+                "example": "Married - To Evaline"
+              },
+              "icon73": {
+                "type": "string",
+                "example": "Company - Director of Testing Test test!!! (Television Network)"
+              },
+              "icon9": {
+                "type": "string",
+                "example": "Faction - Scripted Attacker of Natural Selection II"
+              }
+            }
+          },
+          "states": {
+            "type": "object",
+            "properties": {
+              "hospital_timestamp": {
+                "type": "integer",
+                "example": 0
+              },
+              "jail_timestamp": {
+                "type": "integer",
+                "example": 0
+              }
+            }
+          },
+          "last_action": {
+            "type": "object",
+            "properties": {
+              "status": {
+                "type": "string",
+                "example": "Idle"
+              },
+              "timestamp": {
+                "type": "integer",
+                "example": 1752218929
+              },
+              "relative": {
+                "type": "string",
+                "example": "22 minutes ago"
+              }
+            }
+          },
+          "competition": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "example": "Rock, Paper, Scissors"
+              },
+              "status": {
+                "type": "string",
+                "example": "rock"
+              },
+              "current_hp": {
+                "type": "integer",
+                "example": 15
+              },
+              "max_hp": {
+                "type": "integer",
+                "example": 15
+              }
+            }
+          }
+        }
+      },
+      "Faction": {
+        "type": "object",
+        "properties": {
+          "basic": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 46166
+              },
+              "name": {
+                "type": "string",
+                "example": "Low Level Inc."
+              },
+              "tag": {
+                "type": "string",
+                "example": "LInc"
+              },
+              "tag_image": {
+                "type": "string",
+                "example": "46166-95036.png"
+              },
+              "leader_id": {
+                "type": "integer",
+                "example": 2155018
+              },
+              "co_leader_id": {
+                "type": "integer",
+                "example": 2148628
+              },
+              "respect": {
+                "type": "integer",
+                "example": 210145
+              },
+              "days_old": {
+                "type": "integer",
+                "example": 1720
+              },
+              "capacity": {
+                "type": "integer",
+                "example": 80
+              },
+              "members": {
+                "type": "integer",
+                "example": 77
+              },
+              "is_enlisted": {
+                "type": "boolean",
+                "example": false
+              },
+              "rank": {
+                "type": "object",
+                "properties": {
+                  "level": {
+                    "type": "integer",
+                    "example": 3
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Bronze"
+                  },
+                  "division": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "position": {
+                    "type": "integer",
+                    "example": 0
+                  },
+                  "wins": {
+                    "type": "integer",
+                    "example": 1
+                  }
+                }
+              },
+              "best_chain": {
+                "type": "integer",
+                "example": 1000
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

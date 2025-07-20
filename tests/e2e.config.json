@@ -1,0 +1,155 @@
+{
+  "user": {
+    "id": 3772610,
+    "profile": {
+      "queryParams": {}
+    },
+    "crimes": {
+      "crimeId": 1,
+      "queryParams": {
+        "timestamp": "1672531200"
+      }
+    },
+    "list": {
+      "queryParams": {
+        "cat": "Friends"
+      }
+    },
+    "personalstats": {
+      "queryParams": {
+        "cat": "popular"
+      }
+    }
+  },
+  "faction": {
+    "id": 46166,
+    "contributors": {
+      "queryParams": {
+        "stat": "attackswon"
+      }
+    },
+    "crime": {
+      "crimeId": 670659
+    },
+    "news": {
+      "queryParams": {
+        "cat": "main"
+      }
+    },
+    "chainreport": {
+      "chainId": 49918782
+    },
+    "warfare": {
+      "queryParams": {
+        "cat": "raid"
+      }
+    },
+    "territorywars": {
+      "id": 9176
+    },
+    "raidreport": {
+      "raidWarId": 6590
+    },
+    "territorywarreport": {
+      "territoryWarId": 43017
+    },
+    "rankedwarreport": {
+      "rankedWarId": 27616
+    }
+  },
+  "market": {
+    "id": 1,
+    "propertyTypeId": 1
+  },
+  "property": {
+    "get": {
+      "queryParams": {
+        "selections": [
+          "property"
+        ],
+        "id": 100
+      }
+    },
+    "getWithContext": {
+      "id": 100
+    }
+  },
+  "forum": {
+    "posts": {
+      "threadId": 16485512
+    },
+    "thread": {
+      "threadId": 16485512
+    },
+    "threads": {
+      "categoryIds": 63
+    },
+    "get": {
+      "queryParams": {
+        "selections": [
+          "categories"
+        ]
+      }
+    }
+  },
+  "key": {
+    "get": {
+      "queryParams": {
+        "selections": [
+          "log"
+        ]
+      }
+    }
+  },
+  "torn": {
+    "attacklog": {
+      "queryParams": {
+        "log": "4c24b79143ab701a6c7910acaef7927d"
+      }
+    },
+    "factionhof": {
+      "queryParams": {
+        "cat": "respect"
+      }
+    },
+    "hof": {
+      "queryParams": {
+        "cat": "level"
+      }
+    },
+    "subcrimes": {
+      "crimeId": 1
+    },
+    "logtypes": {
+      "logCategoryId": 1
+    },
+    "items": {
+      "ids": 1
+    },
+    "get": {
+      "queryParams": {
+        "selections": [
+          "stats"
+        ]
+      }
+    }
+  },
+  "racing": {
+    "race": {
+      "raceId": 15528012
+    },
+    "records": {
+      "trackId": 6,
+      "queryParams": {
+        "cat": "A"
+      }
+    },
+    "get": {
+      "queryParams": {
+        "selections": [
+          "cars"
+        ]
+      }
+    }
+  }
+}
