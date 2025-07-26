@@ -8,4 +8,5 @@ export type UserPropertyDetailsExtendedRented = UserPropertyBasicDetails & {
   cost_per_day: number;
   rental_period: number;
   rental_period_remaining: number;
+  rented_by: BasicUser;
 };
