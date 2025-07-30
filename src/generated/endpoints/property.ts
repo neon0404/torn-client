@@ -2,10 +2,10 @@ import type { Requester } from "../../client/types";
 import type {
   PropertyId,
   PropertyLookupResponse,
-  PropertyPropertyResponse,
   PropertyResponse,
   PropertySelectionName,
   TimestampResponse,
+  UserPropertyResponse,
 } from "../models";
 
 /**
@@ -90,7 +90,7 @@ export class PropertyIdContext {
    */
   public async get(params?: {
     timestamp?: string;
-  }): Promise<PropertyPropertyResponse> {
+  }): Promise<UserPropertyResponse> {
     const path = `/property/${this.contextId}/property`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
