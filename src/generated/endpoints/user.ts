@@ -60,6 +60,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async attacks(params?: {
+    filters?: "incoming" | "outgoing";
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -70,6 +71,7 @@ export class UserEndpoint {
   > {
     const path = `/user/attacks`;
     const query = {
+      ...(params?.filters !== undefined && { filters: params.filters }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
@@ -84,6 +86,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async attacksfull(params?: {
+    filters?: "incoming" | "outgoing";
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -94,6 +97,7 @@ export class UserEndpoint {
   > {
     const path = `/user/attacksfull`;
     const query = {
+      ...(params?.filters !== undefined && { filters: params.filters }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
@@ -486,6 +490,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async revives(params?: {
+    filters?: "incoming" | "outgoing";
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -495,6 +500,7 @@ export class UserEndpoint {
   }): Promise<PaginatedResponse<RevivesResponse> & RevivesResponse> {
     const path = `/user/revives`;
     const query = {
+      ...(params?.filters !== undefined && { filters: params.filters }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
@@ -510,6 +516,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async revivesfull(params?: {
+    filters?: "incoming" | "outgoing";
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -519,6 +526,7 @@ export class UserEndpoint {
   }): Promise<PaginatedResponse<RevivesFullResponse> & RevivesFullResponse> {
     const path = `/user/revivesFull`;
     const query = {
+      ...(params?.filters !== undefined && { filters: params.filters }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
