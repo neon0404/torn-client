@@ -3,6 +3,8 @@ import { PaginatedResponse } from "../../client/paginated";
 import type {
   FactionAttacksFullResponse,
   FactionAttacksResponse,
+  LogCategoryId,
+  LogId,
   PersonalStatsCategoryEnum,
   PersonalStatsStatName,
   RacingRaceTypeEnum,
@@ -30,6 +32,7 @@ import type {
   UserJobRanksResponse,
   UserListEnum,
   UserListResponse,
+  UserLogsResponse,
   UserLookupResponse,
   UserOrganizedCrimeResponse,
   UserPersonalStatsResponse,
@@ -57,6 +60,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async attacks(params?: {
+    filters?: "incoming" | "outgoing";
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -67,6 +71,7 @@ export class UserEndpoint {
   > {
     const path = `/user/attacks`;
     const query = {
+      ...(params?.filters !== undefined && { filters: params.filters }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
@@ -81,6 +86,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async attacksfull(params?: {
+    filters?: "incoming" | "outgoing";
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -91,6 +97,7 @@ export class UserEndpoint {
   > {
     const path = `/user/attacksfull`;
     const query = {
+      ...(params?.filters !== undefined && { filters: params.filters }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
@@ -329,6 +336,30 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your logs
+   * @param params - Optional query parameters
+   */
+  public async log(params?: {
+    log?: LogId[];
+    cat?: LogCategoryId;
+    limit?: number;
+    to?: number;
+    from?: number;
+    timestamp?: string;
+  }): Promise<PaginatedResponse<UserLogsResponse> & UserLogsResponse> {
+    const path = `/user/log`;
+    const query = {
+      ...(params?.log && { log: params.log.join(",") }),
+      ...(params?.cat !== undefined && { cat: params.cat }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.to !== undefined && { to: params.to }),
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your current ongoing organized crime
    * @param params - Optional query parameters
    */
@@ -459,6 +490,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async revives(params?: {
+    filters?: "incoming" | "outgoing";
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -468,6 +500,7 @@ export class UserEndpoint {
   }): Promise<PaginatedResponse<RevivesResponse> & RevivesResponse> {
     const path = `/user/revives`;
     const query = {
+      ...(params?.filters !== undefined && { filters: params.filters }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
@@ -483,6 +516,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async revivesfull(params?: {
+    filters?: "incoming" | "outgoing";
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -492,6 +526,7 @@ export class UserEndpoint {
   }): Promise<PaginatedResponse<RevivesFullResponse> & RevivesFullResponse> {
     const path = `/user/revivesFull`;
     const query = {
+      ...(params?.filters !== undefined && { filters: params.filters }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),

@@ -177,6 +177,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.log should succeed",
+      async () => {
+        const response = await client.user.log();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.organizedcrime should succeed",
       async () => {
         const response = await client.user.organizedcrime();
