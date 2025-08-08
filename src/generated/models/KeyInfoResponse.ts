@@ -4,6 +4,7 @@ import type {
   FactionId,
   FactionSelectionName,
   ForumSelectionName,
+  KeyInfoAvailableLog,
   KeySelectionName,
   MarketSelectionName,
   RacingSelectionName,
@@ -38,6 +39,10 @@ export type KeyInfoResponse = {
       faction_id?: FactionId | unknown;
       company: boolean;
       company_id?: CompanyId | unknown;
+      log: {
+        custom_permissions: boolean;
+        available: KeyInfoAvailableLog[];
+      };
     };
   };
 };

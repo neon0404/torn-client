@@ -3,6 +3,8 @@ import { PaginatedResponse } from "../../client/paginated";
 import type {
   FactionAttacksFullResponse,
   FactionAttacksResponse,
+  LogCategoryId,
+  LogId,
   PersonalStatsCategoryEnum,
   PersonalStatsStatName,
   RacingRaceTypeEnum,
@@ -30,6 +32,7 @@ import type {
   UserJobRanksResponse,
   UserListEnum,
   UserListResponse,
+  UserLogsResponse,
   UserLookupResponse,
   UserOrganizedCrimeResponse,
   UserPersonalStatsResponse,
@@ -323,6 +326,30 @@ export class UserEndpoint {
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.offset !== undefined && { offset: params.offset }),
       ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your logs
+   * @param params - Optional query parameters
+   */
+  public async log(params?: {
+    log?: LogId[];
+    cat?: LogCategoryId;
+    limit?: number;
+    to?: number;
+    from?: number;
+    timestamp?: string;
+  }): Promise<PaginatedResponse<UserLogsResponse> & UserLogsResponse> {
+    const path = `/user/log`;
+    const query = {
+      ...(params?.log && { log: params.log.join(",") }),
+      ...(params?.cat !== undefined && { cat: params.cat }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.to !== undefined && { to: params.to }),
+      ...(params?.from !== undefined && { from: params.from }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
