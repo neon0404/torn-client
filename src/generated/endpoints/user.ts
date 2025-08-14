@@ -582,6 +582,7 @@ export class UserEndpoint {
       | PersonalStatsCategoryEnum
       | RacingRaceTypeEnum;
     stat?: PersonalStatsStatName[];
+    filters?: "incoming" | "outgoing";
     striptags?: "true" | "false";
     offset?: number;
     timestamp?: string;
@@ -596,6 +597,7 @@ export class UserEndpoint {
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.cat !== undefined && { cat: params.cat }),
       ...(params?.stat && { stat: params.stat.join(",") }),
+      ...(params?.filters !== undefined && { filters: params.filters }),
       ...(params?.striptags !== undefined && { striptags: params.striptags }),
       ...(params?.offset !== undefined && { offset: params.offset }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
