@@ -682,7 +682,13 @@ export class FactionEndpoint {
       | FactionWarfareTypeEnum
       | FactionTerritoryWarsCategoryEnum;
     stat?: FactionStatEnum;
-    filters?: "created_at" | "executed_at" | "ready_at" | "expired_at";
+    filters?:
+      | "created_at"
+      | "executed_at"
+      | "ready_at"
+      | "expired_at"
+      | "incoming"
+      | "outgoing";
     striptags?: "true" | "false";
     sort?: "DESC" | "ASC";
     offset?: number;
