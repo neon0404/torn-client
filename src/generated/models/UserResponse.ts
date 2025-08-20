@@ -4,6 +4,8 @@ import type {
   RevivesFullResponse,
   RevivesResponse,
   TimestampResponse,
+  UserBasicResponse,
+  UserBattleStatsResponse,
   UserBountiesResponse,
   UserCalendarResponse,
   UserCrimesResponse,
@@ -17,14 +19,18 @@ import type {
   UserForumThreadsResponse,
   UserHofResponse,
   UserItemMarketResponse,
+  UserJobPointsResponse,
   UserJobRanksResponse,
   UserListResponse,
   UserLookupResponse,
+  UserMoneyResponse,
   UserOrganizedCrimeResponse,
   UserPersonalStatsResponse,
   UserPropertiesResponse,
   UserRacesResponse,
   UserRacingRecordsResponse,
+  UserSkillsResponse,
+  UserWorkStatsResponse,
 } from ".";
 
 /** @category Models */
@@ -45,6 +51,7 @@ export type UserResponse =
   | UserJobRanksResponse
   | UserPropertiesResponse
   | UserFactionBalanceResponse
+  | UserBasicResponse
   | RevivesResponse
   | RevivesFullResponse
   | UserItemMarketResponse
@@ -53,5 +60,10 @@ export type UserResponse =
   | UserOrganizedCrimeResponse
   | FactionAttacksResponse
   | FactionAttacksFullResponse
+  | UserMoneyResponse
+  | UserJobPointsResponse
+  | UserWorkStatsResponse
+  | UserSkillsResponse
+  | UserBattleStatsResponse
   | UserLookupResponse
   | TimestampResponse;
