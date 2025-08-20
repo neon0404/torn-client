@@ -15,6 +15,8 @@ import type {
   TimestampResponse,
   TornCrimeId,
   User,
+  UserBasicResponse,
+  UserBattleStatsResponse,
   UserBountiesResponse,
   UserCalendarResponse,
   UserCrimesResponse,
@@ -29,11 +31,13 @@ import type {
   UserHofResponse,
   UserId,
   UserItemMarketResponse,
+  UserJobPointsResponse,
   UserJobRanksResponse,
   UserListEnum,
   UserListResponse,
   UserLogsResponse,
   UserLookupResponse,
+  UserMoneyResponse,
   UserOrganizedCrimeResponse,
   UserPersonalStatsResponse,
   UserPropertiesResponse,
@@ -42,6 +46,8 @@ import type {
   UserRacingRecordsResponse,
   UserResponse,
   UserSelectionName,
+  UserSkillsResponse,
+  UserWorkStatsResponse,
 } from "../models";
 
 /**
@@ -108,6 +114,22 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your basic profile information
+   * @param params - Optional query parameters
+   */
+  public async basic(params?: {
+    striptags?: "true" | "false";
+    timestamp?: string;
+  }): Promise<UserBasicResponse> {
+    const path = `/user/basic`;
+    const query = {
+      ...(params?.striptags !== undefined && { striptags: params.striptags }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get bounties placed on you
    * @param params - Optional query parameters
    */
@@ -115,6 +137,20 @@ export class UserEndpoint {
     timestamp?: string;
   }): Promise<UserBountiesResponse> {
     const path = `/user/bounties`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your battlestats
+   * @param params - Optional query parameters
+   */
+  public async battlestats(params?: {
+    timestamp?: string;
+  }): Promise<UserBattleStatsResponse> {
+    const path = `/user/battlestats`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
@@ -164,7 +200,7 @@ export class UserEndpoint {
   }
 
   /**
-   * Get your current faction balance
+   * Deprecated. Use user/money instead
    * @param params - Optional query parameters
    */
   public async factionbalance(params?: {
@@ -300,6 +336,20 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your jobpoints
+   * @param params - Optional query parameters
+   */
+  public async jobpoints(params?: {
+    timestamp?: string;
+  }): Promise<UserJobPointsResponse> {
+    const path = `/user/jobpoints`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your starter job positions
    * @param params - Optional query parameters
    */
@@ -354,6 +404,20 @@ export class UserEndpoint {
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.to !== undefined && { to: params.to }),
       ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your current wealth
+   * @param params - Optional query parameters
+   */
+  public async money(params?: {
+    timestamp?: string;
+  }): Promise<UserMoneyResponse> {
+    const path = `/user/money`;
+    const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -538,6 +602,34 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your skills
+   * @param params - Optional query parameters
+   */
+  public async skills(params?: {
+    timestamp?: string;
+  }): Promise<UserSkillsResponse> {
+    const path = `/user/skills`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your working stats
+   * @param params - Optional query parameters
+   */
+  public async workstats(params?: {
+    timestamp?: string;
+  }): Promise<UserWorkStatsResponse> {
+    const path = `/user/workstats`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get all available user selections
    * @param params - Optional query parameters
    */
@@ -627,6 +719,22 @@ export class UserIdContext {
   constructor(requester: Requester, contextId: string | number) {
     this.requester = requester;
     this.contextId = contextId;
+  }
+
+  /**
+   * Get basic profile information for a specific user
+   * @param params - Optional query parameters
+   */
+  public async basic(params?: {
+    striptags?: "true" | "false";
+    timestamp?: string;
+  }): Promise<UserBasicResponse> {
+    const path = `/user/${this.contextId}/basic`;
+    const query = {
+      ...(params?.striptags !== undefined && { striptags: params.striptags }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
   }
 
   /**
