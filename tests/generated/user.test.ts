@@ -167,6 +167,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.honors should succeed",
+      async () => {
+        const response = await client.user.honors();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.itemmarket should succeed",
       async () => {
         const response = await client.user.itemmarket();
@@ -210,6 +220,26 @@ describe("UserEndpoint Integration Tests", () => {
       "user.log should succeed",
       async () => {
         const response = await client.user.log();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.medals should succeed",
+      async () => {
+        const response = await client.user.medals();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.merits should succeed",
+      async () => {
+        const response = await client.user.merits();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },

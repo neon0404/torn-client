@@ -4,8 +4,10 @@ import type {
   AttackCode,
   AttackLogResponse,
   FactionTerritoryEnum,
+  HonorId,
   ItemId,
   LogCategoryId,
+  MedalId,
   TimestampResponse,
   TornBountiesResponse,
   TornCalendarResponse,
@@ -17,6 +19,7 @@ import type {
   TornFactionTreeResponse,
   TornHofCategory,
   TornHofResponse,
+  TornHonorsResponse,
   TornItemAmmoResponse,
   TornItemCategory,
   TornItemModsResponse,
@@ -24,6 +27,8 @@ import type {
   TornLogCategoriesResponse,
   TornLogTypesResponse,
   TornLookupResponse,
+  TornMedalsResponse,
+  TornMeritsResponse,
   TornOrganizedCrimeResponse,
   TornProperties,
   TornResponse,
@@ -162,6 +167,20 @@ export class TornEndpoint {
   }
 
   /**
+   * Get all honors
+   * @param params - Optional query parameters
+   */
+  public async honors(params?: {
+    timestamp?: string;
+  }): Promise<TornHonorsResponse> {
+    const path = `/torn/honors`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get player hall of fame positions for a specific category
    * @param params - Optional query parameters
    */
@@ -256,6 +275,34 @@ export class TornEndpoint {
   }
 
   /**
+   * Get all medals
+   * @param params - Optional query parameters
+   */
+  public async medals(params?: {
+    timestamp?: string;
+  }): Promise<TornMedalsResponse> {
+    const path = `/torn/medals`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get all merits
+   * @param params - Optional query parameters
+   */
+  public async merits(params?: {
+    timestamp?: string;
+  }): Promise<TornMeritsResponse> {
+    const path = `/torn/merits`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get organized crimes information
    * @param params - Optional query parameters
    */
@@ -339,7 +386,13 @@ export class TornEndpoint {
    */
   public async get(params?: {
     selections?: TornSelectionName[];
-    id?: LogCategoryId | TornCrimeId | ItemId[] | FactionTerritoryEnum[];
+    id?:
+      | LogCategoryId
+      | TornCrimeId
+      | ItemId[]
+      | MedalId[]
+      | HonorId[]
+      | FactionTerritoryEnum[];
     striptags?: "true" | "false";
     limit?: number;
     to?: number;
@@ -397,6 +450,20 @@ export class TornIdsContext {
   }
 
   /**
+   * Get specific honors
+   * @param params - Optional query parameters
+   */
+  public async honors(params?: {
+    timestamp?: string;
+  }): Promise<TornHonorsResponse> {
+    const path = `/torn/${this.contextId}/honors`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get information about items
    * @param params - Optional query parameters
    */
@@ -407,6 +474,20 @@ export class TornIdsContext {
     const path = `/torn/${this.contextId}/items`;
     const query = {
       ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get specific medals
+   * @param params - Optional query parameters
+   */
+  public async medals(params?: {
+    timestamp?: string;
+  }): Promise<TornMedalsResponse> {
+    const path = `/torn/${this.contextId}/medals`;
+    const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);

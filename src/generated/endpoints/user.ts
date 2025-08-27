@@ -29,6 +29,7 @@ import type {
   UserForumSubscribedThreadsResponse,
   UserForumThreadsResponse,
   UserHofResponse,
+  UserHonorsResponse,
   UserId,
   UserItemMarketResponse,
   UserJobPointsResponse,
@@ -37,6 +38,8 @@ import type {
   UserListResponse,
   UserLogsResponse,
   UserLookupResponse,
+  UserMedalsResponse,
+  UserMeritsResponse,
   UserMoneyResponse,
   UserOrganizedCrimeResponse,
   UserPersonalStatsResponse,
@@ -318,6 +321,20 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your achieved honors
+   * @param params - Optional query parameters
+   */
+  public async honors(params?: {
+    timestamp?: string;
+  }): Promise<UserHonorsResponse> {
+    const path = `/user/honors`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your item market listings for a specific item
    * @param params - Optional query parameters
    */
@@ -404,6 +421,34 @@ export class UserEndpoint {
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.to !== undefined && { to: params.to }),
       ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your achieved medals
+   * @param params - Optional query parameters
+   */
+  public async medals(params?: {
+    timestamp?: string;
+  }): Promise<UserMedalsResponse> {
+    const path = `/user/medals`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your merits
+   * @param params - Optional query parameters
+   */
+  public async merits(params?: {
+    timestamp?: string;
+  }): Promise<UserMeritsResponse> {
+    const path = `/user/merits`;
+    const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
