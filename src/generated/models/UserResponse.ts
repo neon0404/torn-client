@@ -18,11 +18,14 @@ import type {
   UserForumSubscribedThreadsResponse,
   UserForumThreadsResponse,
   UserHofResponse,
+  UserHonorsResponse,
   UserItemMarketResponse,
   UserJobPointsResponse,
   UserJobRanksResponse,
   UserListResponse,
   UserLookupResponse,
+  UserMedalsResponse,
+  UserMeritsResponse,
   UserMoneyResponse,
   UserOrganizedCrimeResponse,
   UserPersonalStatsResponse,
@@ -53,6 +56,9 @@ export type UserResponse =
   | UserFactionBalanceResponse
   | UserBasicResponse
   | RevivesResponse
+  | UserHonorsResponse
+  | UserMedalsResponse
+  | UserMeritsResponse
   | RevivesFullResponse
   | UserItemMarketResponse
   | UserListResponse

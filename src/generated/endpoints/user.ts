@@ -29,6 +29,7 @@ import type {
   UserForumSubscribedThreadsResponse,
   UserForumThreadsResponse,
   UserHofResponse,
+  UserHonorsResponse,
   UserId,
   UserItemMarketResponse,
   UserJobPointsResponse,
@@ -37,6 +38,8 @@ import type {
   UserListResponse,
   UserLogsResponse,
   UserLookupResponse,
+  UserMedalsResponse,
+  UserMeritsResponse,
   UserMoneyResponse,
   UserOrganizedCrimeResponse,
   UserPersonalStatsResponse,
@@ -318,6 +321,20 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your achieved honors
+   * @param params - Optional query parameters
+   */
+  public async honors(params?: {
+    timestamp?: string;
+  }): Promise<UserHonorsResponse> {
+    const path = `/user/honors`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your item market listings for a specific item
    * @param params - Optional query parameters
    */
@@ -410,6 +427,34 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your achieved medals
+   * @param params - Optional query parameters
+   */
+  public async medals(params?: {
+    timestamp?: string;
+  }): Promise<UserMedalsResponse> {
+    const path = `/user/medals`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your merits
+   * @param params - Optional query parameters
+   */
+  public async merits(params?: {
+    timestamp?: string;
+  }): Promise<UserMeritsResponse> {
+    const path = `/user/merits`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your current wealth
    * @param params - Optional query parameters
    */
@@ -460,6 +505,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async properties(params?: {
+    filters?: "ownedByUser" | "ownedBySpouse";
     offset?: number;
     limit?: number;
     timestamp?: string;
@@ -468,6 +514,7 @@ export class UserEndpoint {
   > {
     const path = `/user/properties`;
     const query = {
+      ...(params?.filters !== undefined && { filters: params.filters }),
       ...(params?.offset !== undefined && { offset: params.offset }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
@@ -674,7 +721,7 @@ export class UserEndpoint {
       | PersonalStatsCategoryEnum
       | RacingRaceTypeEnum;
     stat?: PersonalStatsStatName[];
-    filters?: "incoming" | "outgoing";
+    filters?: "incoming" | "outgoing" | "ownedByUser" | "ownedBySpouse";
     striptags?: "true" | "false";
     offset?: number;
     timestamp?: string;
@@ -836,6 +883,7 @@ export class UserIdContext {
    * @param params - Optional query parameters
    */
   public async properties(params?: {
+    filters?: "ownedByUser" | "ownedBySpouse";
     offset?: number;
     limit?: number;
     timestamp?: string;
@@ -844,6 +892,7 @@ export class UserIdContext {
   > {
     const path = `/user/${this.contextId}/properties`;
     const query = {
+      ...(params?.filters !== undefined && { filters: params.filters }),
       ...(params?.offset !== undefined && { offset: params.offset }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
