@@ -149,14 +149,20 @@ export class ForumThreadIdContext {
    * @param params - Optional query parameters
    */
   public async posts(params?: {
-    offset?: number;
     striptags?: "true" | "false";
+    offset?: number;
+    sort?: "DESC" | "ASC";
+    from?: number;
+    to?: number;
     timestamp?: string;
   }): Promise<PaginatedResponse<ForumPostsResponse> & ForumPostsResponse> {
     const path = `/forum/${this.contextId}/posts`;
     const query = {
-      ...(params?.offset !== undefined && { offset: params.offset }),
       ...(params?.striptags !== undefined && { striptags: params.striptags }),
+      ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.to !== undefined && { to: params.to }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);

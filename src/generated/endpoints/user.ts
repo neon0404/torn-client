@@ -460,6 +460,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async properties(params?: {
+    filters?: "ownedByUser" | "ownedBySpouse";
     offset?: number;
     limit?: number;
     timestamp?: string;
@@ -468,6 +469,7 @@ export class UserEndpoint {
   > {
     const path = `/user/properties`;
     const query = {
+      ...(params?.filters !== undefined && { filters: params.filters }),
       ...(params?.offset !== undefined && { offset: params.offset }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
@@ -674,7 +676,7 @@ export class UserEndpoint {
       | PersonalStatsCategoryEnum
       | RacingRaceTypeEnum;
     stat?: PersonalStatsStatName[];
-    filters?: "incoming" | "outgoing";
+    filters?: "incoming" | "outgoing" | "ownedByUser" | "ownedBySpouse";
     striptags?: "true" | "false";
     offset?: number;
     timestamp?: string;
@@ -836,6 +838,7 @@ export class UserIdContext {
    * @param params - Optional query parameters
    */
   public async properties(params?: {
+    filters?: "ownedByUser" | "ownedBySpouse";
     offset?: number;
     limit?: number;
     timestamp?: string;
@@ -844,6 +847,7 @@ export class UserIdContext {
   > {
     const path = `/user/${this.contextId}/properties`;
     const query = {
+      ...(params?.filters !== undefined && { filters: params.filters }),
       ...(params?.offset !== undefined && { offset: params.offset }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
