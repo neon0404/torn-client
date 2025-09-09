@@ -19,10 +19,12 @@ import type {
   UserBattleStatsResponse,
   UserBountiesResponse,
   UserCalendarResponse,
+  UserCompetitionResponse,
   UserCrimesResponse,
   UserEducationResponse,
   UserEnlistedCarsResponse,
   UserFactionBalanceResponse,
+  UserFactionResponse,
   UserForumFeedResponse,
   UserForumFriendsResponse,
   UserForumPostsResponse,
@@ -30,10 +32,12 @@ import type {
   UserForumThreadsResponse,
   UserHofResponse,
   UserHonorsResponse,
+  UserIconsResponse,
   UserId,
   UserItemMarketResponse,
   UserJobPointsResponse,
   UserJobRanksResponse,
+  UserJobResponse,
   UserListEnum,
   UserListResponse,
   UserLogsResponse,
@@ -43,6 +47,7 @@ import type {
   UserMoneyResponse,
   UserOrganizedCrimeResponse,
   UserPersonalStatsResponse,
+  UserProfileResponse,
   UserPropertiesResponse,
   UserPropertyResponse,
   UserRacesResponse,
@@ -175,6 +180,20 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your competition information
+   * @param params - Optional query parameters
+   */
+  public async competition(params?: {
+    timestamp?: string;
+  }): Promise<UserCompetitionResponse> {
+    const path = `/user/competition`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your education information
    * @param params - Optional query parameters
    */
@@ -196,6 +215,20 @@ export class UserEndpoint {
     timestamp?: string;
   }): Promise<UserEnlistedCarsResponse> {
     const path = `/user/enlistedcars`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your faction information
+   * @param params - Optional query parameters
+   */
+  public async faction(params?: {
+    timestamp?: string;
+  }): Promise<UserFactionResponse> {
+    const path = `/user/faction`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
@@ -335,6 +368,20 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your icons information
+   * @param params - Optional query parameters
+   */
+  public async icons(params?: {
+    timestamp?: string;
+  }): Promise<UserIconsResponse> {
+    const path = `/user/icons`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your item market listings for a specific item
    * @param params - Optional query parameters
    */
@@ -347,6 +394,18 @@ export class UserEndpoint {
     const path = `/user/itemmarket`;
     const query = {
       ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your job information
+   * @param params - Optional query parameters
+   */
+  public async job(params?: { timestamp?: string }): Promise<UserJobResponse> {
+    const path = `/user/job`;
+    const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -495,6 +554,22 @@ export class UserEndpoint {
     const query = {
       ...(params?.cat !== undefined && { cat: params.cat }),
       ...(params?.stat && { stat: params.stat.join(",") }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your own profile
+   * @param params - Optional query parameters
+   */
+  public async profile(params?: {
+    striptags?: "true" | "false";
+    timestamp?: string;
+  }): Promise<UserProfileResponse> {
+    const path = `/user/profile`;
+    const query = {
+      ...(params?.striptags !== undefined && { striptags: params.striptags }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -799,6 +874,34 @@ export class UserIdContext {
   }
 
   /**
+   * Get competition information for a specific player
+   * @param params - Optional query parameters
+   */
+  public async competition(params?: {
+    timestamp?: string;
+  }): Promise<UserCompetitionResponse> {
+    const path = `/user/${this.contextId}/competition`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get faction information for a specific player
+   * @param params - Optional query parameters
+   */
+  public async faction(params?: {
+    timestamp?: string;
+  }): Promise<UserFactionResponse> {
+    const path = `/user/${this.contextId}/faction`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get posts for a specific player
    * @param params - Optional query parameters
    */
@@ -861,6 +964,32 @@ export class UserIdContext {
   }
 
   /**
+   * Get icons information for a specific player
+   * @param params - Optional query parameters
+   */
+  public async icons(params?: {
+    timestamp?: string;
+  }): Promise<UserIconsResponse> {
+    const path = `/user/${this.contextId}/icons`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get job information for a specific player
+   * @param params - Optional query parameters
+   */
+  public async job(params?: { timestamp?: string }): Promise<UserJobResponse> {
+    const path = `/user/${this.contextId}/job`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get a player's personal stats
    * @param params - Optional query parameters
    */
@@ -873,6 +1002,22 @@ export class UserIdContext {
     const query = {
       ...(params?.cat !== undefined && { cat: params.cat }),
       ...(params?.stat && { stat: params.stat.join(",") }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get profile information for a specific player
+   * @param params - Optional query parameters
+   */
+  public async profile(params?: {
+    striptags?: "true" | "false";
+    timestamp?: string;
+  }): Promise<UserProfileResponse> {
+    const path = `/user/${this.contextId}/profile`;
+    const query = {
+      ...(params?.striptags !== undefined && { striptags: params.striptags }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);

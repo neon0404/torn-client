@@ -7,4 +7,5 @@ export type UserStatus = {
   details: string | unknown;
   state: string;
   until: number | unknown;
+  travel_type?: string;
 };
