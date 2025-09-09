@@ -8,10 +8,12 @@ import type {
   UserBattleStatsResponse,
   UserBountiesResponse,
   UserCalendarResponse,
+  UserCompetitionResponse,
   UserCrimesResponse,
   UserEducationResponse,
   UserEnlistedCarsResponse,
   UserFactionBalanceResponse,
+  UserFactionResponse,
   UserForumFeedResponse,
   UserForumFriendsResponse,
   UserForumPostsResponse,
@@ -19,9 +21,11 @@ import type {
   UserForumThreadsResponse,
   UserHofResponse,
   UserHonorsResponse,
+  UserIconsResponse,
   UserItemMarketResponse,
   UserJobPointsResponse,
   UserJobRanksResponse,
+  UserJobResponse,
   UserListResponse,
   UserLookupResponse,
   UserMedalsResponse,
@@ -29,6 +33,7 @@ import type {
   UserMoneyResponse,
   UserOrganizedCrimeResponse,
   UserPersonalStatsResponse,
+  UserProfileResponse,
   UserPropertiesResponse,
   UserRacesResponse,
   UserRacingRecordsResponse,
@@ -60,6 +65,11 @@ export type UserResponse =
   | UserMedalsResponse
   | UserMeritsResponse
   | RevivesFullResponse
+  | UserProfileResponse
+  | UserJobResponse
+  | UserFactionResponse
+  | UserCompetitionResponse
+  | UserIconsResponse
   | UserItemMarketResponse
   | UserListResponse
   | UserPersonalStatsResponse

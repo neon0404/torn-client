@@ -77,6 +77,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.competition should succeed",
+      async () => {
+        const response = await client.user.competition();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.education should succeed",
       async () => {
         const response = await client.user.education();
@@ -90,6 +100,16 @@ describe("UserEndpoint Integration Tests", () => {
       "user.enlistedcars should succeed",
       async () => {
         const response = await client.user.enlistedcars();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.faction should succeed",
+      async () => {
+        const response = await client.user.faction();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
@@ -177,9 +197,29 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.icons should succeed",
+      async () => {
+        const response = await client.user.icons();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.itemmarket should succeed",
       async () => {
         const response = await client.user.itemmarket();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.job should succeed",
+      async () => {
+        const response = await client.user.job();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
@@ -270,6 +310,16 @@ describe("UserEndpoint Integration Tests", () => {
       "user.personalstats should succeed",
       async () => {
         const response = await client.user.personalstats({ cat: "popular" });
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.profile should succeed",
+      async () => {
+        const response = await client.user.profile();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
@@ -417,6 +467,26 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.withId(...).competition should succeed",
+      async () => {
+        const response = await client.user.withId("3772610").competition();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.withId(...).faction should succeed",
+      async () => {
+        const response = await client.user.withId("3772610").faction();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.withId(...).forumposts should succeed",
       async () => {
         const response = await client.user.withId("3772610").forumposts();
@@ -447,11 +517,41 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.withId(...).icons should succeed",
+      async () => {
+        const response = await client.user.withId("3772610").icons();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.withId(...).job should succeed",
+      async () => {
+        const response = await client.user.withId("3772610").job();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.withId(...).personalstats should succeed",
       async () => {
         const response = await client.user
           .withId("3772610")
           .personalstats({ cat: "popular" });
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.withId(...).profile should succeed",
+      async () => {
+        const response = await client.user.withId("3772610").profile();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },

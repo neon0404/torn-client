@@ -1,4 +1,4 @@
-import type { FactionId, UserId } from ".";
+import type { FactionId, UserId, UserRankEnum } from ".";
 
 /** @category Models */
 export type TornHofBasic = {
@@ -7,7 +7,7 @@ export type TornHofBasic = {
   faction_id: FactionId;
   level: number;
   last_action: number;
-  rank_name: string;
+  rank_name: UserRankEnum;
   rank_number: number;
   position: number;
   signed_up: number;
