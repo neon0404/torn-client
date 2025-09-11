@@ -1,6 +1,6 @@
-import type { FactionCrime } from ".";
+import type { FactionCrime, UserOrganizedCrimeError } from ".";
 
 /** @category Models */
 export type UserOrganizedCrimeResponse = {
-  organizedCrime: FactionCrime | unknown;
+  organizedCrime: FactionCrime | UserOrganizedCrimeError | unknown;
 };
