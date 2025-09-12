@@ -6,6 +6,7 @@ export type UserCompany = {
   id: CompanyId;
   type_id: CompanyTypeId;
   name: string;
+  rating: number;
   position: string;
   days_in_company: number;
 };
