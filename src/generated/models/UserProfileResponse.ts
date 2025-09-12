@@ -3,6 +3,7 @@ import type {
   HonorId,
   ProfileSpouse,
   PropertyId,
+  UserDonatorStatusEnum,
   UserGenderEnum,
   UserId,
   UserLastAction,
@@ -20,6 +21,7 @@ export type UserProfileResponse = {
     level: number;
     rank: UserRankEnum;
     title: UserTitleEnum;
+    donator_status: UserDonatorStatusEnum | unknown;
     age: number;
     signed_up: number;
     faction_id: FactionId | unknown;

@@ -45,4 +45,6 @@ export type UserTitleEnum =
   | "Tourist"
   | "Nudist"
   | "Sage"
-  | "Coward";
+  | "Coward"
+  | "Newcomer"
+  | "Deserter";
