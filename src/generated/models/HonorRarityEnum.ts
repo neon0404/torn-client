@@ -7,4 +7,5 @@ export type HonorRarityEnum =
   | "Uncommon"
   | "Common"
   | "Very Common"
-  | "Unknown";
+  | "Unknown"
+  | "Unknown Rarity";
