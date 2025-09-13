@@ -36,9 +36,7 @@ export type KeyInfoResponse = {
       level: number;
       type: ApiKeyAccessTypeEnum;
       faction: boolean;
-      faction_id?: FactionId | unknown;
       company: boolean;
-      company_id?: CompanyId | unknown;
       log: {
         custom_permissions: boolean;
         available: KeyInfoAvailableLog[];

@@ -38,7 +38,6 @@ import type {
   FactionTerritoryWarReportResponse,
   FactionTerritoryWarsCategoryEnum,
   FactionTerritoryWarsHistoryResponse,
-  FactionTerritoryWarsResponse,
   FactionUpgradesResponse,
   FactionWarfareResponse,
   FactionWarfareTypeEnum,
@@ -374,7 +373,6 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async rankedwars(params?: {
-    cat?: FactionRankedWarsCategoryEnum;
     from?: number;
     to?: number;
     sort?: "DESC" | "ASC";
@@ -384,7 +382,6 @@ export class FactionEndpoint {
   > {
     const path = `/faction/rankedwars`;
     const query = {
-      ...(params?.cat !== undefined && { cat: params.cat }),
       ...(params?.from !== undefined && { from: params.from }),
       ...(params?.to !== undefined && { to: params.to }),
       ...(params?.sort !== undefined && { sort: params.sort }),
@@ -548,16 +545,14 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async territorywars(params?: {
-    cat?: FactionTerritoryWarsCategoryEnum;
     from?: number;
     to?: number;
     sort?: "DESC" | "ASC";
     limit?: number;
     timestamp?: string;
-  }): Promise<FactionTerritoryWarsResponse> {
+  }): Promise<FactionTerritoryWarsHistoryResponse> {
     const path = `/faction/territorywars`;
     const query = {
-      ...(params?.cat !== undefined && { cat: params.cat }),
       ...(params?.from !== undefined && { from: params.from }),
       ...(params?.to !== undefined && { to: params.to }),
       ...(params?.sort !== undefined && { sort: params.sort }),
