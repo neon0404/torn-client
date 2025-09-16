@@ -25,7 +25,6 @@ import type {
   FactionTerritoriesResponse,
   FactionTerritoryWarReportResponse,
   FactionTerritoryWarsHistoryResponse,
-  FactionTerritoryWarsResponse,
   FactionUpgradesResponse,
   FactionWarfareResponse,
   FactionWarsResponse,
@@ -63,7 +62,6 @@ export type FactionResponse =
   | FactionTerritoriesResponse
   | FactionUpgradesResponse
   | FactionStatsResponse
-  | FactionTerritoryWarsResponse
   | FactionContributorsResponse
   | FactionRacketsResponse
   | FactionRankedWarResponse

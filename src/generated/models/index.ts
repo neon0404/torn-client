@@ -140,7 +140,6 @@ export * from "./FactionTerritoryWarReportResponse";
 export type * from "./FactionTerritoryWarResultEnum";
 export type * from "./FactionTerritoryWarsCategoryEnum";
 export * from "./FactionTerritoryWarsHistoryResponse";
-export * from "./FactionTerritoryWarsResponse";
 export * from "./FactionUpgradeDetails";
 export * from "./FactionUpgrades";
 export * from "./FactionUpgradesResponse";
