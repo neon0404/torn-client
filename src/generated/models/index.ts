@@ -494,6 +494,7 @@ export * from "./UserSkillDetail";
 export type * from "./UserSkillSlugEnum";
 export * from "./UserSkillsResponse";
 export * from "./UserStatus";
+export type * from "./UserStatusStateEnum";
 export type * from "./UserSubcrime";
 export type * from "./UserTitleEnum";
 export type * from "./UserWorkStatsResponse";
