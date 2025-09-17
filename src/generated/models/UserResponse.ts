@@ -12,6 +12,7 @@ import type {
   UserCrimesResponse,
   UserEducationResponse,
   UserEnlistedCarsResponse,
+  UserEventsResponse,
   UserFactionBalanceResponse,
   UserFactionResponse,
   UserForumFeedResponse,
@@ -30,7 +31,10 @@ import type {
   UserLookupResponse,
   UserMedalsResponse,
   UserMeritsResponse,
+  UserMessagesResponse,
   UserMoneyResponse,
+  UserNewEventsResponse,
+  UserNewMessagesResponse,
   UserOrganizedCrimeResponse,
   UserPersonalStatsResponse,
   UserProfileResponse,
@@ -81,5 +85,9 @@ export type UserResponse =
   | UserWorkStatsResponse
   | UserSkillsResponse
   | UserBattleStatsResponse
+  | UserNewEventsResponse
+  | UserEventsResponse
+  | UserMessagesResponse
+  | UserNewMessagesResponse
   | UserLookupResponse
   | TimestampResponse;

@@ -657,6 +657,7 @@ export class FactionEndpoint {
       | RankedWarId
       | TerritoryWarId
       | RaidWarId;
+    legacy?: FactionSelectionName[];
     limit?: number;
     from?: number;
     to?: number;
@@ -693,6 +694,7 @@ export class FactionEndpoint {
     const query = {
       ...(params?.selections && { selections: params.selections.join(",") }),
       ...(params?.id !== undefined && { id: params.id }),
+      ...(params?.legacy && { legacy: params.legacy.join(",") }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.from !== undefined && { from: params.from }),
       ...(params?.to !== undefined && { to: params.to }),

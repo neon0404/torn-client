@@ -393,6 +393,7 @@ export class TornEndpoint {
       | MedalId[]
       | HonorId[]
       | FactionTerritoryEnum[];
+    legacy?: TornSelectionName[];
     striptags?: "true" | "false";
     limit?: number;
     to?: number;
@@ -406,6 +407,7 @@ export class TornEndpoint {
     const query = {
       ...(params?.selections && { selections: params.selections.join(",") }),
       ...(params?.id !== undefined && { id: params.id }),
+      ...(params?.legacy && { legacy: params.legacy.join(",") }),
       ...(params?.striptags !== undefined && { striptags: params.striptags }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.to !== undefined && { to: params.to }),

@@ -23,6 +23,7 @@ import type {
   UserCrimesResponse,
   UserEducationResponse,
   UserEnlistedCarsResponse,
+  UserEventsResponse,
   UserFactionBalanceResponse,
   UserFactionResponse,
   UserForumFeedResponse,
@@ -44,7 +45,10 @@ import type {
   UserLookupResponse,
   UserMedalsResponse,
   UserMeritsResponse,
+  UserMessagesResponse,
   UserMoneyResponse,
+  UserNewEventsResponse,
+  UserNewMessagesResponse,
   UserOrganizedCrimeResponse,
   UserPersonalStatsResponse,
   UserProfileResponse,
@@ -208,7 +212,7 @@ export class UserEndpoint {
   }
 
   /**
-   * Get user enlisted cars
+   * Get your enlisted cars
    * @param params - Optional query parameters
    */
   public async enlistedcars(params?: {
@@ -216,6 +220,28 @@ export class UserEndpoint {
   }): Promise<UserEnlistedCarsResponse> {
     const path = `/user/enlistedcars`;
     const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your events
+   * @param params - Optional query parameters
+   */
+  public async events(params?: {
+    striptags?: "true" | "false";
+    limit?: number;
+    from?: number;
+    to?: number;
+    timestamp?: string;
+  }): Promise<PaginatedResponse<UserEventsResponse> & UserEventsResponse> {
+    const path = `/user/events`;
+    const query = {
+      ...(params?.striptags !== undefined && { striptags: params.striptags }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.to !== undefined && { to: params.to }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -445,6 +471,7 @@ export class UserEndpoint {
    */
   public async list(params?: {
     cat?: UserListEnum;
+    striptags?: "true" | "false";
     limit?: number;
     offset?: number;
     sort?: "DESC" | "ASC";
@@ -453,6 +480,7 @@ export class UserEndpoint {
     const path = `/user/list`;
     const query = {
       ...(params?.cat !== undefined && { cat: params.cat }),
+      ...(params?.striptags !== undefined && { striptags: params.striptags }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.offset !== undefined && { offset: params.offset }),
       ...(params?.sort !== undefined && { sort: params.sort }),
@@ -514,6 +542,28 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your messages
+   * @param params - Optional query parameters
+   */
+  public async messages(params?: {
+    limit?: number;
+    from?: number;
+    to?: number;
+    sort?: "DESC" | "ASC";
+    timestamp?: string;
+  }): Promise<PaginatedResponse<UserMessagesResponse> & UserMessagesResponse> {
+    const path = `/user/messages`;
+    const query = {
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.to !== undefined && { to: params.to }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your current wealth
    * @param params - Optional query parameters
    */
@@ -521,6 +571,36 @@ export class UserEndpoint {
     timestamp?: string;
   }): Promise<UserMoneyResponse> {
     const path = `/user/money`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your unseen events
+   * @param params - Optional query parameters
+   */
+  public async newevents(params?: {
+    striptags?: "true" | "false";
+    timestamp?: string;
+  }): Promise<UserNewEventsResponse> {
+    const path = `/user/newevents`;
+    const query = {
+      ...(params?.striptags !== undefined && { striptags: params.striptags }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your unseen messages
+   * @param params - Optional query parameters
+   */
+  public async newmessages(params?: {
+    timestamp?: string;
+  }): Promise<UserNewMessagesResponse> {
+    const path = `/user/newmessages`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
@@ -786,6 +866,7 @@ export class UserEndpoint {
   public async get(params?: {
     selections?: UserSelectionName[];
     id?: UserId | TornCrimeId | string;
+    legacy?: UserSelectionName[];
     limit?: number;
     from?: number;
     to?: number;
@@ -805,6 +886,7 @@ export class UserEndpoint {
     const query = {
       ...(params?.selections && { selections: params.selections.join(",") }),
       ...(params?.id !== undefined && { id: params.id }),
+      ...(params?.legacy && { legacy: params.legacy.join(",") }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.from !== undefined && { from: params.from }),
       ...(params?.to !== undefined && { to: params.to }),
