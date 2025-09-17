@@ -107,6 +107,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.events should succeed",
+      async () => {
+        const response = await client.user.events();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.faction should succeed",
       async () => {
         const response = await client.user.faction();
@@ -287,9 +297,39 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.messages should succeed",
+      async () => {
+        const response = await client.user.messages();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.money should succeed",
       async () => {
         const response = await client.user.money();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.newevents should succeed",
+      async () => {
+        const response = await client.user.newevents();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.newmessages should succeed",
+      async () => {
+        const response = await client.user.newmessages();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },

@@ -78,6 +78,7 @@ export class MarketEndpoint {
   public async get(params?: {
     selections?: MarketSelectionName[];
     id?: ItemId | PropertyTypeId;
+    legacy?: MarketSelectionName[];
     cat?: MarketSpecializedBazaarCategoryEnum;
     bonus?: WeaponBonusEnum;
     sort?: "DESC" | "ASC";
@@ -89,6 +90,7 @@ export class MarketEndpoint {
     const query = {
       ...(params?.selections && { selections: params.selections.join(",") }),
       ...(params?.id !== undefined && { id: params.id }),
+      ...(params?.legacy && { legacy: params.legacy.join(",") }),
       ...(params?.cat !== undefined && { cat: params.cat }),
       ...(params?.bonus !== undefined && { bonus: params.bonus }),
       ...(params?.sort !== undefined && { sort: params.sort }),
