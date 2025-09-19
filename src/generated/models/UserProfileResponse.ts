@@ -19,8 +19,8 @@ export type UserProfileResponse = {
     id: UserId;
     name: string;
     level: number;
-    rank: UserRankEnum;
-    title: UserTitleEnum;
+    rank: UserRankEnum | string;
+    title: UserTitleEnum | string;
     donator_status: UserDonatorStatusEnum | unknown;
     age: number;
     signed_up: number;

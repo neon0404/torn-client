@@ -15,11 +15,13 @@ import type {
   TimestampResponse,
   TornCrimeId,
   User,
+  UserBarsResponse,
   UserBasicResponse,
   UserBattleStatsResponse,
   UserBountiesResponse,
   UserCalendarResponse,
   UserCompetitionResponse,
+  UserCooldownsResponse,
   UserCrimesResponse,
   UserEducationResponse,
   UserEnlistedCarsResponse,
@@ -49,6 +51,7 @@ import type {
   UserMoneyResponse,
   UserNewEventsResponse,
   UserNewMessagesResponse,
+  UserNotificationsResponse,
   UserOrganizedCrimeResponse,
   UserPersonalStatsResponse,
   UserProfileResponse,
@@ -56,9 +59,12 @@ import type {
   UserPropertyResponse,
   UserRacesResponse,
   UserRacingRecordsResponse,
+  UserRefillsResponse,
   UserResponse,
   UserSelectionName,
   UserSkillsResponse,
+  UserTravelResponse,
+  UserVirusResponse,
   UserWorkStatsResponse,
 } from "../models";
 
@@ -120,6 +126,20 @@ export class UserEndpoint {
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
       ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your bars information
+   * @param params - Optional query parameters
+   */
+  public async bars(params?: {
+    timestamp?: string;
+  }): Promise<UserBarsResponse> {
+    const path = `/user/bars`;
+    const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -191,6 +211,20 @@ export class UserEndpoint {
     timestamp?: string;
   }): Promise<UserCompetitionResponse> {
     const path = `/user/competition`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your cooldowns information
+   * @param params - Optional query parameters
+   */
+  public async cooldowns(params?: {
+    timestamp?: string;
+  }): Promise<UserCooldownsResponse> {
+    const path = `/user/cooldowns`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
@@ -608,6 +642,20 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your notifications
+   * @param params - Optional query parameters
+   */
+  public async notifications(params?: {
+    timestamp?: string;
+  }): Promise<UserNotificationsResponse> {
+    const path = `/user/notifications`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your current ongoing organized crime
    * @param params - Optional query parameters
    */
@@ -730,6 +778,20 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your refills information
+   * @param params - Optional query parameters
+   */
+  public async refills(params?: {
+    timestamp?: string;
+  }): Promise<UserRefillsResponse> {
+    const path = `/user/refills`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your reports
    * @param params - Optional query parameters
    */
@@ -811,6 +873,34 @@ export class UserEndpoint {
     timestamp?: string;
   }): Promise<UserSkillsResponse> {
     const path = `/user/skills`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your travel information
+   * @param params - Optional query parameters
+   */
+  public async travel(params?: {
+    timestamp?: string;
+  }): Promise<UserTravelResponse> {
+    const path = `/user/travel`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your virus information
+   * @param params - Optional query parameters
+   */
+  public async virus(params?: {
+    timestamp?: string;
+  }): Promise<UserVirusResponse> {
+    const path = `/user/virus`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
