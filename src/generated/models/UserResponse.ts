@@ -4,11 +4,13 @@ import type {
   RevivesFullResponse,
   RevivesResponse,
   TimestampResponse,
+  UserBarsResponse,
   UserBasicResponse,
   UserBattleStatsResponse,
   UserBountiesResponse,
   UserCalendarResponse,
   UserCompetitionResponse,
+  UserCooldownsResponse,
   UserCrimesResponse,
   UserEducationResponse,
   UserEnlistedCarsResponse,
@@ -35,13 +37,17 @@ import type {
   UserMoneyResponse,
   UserNewEventsResponse,
   UserNewMessagesResponse,
+  UserNotificationsResponse,
   UserOrganizedCrimeResponse,
   UserPersonalStatsResponse,
   UserProfileResponse,
   UserPropertiesResponse,
   UserRacesResponse,
   UserRacingRecordsResponse,
+  UserRefillsResponse,
   UserSkillsResponse,
+  UserTravelResponse,
+  UserVirusResponse,
   UserWorkStatsResponse,
 } from ".";
 
@@ -79,6 +85,12 @@ export type UserResponse =
   | UserPersonalStatsResponse
   | UserOrganizedCrimeResponse
   | FactionAttacksResponse
+  | UserBarsResponse
+  | UserCooldownsResponse
+  | UserNotificationsResponse
+  | UserRefillsResponse
+  | UserTravelResponse
+  | UserVirusResponse
   | FactionAttacksFullResponse
   | UserMoneyResponse
   | UserJobPointsResponse

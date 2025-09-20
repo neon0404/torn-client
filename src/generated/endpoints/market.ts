@@ -147,6 +147,7 @@ export class MarketIdContext {
    */
   public async itemmarket(params?: {
     bonus?: WeaponBonusEnum;
+    limit?: number;
     offset?: number;
     timestamp?: string;
   }): Promise<
@@ -155,6 +156,7 @@ export class MarketIdContext {
     const path = `/market/${this.contextId}/itemmarket`;
     const query = {
       ...(params?.bonus !== undefined && { bonus: params.bonus }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.offset !== undefined && { offset: params.offset }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };

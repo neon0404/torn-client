@@ -171,10 +171,16 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async honors(params?: {
+    limit?: number;
+    offset?: number;
+    sort?: "DESC" | "ASC";
     timestamp?: string;
   }): Promise<TornHonorsResponse> {
     const path = `/torn/honors`;
     const query = {
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);

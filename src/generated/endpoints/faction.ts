@@ -356,6 +356,7 @@ export class FactionEndpoint {
     from?: number;
     to?: number;
     sort?: "DESC" | "ASC";
+    limit?: number;
     timestamp?: string;
   }): Promise<PaginatedResponse<FactionRaidsResponse> & FactionRaidsResponse> {
     const path = `/faction/raids`;
@@ -363,6 +364,7 @@ export class FactionEndpoint {
       ...(params?.from !== undefined && { from: params.from }),
       ...(params?.to !== undefined && { to: params.to }),
       ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -373,6 +375,8 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async rankedwars(params?: {
+    offset?: number;
+    limit?: number;
     from?: number;
     to?: number;
     sort?: "DESC" | "ASC";
@@ -382,6 +386,8 @@ export class FactionEndpoint {
   > {
     const path = `/faction/rankedwars`;
     const query = {
+      ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.from !== undefined && { from: params.from }),
       ...(params?.to !== undefined && { to: params.to }),
       ...(params?.sort !== undefined && { sort: params.sort }),
@@ -844,10 +850,18 @@ export class FactionIdContext {
    * @param params - Optional query parameters
    */
   public async raids(params?: {
+    from?: number;
+    to?: number;
+    sort?: "DESC" | "ASC";
+    limit?: number;
     timestamp?: string;
   }): Promise<PaginatedResponse<FactionRaidsResponse> & FactionRaidsResponse> {
     const path = `/faction/${this.contextId}/raids`;
     const query = {
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.to !== undefined && { to: params.to }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -858,12 +872,16 @@ export class FactionIdContext {
    * @param params - Optional query parameters
    */
   public async rankedwars(params?: {
+    offset?: number;
+    limit?: number;
     timestamp?: string;
   }): Promise<
     PaginatedResponse<FactionRankedWarResponse> & FactionRankedWarResponse
   > {
     const path = `/faction/${this.contextId}/rankedwars`;
     const query = {
+      ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -888,10 +906,18 @@ export class FactionIdContext {
    * @param params - Optional query parameters
    */
   public async territorywars(params?: {
+    from?: number;
+    to?: number;
+    sort?: "DESC" | "ASC";
+    limit?: number;
     timestamp?: string;
   }): Promise<FactionTerritoryWarsHistoryResponse> {
     const path = `/faction/${this.contextId}/territorywars`;
     const query = {
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.to !== undefined && { to: params.to }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
