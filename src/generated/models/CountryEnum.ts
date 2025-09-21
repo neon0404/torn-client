@@ -10,4 +10,5 @@ export type CountryEnum =
   | "Canada"
   | "United Kingdom"
   | "UAE"
-  | "Cayman Islands";
+  | "Cayman Islands"
+  | "Torn";
