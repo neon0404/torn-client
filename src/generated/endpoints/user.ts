@@ -162,20 +162,6 @@ export class UserEndpoint {
   }
 
   /**
-   * Get bounties placed on you
-   * @param params - Optional query parameters
-   */
-  public async bounties(params?: {
-    timestamp?: string;
-  }): Promise<UserBountiesResponse> {
-    const path = `/user/bounties`;
-    const query = {
-      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
-    };
-    return this.requester(path, query);
-  }
-
-  /**
    * Get your battlestats
    * @param params - Optional query parameters
    */
@@ -183,6 +169,20 @@ export class UserEndpoint {
     timestamp?: string;
   }): Promise<UserBattleStatsResponse> {
     const path = `/user/battlestats`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get bounties placed on you
+   * @param params - Optional query parameters
+   */
+  public async bounties(params?: {
+    timestamp?: string;
+  }): Promise<UserBountiesResponse> {
+    const path = `/user/bounties`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };

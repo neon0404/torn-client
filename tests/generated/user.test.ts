@@ -57,9 +57,9 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
-      "user.bounties should succeed",
+      "user.battlestats should succeed",
       async () => {
-        const response = await client.user.bounties();
+        const response = await client.user.battlestats();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
@@ -67,9 +67,9 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
-      "user.battlestats should succeed",
+      "user.bounties should succeed",
       async () => {
-        const response = await client.user.battlestats();
+        const response = await client.user.bounties();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
