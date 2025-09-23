@@ -21,21 +21,21 @@ export type UserProfileResponse = {
     level: number;
     rank: UserRankEnum | string;
     title: UserTitleEnum | string;
-    donator_status: UserDonatorStatusEnum | unknown;
+    donator_status: UserDonatorStatusEnum | null;
     age: number;
     signed_up: number;
-    faction_id: FactionId | unknown;
+    faction_id: FactionId | null;
     honor_id: HonorId;
     property: {
       id: PropertyId;
       name: string;
     };
-    image: string | unknown;
+    image: string | null;
     gender: UserGenderEnum;
     revivable: boolean;
     role: UserRoleEnum;
     status: UserStatus;
-    spouse: ProfileSpouse | unknown;
+    spouse: ProfileSpouse | null;
     awards: number;
     friends: number;
     enemies: number;

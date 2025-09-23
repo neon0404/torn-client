@@ -4,8 +4,8 @@ import type { FactionRankedWarParticipant } from ".";
 export type FactionRankedWar = {
   war_id: number;
   start: number;
-  end: number | unknown;
+  end: number | null;
   target: number;
-  winner: number | unknown;
+  winner: number | null;
   factions: FactionRankedWarParticipant[];
 };

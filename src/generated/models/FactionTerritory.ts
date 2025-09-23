@@ -14,5 +14,5 @@ export type FactionTerritory = {
   slots: number;
   respect: number;
   coordinates: TornTerritoryCoordinates;
-  racket: TornRacket | unknown;
+  racket: TornRacket | null;
 };

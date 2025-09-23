@@ -6,24 +6,18 @@ export type AttackLog = {
   timestamp: number;
   action: AttackActionEnum;
   icon: string;
-  attacker:
-    | {
-        id: UserId;
-        name: string;
-        item:
-          | {
-              id?: ItemId;
-              name?: string;
-            }
-          | unknown;
-      }
-    | unknown;
-  defender:
-    | {
-        id: UserId;
-        name: string;
-      }
-    | unknown;
+  attacker: {
+    id: UserId;
+    name: string;
+    item: {
+      id?: ItemId;
+      name?: string;
+    } | null;
+  } | null;
+  defender: {
+    id: UserId;
+    name: string;
+  } | null;
   attacker_item?: {
     id: ItemId;
     name: string;

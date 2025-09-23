@@ -12,6 +12,6 @@ export type TornOrganizedCrime = {
   difficulty: number;
   spawn: TornOrganizedCrimeSpawn;
   scope: TornOrganizedCrimeScope;
-  prerequisite: OrganizedCrimeName | unknown;
+  prerequisite: OrganizedCrimeName | null;
   slots: TornOrganizedCrimeSlot[];
 };

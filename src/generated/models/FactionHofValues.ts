@@ -1,6 +1,6 @@
 /** @category Models */
 export type FactionHofValues = {
-  chain: number | unknown;
-  chain_duration: number | unknown;
-  respect: number | unknown;
+  chain: number | null;
+  chain_duration: number | null;
+  respect: number | null;
 };

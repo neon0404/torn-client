@@ -18,7 +18,7 @@
   "sideEffects": false,
   "scripts": {
     "api:check": "node scripts/check-version.mjs",
-    "api:generate": "tsx scripts/generator/index.ts && eslint . --fix",
+    "api:generate": "tsx scripts/generator/index.ts && eslint ./src/generated ./tests --fix",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "pnpm test:unit && pnpm test:e2e",

@@ -1,7 +1,7 @@
 /** @category Models */
 export type ItemMarketListingItemStats = {
-  damage: number | unknown;
-  accuracy: number | unknown;
-  armor: number | unknown;
+  damage: number | null;
+  accuracy: number | null;
+  armor: number | null;
   quality: number;
 };

@@ -27,5 +27,5 @@ export type UserCrime = {
     | UserCrimeDetailsHustling
     | UserCrimeDetailsCracking
     | UserCrimeDetailsScamming
-    | unknown;
+    | null;
 };

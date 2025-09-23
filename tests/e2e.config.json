@@ -126,6 +126,12 @@
     "items": {
       "ids": 1
     },
+    "honors": {
+      "ids": 317
+    },
+    "medals": {
+      "ids": 241
+    },
     "get": {
       "queryParams": {
         "selections": [

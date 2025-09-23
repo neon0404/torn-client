@@ -10,5 +10,5 @@ export type FactionWarfareDirtyBomb = {
   planted_at: number;
   detonated_at: number;
   faction: FactionWarfareDirtyBombTargetFaction;
-  user: FactionWarfareDirtyBombPlanter | unknown;
+  user: FactionWarfareDirtyBombPlanter | null;
 };

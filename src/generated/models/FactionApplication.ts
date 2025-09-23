@@ -7,16 +7,14 @@ export type FactionApplication = {
     id: UserId;
     name: string;
     level: number;
-    stats:
-      | {
-          strength: number;
-          speed: number;
-          dexterity: number;
-          defense: number;
-        }
-      | unknown;
+    stats: {
+      strength: number;
+      speed: number;
+      dexterity: number;
+      defense: number;
+    } | null;
   };
-  message: string | unknown;
+  message: string | null;
   valid_until: number;
   status: FactionApplicationStatusEnum;
 };

@@ -1,5 +1,5 @@
 /** @category Models */
 export type RequestLinks = {
-  next: string | unknown;
-  prev: string | unknown;
+  next: string | null;
+  prev: string | null;
 };

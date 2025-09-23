@@ -12,7 +12,7 @@ export type FactionBasic = {
   days_old: number;
   capacity: number;
   members: number;
-  is_enlisted: boolean | unknown;
+  is_enlisted: boolean | null;
   rank: FactionRank;
   best_chain: number;
 };

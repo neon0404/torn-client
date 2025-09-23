@@ -5,8 +5,8 @@ export type FactionTerritoryWar = {
   war_id: number;
   territory: string;
   start: number;
-  end: number | unknown;
+  end: number | null;
   target: number;
-  winner?: FactionId | unknown;
+  winner?: FactionId | null;
   factions: FactionTerritoryWarParticipant[];
 };

@@ -9,11 +9,9 @@ export type UserPropertyDetailsExtendedRented = UserPropertyBasicDetails & {
   rental_period: number;
   rental_period_remaining: number;
   rented_by: BasicUser;
-  lease_extension:
-    | {
-        cost: number;
-        period: number;
-        created_at: number;
-      }
-    | unknown;
+  lease_extension: {
+    cost: number;
+    period: number;
+    created_at: number;
+  } | null;
 };

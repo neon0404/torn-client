@@ -9,12 +9,10 @@ export type TornFactionTreeBranch = {
     level: number;
     ability: string;
     cost: number;
-    challenge:
-      | {
-          description: string;
-          amount_required: number;
-          stat: FactionStatEnum;
-        }
-      | unknown;
+    challenge: {
+      description: string;
+      amount_required: number;
+      stat: FactionStatEnum;
+    } | null;
   }[];
 };

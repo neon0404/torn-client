@@ -4,8 +4,8 @@ export type KeyLogResponse = {
     timestamp: number;
     type: string;
     selections: string;
-    id: number | string | unknown;
-    comment?: string | unknown;
+    id: number | string | null;
+    comment?: string | null;
     ip: string;
   }[];
 };

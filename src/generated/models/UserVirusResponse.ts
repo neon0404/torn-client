@@ -2,5 +2,5 @@ import type { UserVirus } from ".";
 
 /** @category Models */
 export type UserVirusResponse = {
-  virus: UserVirus | unknown;
+  virus: UserVirus | null;
 };

@@ -1,5 +1,5 @@
 /** @category Models */
 export type HofValueString = {
   value: string;
-  rank: number | unknown;
+  rank: number | null;
 };

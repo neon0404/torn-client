@@ -1,10 +1,10 @@
 /** @category Models */
 export type TornEducationRewards = {
   working_stats: {
-    manual_labor: number | unknown;
-    intelligence: number | unknown;
-    endurance: number | unknown;
+    manual_labor: number | null;
+    intelligence: number | null;
+    endurance: number | null;
   };
-  effect: string | unknown;
-  honor: string | unknown;
+  effect: string | null;
+  honor: string | null;
 };

@@ -6,5 +6,5 @@ export type FactionCrimeReward = {
   items: FactionCrimeRewardItem[];
   respect: number;
   scope: number;
-  payout: FactionCrimeRewardPayout | unknown;
+  payout: FactionCrimeRewardPayout | null;
 };

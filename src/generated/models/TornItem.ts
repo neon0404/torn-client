@@ -11,25 +11,23 @@ export type TornItem = {
   id: ItemId;
   name: string;
   description: string;
-  effect: string | unknown;
-  requirement: string | unknown;
+  effect: string | null;
+  requirement: string | null;
   image: string;
   type: TornItemTypeEnum;
-  sub_type: TornItemWeaponTypeEnum | unknown;
+  sub_type: TornItemWeaponTypeEnum | null;
   is_masked: boolean;
   is_tradable: boolean;
   is_found_in_city: boolean;
   value: {
-    vendor:
-      | {
-          country: string;
-          name: string;
-        }
-      | unknown;
-    buy_price: number | unknown;
-    sell_price: number | unknown;
+    vendor: {
+      country: string;
+      name: string;
+    } | null;
+    buy_price: number | null;
+    sell_price: number | null;
     market_price: number;
   };
   circulation: number;
-  details: TornItemWeaponDetails | TornItemArmorDetails | unknown;
+  details: TornItemWeaponDetails | TornItemArmorDetails | null;
 };

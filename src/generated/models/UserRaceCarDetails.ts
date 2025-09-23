@@ -3,7 +3,7 @@ import type { RaceCar, RaceCarId, RaceCarUpgradeId } from ".";
 /** @category Models */
 export type UserRaceCarDetails = RaceCar & {
   id: RaceCarId;
-  name: string | unknown;
+  name: string | null;
   worth: number;
   points_spent: number;
   races_entered: number;

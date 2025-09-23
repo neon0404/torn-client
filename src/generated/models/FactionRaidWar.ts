@@ -4,6 +4,6 @@ import type { FactionRaidWarParticipant } from ".";
 export type FactionRaidWar = {
   war_id: number;
   start: number;
-  end: number | unknown;
+  end: number | null;
   factions: FactionRaidWarParticipant[];
 };

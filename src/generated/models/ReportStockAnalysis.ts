@@ -9,7 +9,7 @@ export type ReportStockAnalysis = {
       name: string;
       price: number;
       value: number;
-      due: number | unknown;
+      due: number | null;
     };
     trip_duration: number;
     hourly_profit: number;

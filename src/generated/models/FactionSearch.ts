@@ -7,10 +7,10 @@ export type FactionSearch = {
   respect: number;
   members: number;
   leader: FactionSearchLeader;
-  co_leader: FactionSearchLeader | unknown;
-  image: string | unknown;
-  tag_image: string | unknown;
-  tag: string | unknown;
+  co_leader: FactionSearchLeader | null;
+  image: string | null;
+  tag_image: string | null;
+  tag: string | null;
   is_destroyed: boolean;
   is_recruiting: boolean;
 };

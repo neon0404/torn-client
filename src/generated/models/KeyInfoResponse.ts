@@ -28,8 +28,8 @@ export type KeyInfoResponse = {
       key: KeySelectionName[];
     };
     user: {
-      faction_id: FactionId | unknown;
-      company_id: CompanyId | unknown;
+      faction_id: FactionId | null;
+      company_id: CompanyId | null;
       id: UserId;
     };
     access: {

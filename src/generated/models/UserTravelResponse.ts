@@ -4,9 +4,9 @@ import type { CountryEnum, UserFlyMethodEnum } from ".";
 export type UserTravelResponse = {
   travel: {
     destination: CountryEnum;
-    method: UserFlyMethodEnum | unknown;
-    departed_at: number | unknown;
-    arrival_at: number | unknown;
+    method: UserFlyMethodEnum | null;
+    departed_at: number | null;
+    arrival_at: number | null;
     time_left: number;
   };
 };

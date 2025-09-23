@@ -7,6 +7,6 @@ import type {
 /** @category Models */
 export type UserCrimeUniquesReward = {
   items: UserCrimeRewardItem[];
-  money: UserCrimeUniquesRewardMoney | unknown;
-  ammo: UserCrimeUniquesRewardAmmo | unknown;
+  money: UserCrimeUniquesRewardMoney | null;
+  ammo: UserCrimeUniquesRewardAmmo | null;
 };

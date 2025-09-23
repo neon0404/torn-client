@@ -6,7 +6,7 @@ export type FactionRankedWarDetails = {
   start: number;
   end: number;
   target: number;
-  winner: FactionId | unknown;
+  winner: FactionId | null;
   factions: {
     id: FactionId;
     name: string;

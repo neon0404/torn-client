@@ -40,6 +40,8 @@ function schemaToTypeString(
   }
 
   switch (schema.type) {
+    case "null":
+      return "null";
     case "boolean":
       return "boolean";
     case "integer":

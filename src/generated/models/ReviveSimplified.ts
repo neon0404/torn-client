@@ -5,11 +5,11 @@ export type ReviveSimplified = {
   id: ReviveId;
   reviver: {
     id: UserId;
-    faction_id: FactionId | unknown;
+    faction_id: FactionId | null;
   };
   target: {
     id: UserId;
-    faction_id: FactionId | unknown;
+    faction_id: FactionId | null;
     hospital_reason: string;
     early_discharge: boolean;
     last_action: number;

@@ -4,5 +4,5 @@ import type { ForumPoll, ForumThreadBase } from ".";
 export type ForumThreadExtended = ForumThreadBase & {
   content: string;
   content_raw: string;
-  poll: ForumPoll | unknown;
+  poll: ForumPoll | null;
 };

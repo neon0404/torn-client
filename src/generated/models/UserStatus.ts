@@ -6,10 +6,10 @@ import type { UserPlaneImageTypeEnum, UserStatusStateEnum } from ".";
  */
 export type UserStatus = {
   description: string;
-  details: string | unknown;
+  details: string | null;
   state: UserStatusStateEnum | string;
   color: string;
-  until: number | unknown;
+  until: number | null;
   travel_type?: string;
   plane_image_type?: UserPlaneImageTypeEnum;
 };

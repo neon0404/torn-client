@@ -6,5 +6,5 @@ export type UserBars = {
   nerve: UserBar;
   happy: UserBar;
   life: UserBar;
-  chain: FactionOngoingChain | unknown;
+  chain: FactionOngoingChain | null;
 };

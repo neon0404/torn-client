@@ -5,10 +5,10 @@ export type Bounty = {
   target_id: UserId;
   target_name: string;
   target_level: number;
-  lister_id: UserId | unknown;
-  lister_name: string | unknown;
+  lister_id: UserId | null;
+  lister_name: string | null;
   reward: number;
-  reason: string | unknown;
+  reason: string | null;
   quantity: number;
   is_anonymous: boolean;
   valid_until: number;

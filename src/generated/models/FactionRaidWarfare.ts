@@ -4,7 +4,7 @@ import type { FactionRaidWarfareFaction, RaidWarId } from ".";
 export type FactionRaidWarfare = {
   id: RaidWarId;
   start: number;
-  end: number | unknown;
+  end: number | null;
   aggressor: FactionRaidWarfareFaction;
   defender: FactionRaidWarfareFaction;
 };

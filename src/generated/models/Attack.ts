@@ -12,7 +12,7 @@ export type Attack = {
   code: AttackCode;
   started: number;
   ended: number;
-  attacker: AttackPlayer | unknown;
+  attacker: AttackPlayer | null;
   defender: AttackPlayer;
   result: FactionAttackResult;
   respect_gain: number;

@@ -5,5 +5,5 @@ export type ReportHistoryFaction = {
   id: FactionId;
   name: string;
   joined: string;
-  left: string | unknown;
+  left: string | null;
 };

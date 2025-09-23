@@ -2,8 +2,8 @@ import type { UserId } from ".";
 
 /** @category Models */
 export type AttackLogSummary = {
-  id: UserId | unknown;
-  name: string | unknown;
+  id: UserId | null;
+  name: string | null;
   hits: number;
   misses: number;
   damage: number;

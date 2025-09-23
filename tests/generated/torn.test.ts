@@ -237,7 +237,16 @@ describe("TornEndpoint Integration Tests", () => {
       },
       TEST_TIMEOUT,
     );
-    it.skip("torn.withIds(...).honors should succeed", () => {});
+
+    it(
+      "torn.withIds(...).honors should succeed",
+      async () => {
+        const response = await client.torn.withIds("317").honors();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
 
     it(
       "torn.withIds(...).items should succeed",
@@ -248,7 +257,16 @@ describe("TornEndpoint Integration Tests", () => {
       },
       TEST_TIMEOUT,
     );
-    it.skip("torn.withIds(...).medals should succeed", () => {});
+
+    it(
+      "torn.withIds(...).medals should succeed",
+      async () => {
+        const response = await client.torn.withIds("241").medals();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
 
     it(
       "torn.withLogCategoryId(...).logtypes should succeed",

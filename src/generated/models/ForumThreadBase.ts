@@ -9,9 +9,9 @@ export type ForumThreadBase = {
   rating: number;
   views: number;
   author: ForumThreadAuthor;
-  last_poster: ForumThreadAuthor | unknown;
+  last_poster: ForumThreadAuthor | null;
   first_post_time: number;
-  last_post_time: number | unknown;
+  last_post_time: number | null;
   has_poll: boolean;
   is_locked: boolean;
   is_sticky: boolean;

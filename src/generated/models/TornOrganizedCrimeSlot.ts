@@ -7,5 +7,5 @@ import type {
 export type TornOrganizedCrimeSlot = {
   id: TornOrganizedCrimePositionId;
   name: string;
-  required_item: TornOrganizedCrimeRequiredItem | unknown;
+  required_item: TornOrganizedCrimeRequiredItem | null;
 };

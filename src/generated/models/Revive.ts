@@ -6,23 +6,19 @@ export type Revive = {
   reviver: {
     id: UserId;
     name: string;
-    faction:
-      | {
-          id: FactionId;
-          name: string;
-        }
-      | unknown;
-    skill: number | unknown;
+    faction: {
+      id: FactionId;
+      name: string;
+    } | null;
+    skill: number | null;
   };
   target: {
     id: UserId;
     name: string;
-    faction:
-      | {
-          id: FactionId;
-          name: string;
-        }
-      | unknown;
+    faction: {
+      id: FactionId;
+      name: string;
+    } | null;
     hospital_reason: string;
     early_discharge: boolean;
     last_action: number;

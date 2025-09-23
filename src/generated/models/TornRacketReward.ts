@@ -4,5 +4,5 @@ import type { ItemId, TornRacketType } from ".";
 export type TornRacketReward = {
   type: TornRacketType;
   quantity: number;
-  id: ItemId | unknown;
+  id: ItemId | null;
 };

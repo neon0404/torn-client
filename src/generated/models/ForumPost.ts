@@ -10,9 +10,9 @@ export type ForumPost = {
   is_edited: boolean;
   is_pinned: boolean;
   created_time: number;
-  edited_by: UserId | unknown;
+  edited_by: UserId | null;
   has_quote: boolean;
-  quoted_post_id: number | unknown;
+  quoted_post_id: number | null;
   content: string;
   likes: number;
   dislikes: number;

@@ -11,7 +11,7 @@ export type AttackSimplified = {
   code: AttackCode;
   started: number;
   ended: number;
-  attacker: AttackPlayerSimplified | unknown;
+  attacker: AttackPlayerSimplified | null;
   defender: AttackPlayerSimplified;
   result: FactionAttackResult;
   respect_gain: number;

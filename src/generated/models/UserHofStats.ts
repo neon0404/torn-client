@@ -16,5 +16,5 @@ export type UserHofStats = {
   racing_wins: HofValue;
   travel_time: HofValue;
   working_stats: HofValue;
-  battle_stats: HofValue | unknown;
+  battle_stats: HofValue | null;
 };

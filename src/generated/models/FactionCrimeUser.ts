@@ -7,9 +7,9 @@ import type {
 /** @category Models */
 export type FactionCrimeUser = {
   id: UserId;
-  outcome: FactionCrimeUserOutcome | unknown;
-  outcome_duration?: number | unknown;
-  item_outcome: FactionCrimeUserItemOutcome | unknown;
+  outcome: FactionCrimeUserOutcome | null;
+  outcome_duration?: number | null;
+  item_outcome: FactionCrimeUserItemOutcome | null;
   joined_at: number;
   progress: number;
 };

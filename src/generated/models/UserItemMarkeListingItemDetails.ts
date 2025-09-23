@@ -9,8 +9,8 @@ export type UserItemMarkeListingItemDetails = {
   id: number;
   name: string;
   type: string;
-  rarity: "yellow" | "orange" | "red" | unknown;
-  uid: ItemUid | unknown;
-  stats: ItemMarketListingItemStats | unknown;
+  rarity: "yellow" | "orange" | "red" | null;
+  uid: ItemUid | null;
+  stats: ItemMarketListingItemStats | null;
   bonuses: ItemMarketListingItemBonus[];
 };

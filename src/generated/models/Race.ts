@@ -24,12 +24,12 @@ export type Race = {
     join_from: number;
     join_until: number;
     start: number;
-    end: number | unknown;
+    end: number | null;
   };
   requirements: {
-    car_class: RaceClassEnum | unknown;
-    driver_class: RaceClassEnum | unknown;
-    car_item_id: ItemId | unknown;
+    car_class: RaceClassEnum | null;
+    driver_class: RaceClassEnum | null;
+    car_item_id: ItemId | null;
     requires_stock_car: boolean;
     requires_password: boolean;
     join_fee: number;
