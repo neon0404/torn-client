@@ -65,7 +65,7 @@ const client = new TornAPI({
 // Example: Fetch a user's profile using a context method
 async function getUserProfile() {
     try {
-        const user = await client.user.withId(1).get();
+        const user = await client.user.withId(1).profile();
         console.log(user.name, user.level, user.gender);
     } catch (error) {
         console.error('Failed to fetch user profile:', error);
@@ -91,7 +91,7 @@ const factionHof = await client.torn.factionhof({ cat: 'respect' });
 const userContext = client.user.withId(1);
 
 // Fetch multiple details for the same user without repeating the ID
-const profile = await userContext.get();
+const profile = await userContext.profile();
 const personalStats = await userContext.personalstats({ cat: 'all' });
 const properties = await userContext.properties();
 ```
