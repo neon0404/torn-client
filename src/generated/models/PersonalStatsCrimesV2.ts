@@ -25,6 +25,7 @@ export type PersonalStatsCrimesV2 = {
     cracking: number;
     forgery: number;
     scamming: number;
+    arson: number;
   };
   version: string;
 };

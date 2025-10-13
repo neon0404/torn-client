@@ -2,6 +2,6 @@ import type { MarketRentalDetails, RequestMetadataWithLinks } from ".";
 
 /** @category Models */
 export type MarketRentalsResponse = {
-  properties: MarketRentalDetails;
+  rentals: MarketRentalDetails;
   _metadata: RequestMetadataWithLinks;
 };
