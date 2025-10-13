@@ -215,4 +215,5 @@ export type PersonalStatsStatName =
   | "disposalskill"
   | "crackingskill"
   | "forgeryskill"
-  | "scammingskill";
+  | "scammingskill"
+  | "arsonskill";
