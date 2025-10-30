@@ -34,6 +34,7 @@ import type {
   UserMedalsResponse,
   UserMeritsResponse,
   UserMessagesResponse,
+  UserMissionsResponse,
   UserMoneyResponse,
   UserNewEventsResponse,
   UserNewMessagesResponse,
@@ -82,6 +83,7 @@ export type UserResponse =
   | UserIconsResponse
   | UserItemMarketResponse
   | UserListResponse
+  | UserMissionsResponse
   | UserPersonalStatsResponse
   | UserOrganizedCrimeResponse
   | FactionAttacksResponse

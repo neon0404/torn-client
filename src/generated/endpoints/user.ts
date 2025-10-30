@@ -48,6 +48,7 @@ import type {
   UserMedalsResponse,
   UserMeritsResponse,
   UserMessagesResponse,
+  UserMissionsResponse,
   UserMoneyResponse,
   UserNewEventsResponse,
   UserNewMessagesResponse,
@@ -592,6 +593,20 @@ export class UserEndpoint {
       ...(params?.from !== undefined && { from: params.from }),
       ...(params?.to !== undefined && { to: params.to }),
       ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your current missions information
+   * @param params - Optional query parameters
+   */
+  public async missions(params?: {
+    timestamp?: string;
+  }): Promise<UserMissionsResponse> {
+    const path = `/user/missions`;
+    const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);

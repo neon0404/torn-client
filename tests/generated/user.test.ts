@@ -327,6 +327,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.missions should succeed",
+      async () => {
+        const response = await client.user.missions();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.money should succeed",
       async () => {
         const response = await client.user.money();
