@@ -41,6 +41,7 @@ export type FactionSelectionName =
   | "crimeexp"
   | "drugs"
   | "medical"
+  | "utilities"
   | "temporary"
   | "weapons"
   | string;
