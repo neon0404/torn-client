@@ -135,10 +135,12 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async balance(params?: {
+    cat?: "all" | "current";
     timestamp?: string;
   }): Promise<FactionBalanceResponse> {
     const path = `/faction/balance`;
     const query = {
+      ...(params?.cat !== undefined && { cat: params.cat }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);

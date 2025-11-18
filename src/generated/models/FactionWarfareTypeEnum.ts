@@ -4,4 +4,5 @@ export type FactionWarfareTypeEnum =
   | "territory"
   | "raid"
   | "chain"
+  | "chainOngoing"
   | "db";
