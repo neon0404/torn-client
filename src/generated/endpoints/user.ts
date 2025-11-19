@@ -531,6 +531,7 @@ export class UserEndpoint {
   public async log(params?: {
     log?: LogId[];
     cat?: LogCategoryId;
+    target?: UserId;
     limit?: number;
     to?: number;
     from?: number;
@@ -540,6 +541,7 @@ export class UserEndpoint {
     const query = {
       ...(params?.log && { log: params.log.join(",") }),
       ...(params?.cat !== undefined && { cat: params.cat }),
+      ...(params?.target !== undefined && { target: params.target }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.to !== undefined && { to: params.to }),
       ...(params?.from !== undefined && { from: params.from }),
