@@ -1,6 +1,7 @@
 import type { Requester } from "../../client/types";
 import { PaginatedResponse } from "../../client/paginated";
 import type {
+  ApiFiltersAttacksRevivesEnum,
   ChainId,
   Faction,
   FactionApplicationsResponse,
@@ -83,7 +84,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async attacks(params?: {
-    filters?: "incoming" | "outgoing";
+    filters?: ApiFiltersAttacksRevivesEnum[];
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -94,7 +95,7 @@ export class FactionEndpoint {
   > {
     const path = `/faction/attacks`;
     const query = {
-      ...(params?.filters !== undefined && { filters: params.filters }),
+      ...(params?.filters && { filters: params.filters.join(",") }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
@@ -109,7 +110,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async attacksfull(params?: {
-    filters?: "incoming" | "outgoing";
+    filters?: ApiFiltersAttacksRevivesEnum[];
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -120,7 +121,7 @@ export class FactionEndpoint {
   > {
     const path = `/faction/attacksfull`;
     const query = {
-      ...(params?.filters !== undefined && { filters: params.filters }),
+      ...(params?.filters && { filters: params.filters.join(",") }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
@@ -425,7 +426,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async revives(params?: {
-    filters?: "incoming" | "outgoing";
+    filters?: ApiFiltersAttacksRevivesEnum[];
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -435,7 +436,7 @@ export class FactionEndpoint {
   }): Promise<PaginatedResponse<RevivesResponse> & RevivesResponse> {
     const path = `/faction/revives`;
     const query = {
-      ...(params?.filters !== undefined && { filters: params.filters }),
+      ...(params?.filters && { filters: params.filters.join(",") }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
@@ -451,7 +452,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async revivesfull(params?: {
-    filters?: "incoming" | "outgoing";
+    filters?: ApiFiltersAttacksRevivesEnum[];
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -461,7 +462,7 @@ export class FactionEndpoint {
   }): Promise<PaginatedResponse<RevivesFullResponse> & RevivesFullResponse> {
     const path = `/faction/revivesFull`;
     const query = {
-      ...(params?.filters !== undefined && { filters: params.filters }),
+      ...(params?.filters && { filters: params.filters.join(",") }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
