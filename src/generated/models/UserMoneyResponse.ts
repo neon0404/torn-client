@@ -8,7 +8,11 @@ export type UserMoneyResponse = {
     cayman_bank: number;
     city_bank: {
       amount: number;
+      profit: number;
+      duration: number;
+      interest_rate: number;
       until: number;
+      invested_at: number;
     };
     faction: {
       money: number;

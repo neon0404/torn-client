@@ -1,6 +1,7 @@
 import type { Requester } from "../../client/types";
 import { PaginatedResponse } from "../../client/paginated";
 import type {
+  ApiFiltersAttacksRevivesEnum,
   FactionAttacksFullResponse,
   FactionAttacksResponse,
   LogCategoryId,
@@ -15,6 +16,7 @@ import type {
   TimestampResponse,
   TornCrimeId,
   User,
+  UserAmmoResponse,
   UserBarsResponse,
   UserBasicResponse,
   UserBattleStatsResponse,
@@ -81,11 +83,25 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your ammo information
+   * @param params - Optional query parameters
+   */
+  public async ammo(params?: {
+    timestamp?: string;
+  }): Promise<UserAmmoResponse> {
+    const path = `/user/ammo`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your detailed attacks
    * @param params - Optional query parameters
    */
   public async attacks(params?: {
-    filters?: "incoming" | "outgoing";
+    filters?: ApiFiltersAttacksRevivesEnum[];
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -96,7 +112,7 @@ export class UserEndpoint {
   > {
     const path = `/user/attacks`;
     const query = {
-      ...(params?.filters !== undefined && { filters: params.filters }),
+      ...(params?.filters && { filters: params.filters.join(",") }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
@@ -111,7 +127,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async attacksfull(params?: {
-    filters?: "incoming" | "outgoing";
+    filters?: ApiFiltersAttacksRevivesEnum[];
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -122,7 +138,7 @@ export class UserEndpoint {
   > {
     const path = `/user/attacksfull`;
     const query = {
-      ...(params?.filters !== undefined && { filters: params.filters }),
+      ...(params?.filters && { filters: params.filters.join(",") }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
@@ -531,6 +547,7 @@ export class UserEndpoint {
   public async log(params?: {
     log?: LogId[];
     cat?: LogCategoryId;
+    target?: UserId;
     limit?: number;
     to?: number;
     from?: number;
@@ -540,6 +557,7 @@ export class UserEndpoint {
     const query = {
       ...(params?.log && { log: params.log.join(",") }),
       ...(params?.cat !== undefined && { cat: params.cat }),
+      ...(params?.target !== undefined && { target: params.target }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.to !== undefined && { to: params.to }),
       ...(params?.from !== undefined && { from: params.from }),
@@ -833,7 +851,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async revives(params?: {
-    filters?: "incoming" | "outgoing";
+    filters?: ApiFiltersAttacksRevivesEnum[];
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -843,7 +861,7 @@ export class UserEndpoint {
   }): Promise<PaginatedResponse<RevivesResponse> & RevivesResponse> {
     const path = `/user/revives`;
     const query = {
-      ...(params?.filters !== undefined && { filters: params.filters }),
+      ...(params?.filters && { filters: params.filters.join(",") }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),
@@ -859,7 +877,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async revivesfull(params?: {
-    filters?: "incoming" | "outgoing";
+    filters?: ApiFiltersAttacksRevivesEnum[];
     limit?: number;
     sort?: "DESC" | "ASC";
     to?: number;
@@ -869,7 +887,7 @@ export class UserEndpoint {
   }): Promise<PaginatedResponse<RevivesFullResponse> & RevivesFullResponse> {
     const path = `/user/revivesFull`;
     const query = {
-      ...(params?.filters !== undefined && { filters: params.filters }),
+      ...(params?.filters && { filters: params.filters.join(",") }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.to !== undefined && { to: params.to }),

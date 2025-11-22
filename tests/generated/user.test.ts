@@ -17,6 +17,16 @@ describe("UserEndpoint Integration Tests", () => {
 
   (process.env.TORN_API_KEY ? describe : describe.skip)("UserEndpoint", () => {
     it(
+      "user.ammo should succeed",
+      async () => {
+        const response = await client.user.ammo();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.attacks should succeed",
       async () => {
         const response = await client.user.attacks();

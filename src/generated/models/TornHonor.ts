@@ -1,4 +1,9 @@
-import type { HonorId, HonorRarityEnum, HonorTypeEnum } from ".";
+import type {
+  AwardCrimesVersionEnum,
+  HonorId,
+  HonorRarityEnum,
+  HonorTypeEnum,
+} from ".";
 
 /**
  * Properties 'circulation', 'equipped' & 'rarity' are only populated for honors which do not have type.id value 1.
@@ -15,4 +20,5 @@ export type TornHonor = {
   circulation?: number;
   equipped?: number;
   rarity?: HonorRarityEnum;
+  crimes_version?: AwardCrimesVersionEnum;
 };
