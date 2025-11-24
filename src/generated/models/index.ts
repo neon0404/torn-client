@@ -1,4 +1,5 @@
 export type * from "./AmmoId";
+export type * from "./ApiFiltersAttacksRevivesEnum";
 export type * from "./ApiKeyAccessTypeEnum";
 export * from "./Attack";
 export type * from "./AttackActionEnum";
@@ -13,6 +14,7 @@ export * from "./AttackPlayer";
 export * from "./AttackPlayerFaction";
 export * from "./AttackPlayerSimplified";
 export * from "./AttackSimplified";
+export type * from "./AwardCrimesVersionEnum";
 export * from "./BasicProperty";
 export * from "./BasicUser";
 export * from "./Bazaar";

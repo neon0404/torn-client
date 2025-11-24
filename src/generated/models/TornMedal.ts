@@ -1,4 +1,9 @@
-import type { HonorRarityEnum, MedalId, MedalTypeEnum } from ".";
+import type {
+  AwardCrimesVersionEnum,
+  HonorRarityEnum,
+  MedalId,
+  MedalTypeEnum,
+} from ".";
 
 /** @category Models */
 export type TornMedal = {
@@ -11,4 +16,5 @@ export type TornMedal = {
   };
   circulation: number;
   rarity: HonorRarityEnum;
+  crimes_version?: AwardCrimesVersionEnum;
 };
