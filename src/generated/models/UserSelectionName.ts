@@ -1,5 +1,6 @@
 /** @category Models */
 export type UserSelectionName =
+  | "ammo"
   | "attacks"
   | "attacksfull"
   | "bars"
@@ -52,7 +53,6 @@ export type UserSelectionName =
   | "timestamp"
   | "travel"
   | "workstats"
-  | "ammo"
   | "bazaar"
   | "criminalrecord"
   | "discord"

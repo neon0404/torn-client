@@ -16,6 +16,7 @@ import type {
   TimestampResponse,
   TornCrimeId,
   User,
+  UserAmmoResponse,
   UserBarsResponse,
   UserBasicResponse,
   UserBattleStatsResponse,
@@ -79,6 +80,20 @@ export class UserEndpoint {
 
   constructor(requester: Requester) {
     this.requester = requester;
+  }
+
+  /**
+   * Get your ammo information
+   * @param params - Optional query parameters
+   */
+  public async ammo(params?: {
+    timestamp?: string;
+  }): Promise<UserAmmoResponse> {
+    const path = `/user/ammo`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
   }
 
   /**
