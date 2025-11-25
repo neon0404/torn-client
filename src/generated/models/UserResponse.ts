@@ -4,6 +4,7 @@ import type {
   RevivesFullResponse,
   RevivesResponse,
   TimestampResponse,
+  UserAmmoResponse,
   UserBarsResponse,
   UserBasicResponse,
   UserBattleStatsResponse,
@@ -49,12 +50,15 @@ import type {
   UserSkillsResponse,
   UserTravelResponse,
   UserVirusResponse,
+  UserWeaponExpResponse,
   UserWorkStatsResponse,
 } from ".";
 
 /** @category Models */
 export type UserResponse =
   | UserCrimesResponse
+  | UserWeaponExpResponse
+  | UserAmmoResponse
   | UserRacesResponse
   | UserEnlistedCarsResponse
   | UserForumPostsResponse

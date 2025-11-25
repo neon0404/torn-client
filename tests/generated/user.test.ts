@@ -527,6 +527,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.weaponexp should succeed",
+      async () => {
+        const response = await client.user.weaponexp();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.workstats should succeed",
       async () => {
         const response = await client.user.workstats();

@@ -529,5 +529,7 @@ export type * from "./UserTitleEnum";
 export * from "./UserTravelResponse";
 export * from "./UserVirus";
 export * from "./UserVirusResponse";
+export * from "./UserWeaponExp";
+export * from "./UserWeaponExpResponse";
 export type * from "./UserWorkStatsResponse";
 export type * from "./WeaponBonusEnum";
