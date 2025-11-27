@@ -68,6 +68,7 @@ import type {
   UserSkillsResponse,
   UserTravelResponse,
   UserVirusResponse,
+  UserWeaponExpResponse,
   UserWorkStatsResponse,
 } from "../models";
 
@@ -934,6 +935,20 @@ export class UserEndpoint {
     timestamp?: string;
   }): Promise<UserVirusResponse> {
     const path = `/user/virus`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your weapon experience information
+   * @param params - Optional query parameters
+   */
+  public async weaponexp(params?: {
+    timestamp?: string;
+  }): Promise<UserWeaponExpResponse> {
+    const path = `/user/weaponexp`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };

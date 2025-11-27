@@ -52,6 +52,7 @@ export type UserSelectionName =
   | "skills"
   | "timestamp"
   | "travel"
+  | "weaponexp"
   | "workstats"
   | "bazaar"
   | "criminalrecord"
@@ -64,5 +65,4 @@ export type UserSelectionName =
   | "networth"
   | "perks"
   | "stocks"
-  | "weaponexp"
   | string;
