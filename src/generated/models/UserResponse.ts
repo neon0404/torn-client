@@ -13,6 +13,7 @@ import type {
   UserCompetitionResponse,
   UserCooldownsResponse,
   UserCrimesResponse,
+  UserDiscordResponse,
   UserEducationResponse,
   UserEnlistedCarsResponse,
   UserEventsResponse,
@@ -59,6 +60,7 @@ export type UserResponse =
   | UserCrimesResponse
   | UserWeaponExpResponse
   | UserAmmoResponse
+  | UserDiscordResponse
   | UserRacesResponse
   | UserEnlistedCarsResponse
   | UserForumPostsResponse

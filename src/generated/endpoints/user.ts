@@ -25,6 +25,8 @@ import type {
   UserCompetitionResponse,
   UserCooldownsResponse,
   UserCrimesResponse,
+  UserDiscordPathId,
+  UserDiscordResponse,
   UserEducationResponse,
   UserEnlistedCarsResponse,
   UserEventsResponse,
@@ -243,6 +245,20 @@ export class UserEndpoint {
     timestamp?: string;
   }): Promise<UserCooldownsResponse> {
     const path = `/user/cooldowns`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your discord information
+   * @param params - Optional query parameters
+   */
+  public async discord(params?: {
+    timestamp?: string;
+  }): Promise<UserDiscordResponse> {
+    const path = `/user/discord`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
@@ -1003,7 +1019,7 @@ export class UserEndpoint {
    */
   public async get(params?: {
     selections?: UserSelectionName[];
-    id?: UserId | TornCrimeId | string;
+    id?: UserDiscordPathId | TornCrimeId | string;
     legacy?: UserSelectionName[];
     limit?: number;
     from?: number;
@@ -1101,6 +1117,20 @@ export class UserIdContext {
     timestamp?: string;
   }): Promise<UserCompetitionResponse> {
     const path = `/user/${this.contextId}/competition`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get discord information for a specific user
+   * @param params - Optional query parameters
+   */
+  public async discord(params?: {
+    timestamp?: string;
+  }): Promise<UserDiscordResponse> {
+    const path = `/user/${this.contextId}/discord`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
