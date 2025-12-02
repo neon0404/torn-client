@@ -210,7 +210,7 @@ export class UserEndpoint {
   }
 
   /**
-   * Get your competition's event start time
+   * Get your calendar events start time
    * @param params - Optional query parameters
    */
   public async calendar(params?: {

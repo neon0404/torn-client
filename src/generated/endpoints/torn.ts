@@ -6,6 +6,7 @@ import type {
   FactionTerritoryEnum,
   HonorId,
   ItemId,
+  ItemUid,
   LogCategoryId,
   MedalId,
   TimestampResponse,
@@ -222,20 +223,6 @@ export class TornEndpoint {
   }
 
   /**
-   * Get information about a specific item
-   * @param params - Optional query parameters
-   */
-  public async itemdetails(params?: {
-    timestamp?: string;
-  }): Promise<TornItemDetailsResponse> {
-    const path = `/torn/itemdetails`;
-    const query = {
-      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
-    };
-    return this.requester(path, query);
-  }
-
-  /**
    * Get information about weapon upgrades
    * @param params - Optional query parameters
    */
@@ -410,6 +397,7 @@ export class TornEndpoint {
     id?:
       | LogCategoryId
       | TornCrimeId
+      | ItemUid
       | ItemId[]
       | MedalId[]
       | HonorId[]
@@ -444,6 +432,11 @@ export class TornEndpoint {
   /** @param ids - The ID for this context */
   public withIds(ids: string | number): TornIdsContext {
     return new TornIdsContext(this.requester, ids);
+  }
+
+  /** @param id - The ID for this context */
+  public withId(id: string | number): TornIdContext {
+    return new TornIdContext(this.requester, id);
   }
 
   /** @param logCategoryId - The ID for this context */
@@ -510,6 +503,34 @@ export class TornIdsContext {
     timestamp?: string;
   }): Promise<TornMedalsResponse> {
     const path = `/torn/${this.contextId}/medals`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+}
+
+/**
+ * Context class for Torn API endpoints that require a "id"
+ * @category Endpoints
+ */
+export class TornIdContext {
+  private readonly requester: Requester;
+  private readonly contextId: string | number;
+
+  constructor(requester: Requester, contextId: string | number) {
+    this.requester = requester;
+    this.contextId = contextId;
+  }
+
+  /**
+   * Get information about a specific item
+   * @param params - Optional query parameters
+   */
+  public async itemdetails(params?: {
+    timestamp?: string;
+  }): Promise<TornItemDetailsResponse> {
+    const path = `/torn/${this.contextId}/itemdetails`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
