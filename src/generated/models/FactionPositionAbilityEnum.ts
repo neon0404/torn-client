@@ -22,6 +22,5 @@ export type FactionPositionAbilityEnum =
   | "Newsletter Sending"
   | "Announcement Changes"
   | "Description Changes"
-  | "Organised Crimes"
   | "Utility Item Loaning"
   | "Consumable Item Usage";

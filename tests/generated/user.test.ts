@@ -147,6 +147,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.equipment should succeed",
+      async () => {
+        const response = await client.user.equipment();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.events should succeed",
       async () => {
         const response = await client.user.events();
@@ -160,16 +170,6 @@ describe("UserEndpoint Integration Tests", () => {
       "user.faction should succeed",
       async () => {
         const response = await client.user.faction();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
-      },
-      TEST_TIMEOUT,
-    );
-
-    it(
-      "user.factionbalance should succeed",
-      async () => {
-        const response = await client.user.factionbalance();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },

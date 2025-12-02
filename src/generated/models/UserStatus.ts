@@ -10,6 +10,5 @@ export type UserStatus = {
   state: UserStatusStateEnum | string;
   color: string;
   until: number | null;
-  travel_type?: string;
   plane_image_type?: UserPlaneImageTypeEnum;
 };

@@ -22,6 +22,7 @@ import type {
   TornHonorsResponse,
   TornItemAmmoResponse,
   TornItemCategory,
+  TornItemDetailsResponse,
   TornItemModsResponse,
   TornItemsResponse,
   TornLogCategoriesResponse,
@@ -214,6 +215,20 @@ export class TornEndpoint {
     timestamp?: string;
   }): Promise<TornItemAmmoResponse> {
     const path = `/torn/itemammo`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get information about a specific item
+   * @param params - Optional query parameters
+   */
+  public async itemdetails(params?: {
+    timestamp?: string;
+  }): Promise<TornItemDetailsResponse> {
+    const path = `/torn/itemdetails`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };

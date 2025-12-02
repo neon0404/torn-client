@@ -119,6 +119,16 @@ describe("TornEndpoint Integration Tests", () => {
     );
 
     it(
+      "torn.itemdetails should succeed",
+      async () => {
+        const response = await client.torn.itemdetails();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "torn.itemmods should succeed",
       async () => {
         const response = await client.torn.itemmods();

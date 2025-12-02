@@ -29,8 +29,8 @@ import type {
   UserDiscordResponse,
   UserEducationResponse,
   UserEnlistedCarsResponse,
+  UserEquipmentResponse,
   UserEventsResponse,
-  UserFactionBalanceResponse,
   UserFactionResponse,
   UserForumFeedResponse,
   UserForumFriendsResponse,
@@ -294,6 +294,20 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your equipment & clothing
+   * @param params - Optional query parameters
+   */
+  public async equipment(params?: {
+    timestamp?: string;
+  }): Promise<UserEquipmentResponse> {
+    const path = `/user/equipment`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your events
    * @param params - Optional query parameters
    */
@@ -323,20 +337,6 @@ export class UserEndpoint {
     timestamp?: string;
   }): Promise<UserFactionResponse> {
     const path = `/user/faction`;
-    const query = {
-      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
-    };
-    return this.requester(path, query);
-  }
-
-  /**
-   * Deprecated. Use user/money instead
-   * @param params - Optional query parameters
-   */
-  public async factionbalance(params?: {
-    timestamp?: string;
-  }): Promise<UserFactionBalanceResponse> {
-    const path = `/user/factionbalance`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
