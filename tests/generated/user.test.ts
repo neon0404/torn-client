@@ -117,6 +117,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.discord should succeed",
+      async () => {
+        const response = await client.user.discord();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.education should succeed",
       async () => {
         const response = await client.user.education();
@@ -600,6 +610,16 @@ describe("UserEndpoint Integration Tests", () => {
       "user.withId(...).competition should succeed",
       async () => {
         const response = await client.user.withId("3772610").competition();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.withId(...).discord should succeed",
+      async () => {
+        const response = await client.user.withId("3772610").discord();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
