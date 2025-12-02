@@ -1,6 +1,7 @@
 import type {
   FactionAttacksFullResponse,
   FactionAttacksResponse,
+  ReportsResponse,
   RevivesFullResponse,
   RevivesResponse,
   TimestampResponse,
@@ -16,6 +17,7 @@ import type {
   UserDiscordResponse,
   UserEducationResponse,
   UserEnlistedCarsResponse,
+  UserEquipmentResponse,
   UserEventsResponse,
   UserFactionBalanceResponse,
   UserFactionResponse,
@@ -45,6 +47,7 @@ import type {
   UserPersonalStatsResponse,
   UserProfileResponse,
   UserPropertiesResponse,
+  UserPropertyResponse,
   UserRacesResponse,
   UserRacingRecordsResponse,
   UserRefillsResponse,
@@ -68,6 +71,8 @@ export type UserResponse =
   | UserForumSubscribedThreadsResponse
   | UserForumFeedResponse
   | UserForumFriendsResponse
+  | UserPropertyResponse
+  | ReportsResponse
   | UserHofResponse
   | UserCalendarResponse
   | UserRacingRecordsResponse
@@ -89,6 +94,7 @@ export type UserResponse =
   | UserIconsResponse
   | UserItemMarketResponse
   | UserListResponse
+  | UserEquipmentResponse
   | UserMissionsResponse
   | UserPersonalStatsResponse
   | UserOrganizedCrimeResponse

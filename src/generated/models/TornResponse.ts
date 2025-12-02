@@ -10,6 +10,7 @@ import type {
   TornHofResponse,
   TornHonorsResponse,
   TornItemAmmoResponse,
+  TornItemDetailsResponse,
   TornItemModsResponse,
   TornItemsResponse,
   TornLogCategoriesResponse,
@@ -17,6 +18,7 @@ import type {
   TornLookupResponse,
   TornMedalsResponse,
   TornMeritsResponse,
+  TornOrganizedCrimeResponse,
   TornProperties,
   TornSubcrimesResponse,
   TornTerritoriesNoLinksResponse,
@@ -35,7 +37,9 @@ export type TornResponse =
   | TornLogCategoriesResponse
   | TornEducationResponse
   | TornMeritsResponse
+  | TornOrganizedCrimeResponse
   | TornHonorsResponse
+  | TornItemDetailsResponse
   | TornMedalsResponse
   | TornBountiesResponse
   | TornItemAmmoResponse

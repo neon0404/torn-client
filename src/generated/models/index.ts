@@ -413,6 +413,7 @@ export * from "./UserClothing";
 export * from "./UserCompany";
 export * from "./UserCompanyPoints";
 export type * from "./UserCompetitionEasterEggs";
+export type * from "./UserCompetitionElimination";
 export * from "./UserCompetitionHalloween";
 export * from "./UserCompetitionResponse";
 export * from "./UserCompetitionRps";
