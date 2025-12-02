@@ -117,6 +117,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.discord should succeed",
+      async () => {
+        const response = await client.user.discord();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.education should succeed",
       async () => {
         const response = await client.user.education();
@@ -137,6 +147,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.equipment should succeed",
+      async () => {
+        const response = await client.user.equipment();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.events should succeed",
       async () => {
         const response = await client.user.events();
@@ -150,16 +170,6 @@ describe("UserEndpoint Integration Tests", () => {
       "user.faction should succeed",
       async () => {
         const response = await client.user.faction();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
-      },
-      TEST_TIMEOUT,
-    );
-
-    it(
-      "user.factionbalance should succeed",
-      async () => {
-        const response = await client.user.factionbalance();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
@@ -600,6 +610,16 @@ describe("UserEndpoint Integration Tests", () => {
       "user.withId(...).competition should succeed",
       async () => {
         const response = await client.user.withId("3772610").competition();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.withId(...).discord should succeed",
+      async () => {
+        const response = await client.user.withId("3772610").discord();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
