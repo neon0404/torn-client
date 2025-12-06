@@ -2,6 +2,6 @@
 export type UserCompetitionElimination = {
   name: "Elimination";
   score: number;
-  team?: string;
-  attacks?: number;
+  team: string;
+  attacks: number;
 };
