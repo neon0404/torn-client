@@ -3,6 +3,7 @@ import { PaginatedResponse } from "../../client/paginated";
 import type {
   AttackCode,
   AttackLogResponse,
+  EliminationTeamId,
   FactionTerritoryEnum,
   HonorId,
   ItemId,
@@ -15,6 +16,8 @@ import type {
   TornCrimeId,
   TornCrimesResponse,
   TornEducationResponse,
+  TornEliminationTeamPlayersResponse,
+  TornEliminationTeamsResponse,
   TornFactionHofCategory,
   TornFactionHofResponse,
   TornFactionTreeResponse,
@@ -126,6 +129,20 @@ export class TornEndpoint {
     timestamp?: string;
   }): Promise<TornEducationResponse> {
     const path = `/torn/education`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get current standings for all elimination teams
+   * @param params - Optional query parameters
+   */
+  public async elimination(params?: {
+    timestamp?: string;
+  }): Promise<TornEliminationTeamsResponse> {
+    const path = `/torn/elimination`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
@@ -397,6 +414,7 @@ export class TornEndpoint {
     id?:
       | LogCategoryId
       | TornCrimeId
+      | EliminationTeamId
       | ItemUid
       | ItemId[]
       | MedalId[]
@@ -429,14 +447,14 @@ export class TornEndpoint {
     return this.requester(path, query);
   }
 
-  /** @param ids - The ID for this context */
-  public withIds(ids: string | number): TornIdsContext {
-    return new TornIdsContext(this.requester, ids);
-  }
-
   /** @param id - The ID for this context */
   public withId(id: string | number): TornIdContext {
     return new TornIdContext(this.requester, id);
+  }
+
+  /** @param ids - The ID for this context */
+  public withIds(ids: string | number): TornIdsContext {
+    return new TornIdsContext(this.requester, ids);
   }
 
   /** @param logCategoryId - The ID for this context */
@@ -449,6 +467,55 @@ export class TornEndpoint {
   /** @param crimeId - The ID for this context */
   public withCrimeId(crimeId: string | number): TornCrimeIdContext {
     return new TornCrimeIdContext(this.requester, crimeId);
+  }
+}
+
+/**
+ * Context class for Torn API endpoints that require a "id"
+ * @category Endpoints
+ */
+export class TornIdContext {
+  private readonly requester: Requester;
+  private readonly contextId: string | number;
+
+  constructor(requester: Requester, contextId: string | number) {
+    this.requester = requester;
+    this.contextId = contextId;
+  }
+
+  /**
+   * Get players in a specific elimination team
+   * @param params - Optional query parameters
+   */
+  public async eliminationteam(params?: {
+    limit?: number;
+    offset?: number;
+    timestamp?: string;
+  }): Promise<
+    PaginatedResponse<TornEliminationTeamPlayersResponse> &
+      TornEliminationTeamPlayersResponse
+  > {
+    const path = `/torn/${this.contextId}/eliminationteam`;
+    const query = {
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get information about a specific item
+   * @param params - Optional query parameters
+   */
+  public async itemdetails(params?: {
+    timestamp?: string;
+  }): Promise<TornItemDetailsResponse> {
+    const path = `/torn/${this.contextId}/itemdetails`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
   }
 }
 
@@ -503,34 +570,6 @@ export class TornIdsContext {
     timestamp?: string;
   }): Promise<TornMedalsResponse> {
     const path = `/torn/${this.contextId}/medals`;
-    const query = {
-      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
-    };
-    return this.requester(path, query);
-  }
-}
-
-/**
- * Context class for Torn API endpoints that require a "id"
- * @category Endpoints
- */
-export class TornIdContext {
-  private readonly requester: Requester;
-  private readonly contextId: string | number;
-
-  constructor(requester: Requester, contextId: string | number) {
-    this.requester = requester;
-    this.contextId = contextId;
-  }
-
-  /**
-   * Get information about a specific item
-   * @param params - Optional query parameters
-   */
-  public async itemdetails(params?: {
-    timestamp?: string;
-  }): Promise<TornItemDetailsResponse> {
-    const path = `/torn/${this.contextId}/itemdetails`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };

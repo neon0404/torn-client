@@ -5,6 +5,8 @@ import type {
   TornCalendarResponse,
   TornCrimesResponse,
   TornEducationResponse,
+  TornEliminationTeamPlayersResponse,
+  TornEliminationTeamsResponse,
   TornFactionHofResponse,
   TornFactionTreeResponse,
   TornHofResponse,
@@ -40,6 +42,8 @@ export type TornResponse =
   | TornOrganizedCrimeResponse
   | TornHonorsResponse
   | TornItemDetailsResponse
+  | TornEliminationTeamsResponse
+  | TornEliminationTeamPlayersResponse
   | TornMedalsResponse
   | TornBountiesResponse
   | TornItemAmmoResponse
