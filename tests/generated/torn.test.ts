@@ -69,6 +69,16 @@ describe("TornEndpoint Integration Tests", () => {
     );
 
     it(
+      "torn.elimination should succeed",
+      async () => {
+        const response = await client.torn.elimination();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "torn.factionhof should succeed",
       async () => {
         const response = await client.torn.factionhof({ cat: "respect" });
@@ -237,6 +247,17 @@ describe("TornEndpoint Integration Tests", () => {
       },
       TEST_TIMEOUT,
     );
+    it.skip("torn.withId(...).eliminationteam should succeed", () => {});
+
+    it(
+      "torn.withId(...).itemdetails should succeed",
+      async () => {
+        const response = await client.torn.withId("14586495905").itemdetails();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
 
     it(
       "torn.withIds(...).honors should succeed",
@@ -262,16 +283,6 @@ describe("TornEndpoint Integration Tests", () => {
       "torn.withIds(...).medals should succeed",
       async () => {
         const response = await client.torn.withIds("241").medals();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
-      },
-      TEST_TIMEOUT,
-    );
-
-    it(
-      "torn.withId(...).itemdetails should succeed",
-      async () => {
-        const response = await client.torn.withId("14586495905").itemdetails();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
