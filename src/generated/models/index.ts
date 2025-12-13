@@ -337,6 +337,7 @@ export type * from "./TornEducationPrerequisites";
 export * from "./TornEducationResponse";
 export type * from "./TornEducationRewards";
 export * from "./TornEliminationTeam";
+export * from "./TornEliminationTeamLeader";
 export * from "./TornEliminationTeamPlayer";
 export * from "./TornEliminationTeamPlayersResponse";
 export * from "./TornEliminationTeamsResponse";

@@ -1,4 +1,4 @@
-import type { BasicUser, EliminationTeamId } from ".";
+import type { EliminationTeamId, TornEliminationTeamLeader } from ".";
 
 /** @category Models */
 export type TornEliminationTeam = {
@@ -12,5 +12,5 @@ export type TornEliminationTeam = {
   losses: number;
   eliminated: boolean;
   eliminated_timestamp: number | null;
-  leaders: BasicUser[];
+  leaders: TornEliminationTeamLeader[];
 };
