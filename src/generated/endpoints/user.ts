@@ -2,8 +2,8 @@ import type { Requester } from "../../client/types";
 import { PaginatedResponse } from "../../client/paginated";
 import type {
   ApiFiltersAttacksRevivesEnum,
-  FactionAttacksFullResponse,
-  FactionAttacksResponse,
+  AttacksFullResponse,
+  AttacksResponse,
   LogCategoryId,
   LogId,
   PersonalStatsCategoryEnum,
@@ -110,9 +110,7 @@ export class UserEndpoint {
     to?: number;
     from?: number;
     timestamp?: string;
-  }): Promise<
-    PaginatedResponse<FactionAttacksResponse> & FactionAttacksResponse
-  > {
+  }): Promise<PaginatedResponse<AttacksResponse> & AttacksResponse> {
     const path = `/user/attacks`;
     const query = {
       ...(params?.filters && { filters: params.filters.join(",") }),
@@ -136,9 +134,7 @@ export class UserEndpoint {
     to?: number;
     from?: number;
     timestamp?: string;
-  }): Promise<
-    PaginatedResponse<FactionAttacksFullResponse> & FactionAttacksFullResponse
-  > {
+  }): Promise<PaginatedResponse<AttacksFullResponse> & AttacksFullResponse> {
     const path = `/user/attacksfull`;
     const query = {
       ...(params?.filters && { filters: params.filters.join(",") }),

@@ -1,7 +1,7 @@
-import type { RacingRaceDetails, RequestMetadataWithLinks } from ".";
+import type { RequestMetadataWithLinks, UserRaceDetails } from ".";
 
 /** @category Models */
 export type UserRacesResponse = {
-  races: RacingRaceDetails[];
+  races: UserRaceDetails[];
   _metadata: RequestMetadataWithLinks;
 };
