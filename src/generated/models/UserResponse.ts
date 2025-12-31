@@ -1,6 +1,6 @@
 import type {
-  FactionAttacksFullResponse,
-  FactionAttacksResponse,
+  AttacksFullResponse,
+  AttacksResponse,
   ReportsResponse,
   RevivesFullResponse,
   RevivesResponse,
@@ -98,14 +98,14 @@ export type UserResponse =
   | UserMissionsResponse
   | UserPersonalStatsResponse
   | UserOrganizedCrimeResponse
-  | FactionAttacksResponse
+  | AttacksResponse
   | UserBarsResponse
   | UserCooldownsResponse
   | UserNotificationsResponse
   | UserRefillsResponse
   | UserTravelResponse
   | UserVirusResponse
-  | FactionAttacksFullResponse
+  | AttacksFullResponse
   | UserMoneyResponse
   | UserJobPointsResponse
   | UserWorkStatsResponse

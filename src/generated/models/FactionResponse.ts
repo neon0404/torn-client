@@ -1,7 +1,7 @@
 import type {
+  AttacksFullResponse,
+  AttacksResponse,
   FactionApplicationsResponse,
-  FactionAttacksFullResponse,
-  FactionAttacksResponse,
   FactionBalanceResponse,
   FactionBasicResponse,
   FactionChainReportResponse,
@@ -42,13 +42,13 @@ export type FactionResponse =
   | FactionNewsResponse
   | RevivesResponse
   | FactionTerritoryWarsHistoryResponse
-  | FactionAttacksResponse
+  | AttacksResponse
   | FactionBalanceResponse
   | FactionRaidWarReportResponse
   | FactionTerritoriesOwnershipResponse
   | FactionPositionsResponse
   | RevivesFullResponse
-  | FactionAttacksFullResponse
+  | AttacksFullResponse
   | FactionApplicationsResponse
   | FactionOngoingChainResponse
   | FactionChainsResponse

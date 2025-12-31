@@ -1,7 +1,7 @@
 import type { AttackSimplified, RequestMetadataWithLinks } from ".";
 
 /** @category Models */
-export type FactionAttacksFullResponse = {
+export type AttacksFullResponse = {
   attacks: AttackSimplified[];
   _metadata: RequestMetadataWithLinks;
 };
