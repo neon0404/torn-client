@@ -1,4 +1,6 @@
 import type {
+  AuctionHouseListing,
+  AuctionHouseResponse,
   BazaarResponse,
   BazaarResponseSpecialized,
   MarketItemMarketResponse,
@@ -14,6 +16,8 @@ export type MarketResponse =
   | BazaarResponseSpecialized
   | MarketItemMarketResponse
   | MarketRentalsResponse
+  | AuctionHouseResponse
+  | AuctionHouseListing
   | MarketPropertiesResponse
   | MarketLookupResponse
   | TimestampResponse;
