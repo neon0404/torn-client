@@ -19,6 +19,58 @@ describe("MarketEndpoint Integration Tests", () => {
     "MarketEndpoint",
     () => {
       it(
+        "market.withId(...).auctionhouselisting should succeed",
+        async () => {
+          const response = await client.market
+            .withId("1")
+            .auctionhouselisting();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
+        "market.withId(...).auctionhouse should succeed",
+        async () => {
+          const response = await client.market.withId("1").auctionhouse();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
+        "market.withId(...).bazaar should succeed",
+        async () => {
+          const response = await client.market.withId("1").bazaar();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
+        "market.withId(...).itemmarket should succeed",
+        async () => {
+          const response = await client.market.withId("1").itemmarket();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
+        "market.auctionhouse should succeed",
+        async () => {
+          const response = await client.market.auctionhouse();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
         "market.bazaar should succeed",
         async () => {
           const response = await client.market.bazaar();
@@ -52,26 +104,6 @@ describe("MarketEndpoint Integration Tests", () => {
         "market.get should succeed",
         async () => {
           const response = await client.market.get();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
-        },
-        TEST_TIMEOUT,
-      );
-
-      it(
-        "market.withId(...).bazaar should succeed",
-        async () => {
-          const response = await client.market.withId("1").bazaar();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
-        },
-        TEST_TIMEOUT,
-      );
-
-      it(
-        "market.withId(...).itemmarket should succeed",
-        async () => {
-          const response = await client.market.withId("1").itemmarket();
           expect(response).toBeDefined();
           expect(response).not.toHaveProperty("error");
         },

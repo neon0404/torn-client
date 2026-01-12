@@ -1,6 +1,9 @@
 import type { Requester } from "../../client/types";
 import { PaginatedResponse } from "../../client/paginated";
 import type {
+  AuctionHouseListing,
+  AuctionHouseResponse,
+  AuctionListingId,
   BazaarResponse,
   BazaarResponseSpecialized,
   ItemId,
@@ -25,6 +28,33 @@ export class MarketEndpoint {
 
   constructor(requester: Requester) {
     this.requester = requester;
+  }
+
+  /** @param id - The ID for this context */
+  public withId(id: string | number): MarketIdContext {
+    return new MarketIdContext(this.requester, id);
+  }
+
+  /**
+   * Get auction house listings
+   * @param params - Optional query parameters
+   */
+  public async auctionhouse(params?: {
+    limit?: number;
+    sort?: "DESC" | "ASC";
+    from?: number;
+    to?: number;
+    timestamp?: string;
+  }): Promise<PaginatedResponse<AuctionHouseResponse> & AuctionHouseResponse> {
+    const path = `/market/auctionhouse`;
+    const query = {
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.to !== undefined && { to: params.to }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
   }
 
   /**
@@ -77,7 +107,7 @@ export class MarketEndpoint {
    */
   public async get(params?: {
     selections?: MarketSelectionName[];
-    id?: ItemId | PropertyTypeId;
+    id?: ItemId | AuctionListingId | PropertyTypeId;
     legacy?: MarketSelectionName[];
     cat?: MarketSpecializedBazaarCategoryEnum;
     bonus?: WeaponBonusEnum;
@@ -101,11 +131,6 @@ export class MarketEndpoint {
     return this.requester(path, query);
   }
 
-  /** @param id - The ID for this context */
-  public withId(id: string | number): MarketIdContext {
-    return new MarketIdContext(this.requester, id);
-  }
-
   /** @param propertyTypeId - The ID for this context */
   public withPropertyTypeId(
     propertyTypeId: string | number,
@@ -125,6 +150,42 @@ export class MarketIdContext {
   constructor(requester: Requester, contextId: string | number) {
     this.requester = requester;
     this.contextId = contextId;
+  }
+
+  /**
+   * Get specific item auction house listings
+   * @param params - Optional query parameters
+   */
+  public async auctionhouselisting(params?: {
+    timestamp?: string;
+  }): Promise<AuctionHouseListing> {
+    const path = `/market/${this.contextId}/auctionhouselisting`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get specific item auction house listings
+   * @param params - Optional query parameters
+   */
+  public async auctionhouse(params?: {
+    limit?: number;
+    sort?: "DESC" | "ASC";
+    from?: number;
+    to?: number;
+    timestamp?: string;
+  }): Promise<PaginatedResponse<AuctionHouseResponse> & AuctionHouseResponse> {
+    const path = `/market/${this.contextId}/auctionhouse`;
+    const query = {
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.to !== undefined && { to: params.to }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
   }
 
   /**

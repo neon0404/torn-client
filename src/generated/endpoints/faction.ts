@@ -528,7 +528,7 @@ export class FactionEndpoint {
   }
 
   /**
-   * Get a list of your faction's territories
+   * Get a list territory ownership
    * @param params - Optional query parameters
    */
   public async territoryownership(params?: {

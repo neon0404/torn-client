@@ -13,11 +13,11 @@ export type UserMoneyResponse = {
       interest_rate: number;
       until: number;
       invested_at: number;
-    };
+    } | null;
     faction: {
       money: number;
       points: number;
-    };
+    } | null;
     daily_networth: number;
   };
 };
