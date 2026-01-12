@@ -7,4 +7,6 @@ export type MarketSelectionName =
   | "lookup"
   | "timestamp"
   | "pointsmarket"
+  | "auctionhouse"
+  | "auctionhouselisting"
   | string;
