@@ -15,4 +15,5 @@ export type FactionBasic = {
   is_enlisted: boolean | null;
   rank: FactionRank;
   best_chain: number;
+  note?: string;
 };

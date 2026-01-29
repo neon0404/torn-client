@@ -846,6 +846,7 @@ export class UserEndpoint {
     target?: UserId;
     limit?: number;
     offset?: number;
+    sort?: "DESC" | "ASC";
     timestamp?: string;
   }): Promise<PaginatedResponse<ReportsResponse> & ReportsResponse> {
     const path = `/user/reports`;
@@ -854,6 +855,7 @@ export class UserEndpoint {
       ...(params?.target !== undefined && { target: params.target }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
