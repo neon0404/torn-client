@@ -472,7 +472,7 @@ export class UserEndpoint {
   }
 
   /**
-   * Get your item market listings for a specific item
+   * Get your item market listings
    * @param params - Optional query parameters
    */
   public async itemmarket(params?: {
@@ -942,7 +942,7 @@ export class UserEndpoint {
   }
 
   /**
-   * Get your virus information
+   * Get your virus coding information
    * @param params - Optional query parameters
    */
   public async virus(params?: {
