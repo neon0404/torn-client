@@ -58,6 +58,7 @@ import type {
   UserNewMessagesResponse,
   UserNotificationsResponse,
   UserOrganizedCrimeResponse,
+  UserOrganizedCrimesResponse,
   UserPersonalStatsResponse,
   UserProfileResponse,
   UserPropertiesResponse,
@@ -709,6 +710,22 @@ export class UserEndpoint {
     timestamp?: string;
   }): Promise<UserOrganizedCrimeResponse> {
     const path = `/user/organizedcrime`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get available slots for organized crimes with status 'Recruiting'
+   * @param params - Optional query parameters
+   */
+  public async organizedcrimes(params?: {
+    timestamp?: string;
+  }): Promise<
+    PaginatedResponse<UserOrganizedCrimesResponse> & UserOrganizedCrimesResponse
+  > {
+    const path = `/user/organizedcrimes`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };

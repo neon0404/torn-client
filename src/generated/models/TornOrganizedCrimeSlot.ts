@@ -1,11 +1,13 @@
 import type {
-  TornOrganizedCrimePositionId,
+  FactionSlotPositionInfo,
+  TornOrganizedCrimePositionIdDeprecated,
   TornOrganizedCrimeRequiredItem,
 } from ".";
 
 /** @category Models */
 export type TornOrganizedCrimeSlot = {
-  id: TornOrganizedCrimePositionId;
+  id?: TornOrganizedCrimePositionIdDeprecated;
+  position_info: FactionSlotPositionInfo;
   name: string;
   required_item: TornOrganizedCrimeRequiredItem | null;
 };
