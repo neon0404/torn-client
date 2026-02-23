@@ -1,10 +1,16 @@
-import type { FactionCrimeUser, ItemId, TornOrganizedCrimePositionId } from ".";
+import type {
+  FactionCrimeUser,
+  FactionSlotPositionInfo,
+  ItemId,
+  TornOrganizedCrimePositionIdDeprecated,
+} from ".";
 
 /** @category Models */
 export type FactionCrimeSlot = {
   position: string;
-  position_id: TornOrganizedCrimePositionId;
-  position_number: number;
+  position_info: FactionSlotPositionInfo;
+  position_id?: TornOrganizedCrimePositionIdDeprecated;
+  position_number?: number;
   item_requirement: {
     id: ItemId;
     is_reusable: boolean;
