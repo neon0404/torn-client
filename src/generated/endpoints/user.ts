@@ -69,6 +69,7 @@ import type {
   UserResponse,
   UserSelectionName,
   UserSkillsResponse,
+  UserStocksResponse,
   UserTravelResponse,
   UserVirusResponse,
   UserWeaponExpResponse,
@@ -938,6 +939,20 @@ export class UserEndpoint {
     timestamp?: string;
   }): Promise<UserSkillsResponse> {
     const path = `/user/skills`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your stocks
+   * @param params - Optional query parameters
+   */
+  public async stocks(params?: {
+    timestamp?: string;
+  }): Promise<UserStocksResponse> {
+    const path = `/user/stocks`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };

@@ -10,6 +10,7 @@ import type {
   ItemUid,
   LogCategoryId,
   MedalId,
+  StockId,
   TimestampResponse,
   TornBountiesResponse,
   TornCalendarResponse,
@@ -38,6 +39,8 @@ import type {
   TornProperties,
   TornResponse,
   TornSelectionName,
+  TornStockDetailedResponse,
+  TornStocksResponse,
   TornSubcrimesResponse,
   TornTerritoriesResponse,
 } from "../models";
@@ -356,6 +359,20 @@ export class TornEndpoint {
   }
 
   /**
+   * Get all stocks
+   * @param params - Optional query parameters
+   */
+  public async stocks(params?: {
+    timestamp?: string;
+  }): Promise<TornStocksResponse> {
+    const path = `/torn/stocks`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get territory details
    * @param params - Optional query parameters
    */
@@ -414,6 +431,7 @@ export class TornEndpoint {
     id?:
       | LogCategoryId
       | TornCrimeId
+      | StockId
       | EliminationTeamId
       | ItemUid
       | ItemId[]
@@ -462,6 +480,11 @@ export class TornEndpoint {
     logCategoryId: string | number,
   ): TornLogCategoryIdContext {
     return new TornLogCategoryIdContext(this.requester, logCategoryId);
+  }
+
+  /** @param stockId - The ID for this context */
+  public withStockId(stockId: string | number): TornStockIdContext {
+    return new TornStockIdContext(this.requester, stockId);
   }
 
   /** @param crimeId - The ID for this context */
@@ -598,6 +621,34 @@ export class TornLogCategoryIdContext {
     timestamp?: string;
   }): Promise<TornLogTypesResponse> {
     const path = `/torn/${this.contextId}/logtypes`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+}
+
+/**
+ * Context class for Torn API endpoints that require a "stockId"
+ * @category Endpoints
+ */
+export class TornStockIdContext {
+  private readonly requester: Requester;
+  private readonly contextId: string | number;
+
+  constructor(requester: Requester, contextId: string | number) {
+    this.requester = requester;
+    this.contextId = contextId;
+  }
+
+  /**
+   * Get specific stock with chart history
+   * @param params - Optional query parameters
+   */
+  public async stocks(params?: {
+    timestamp?: string;
+  }): Promise<TornStockDetailedResponse> {
+    const path = `/torn/${this.contextId}/stocks`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };

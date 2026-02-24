@@ -42,7 +42,4 @@ export type FactionStatEnum =
   | "attacksdamaging"
   | "attacksrunaway"
   | "highestterritories"
-  | "territoryrespect"
-  | "membersamount"
-  | "factionage"
-  | "upgradesamount";
+  | "territoryrespect";

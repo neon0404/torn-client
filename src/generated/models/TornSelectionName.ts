@@ -21,6 +21,7 @@ export type TornSelectionName =
   | "merits"
   | "organizedcrimes"
   | "properties"
+  | "stocks"
   | "subcrimes"
   | "territory"
   | "timestamp"
@@ -39,5 +40,4 @@ export type TornSelectionName =
   | "searchforcash"
   | "shoplifting"
   | "stats"
-  | "stocks"
   | string;
