@@ -209,6 +209,16 @@ describe("TornEndpoint Integration Tests", () => {
     );
 
     it(
+      "torn.stocks should succeed",
+      async () => {
+        const response = await client.torn.stocks();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "torn.territory should succeed",
       async () => {
         const response = await client.torn.territory();
@@ -298,6 +308,7 @@ describe("TornEndpoint Integration Tests", () => {
       },
       TEST_TIMEOUT,
     );
+    it.skip("torn.withStockId(...).stocks should succeed", () => {});
 
     it(
       "torn.withCrimeId(...).subcrimes should succeed",

@@ -52,6 +52,7 @@ export type UserSelectionName =
   | "revives"
   | "revivesfull"
   | "skills"
+  | "stocks"
   | "timestamp"
   | "travel"
   | "weaponexp"
@@ -64,5 +65,4 @@ export type UserSelectionName =
   | "inventory"
   | "networth"
   | "perks"
-  | "stocks"
   | string;

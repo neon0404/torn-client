@@ -22,6 +22,8 @@ import type {
   TornMeritsResponse,
   TornOrganizedCrimeResponse,
   TornProperties,
+  TornStockDetailedResponse,
+  TornStocksResponse,
   TornSubcrimesResponse,
   TornTerritoriesNoLinksResponse,
   TornTerritoriesResponse,
@@ -50,6 +52,8 @@ export type TornResponse =
   | TornProperties
   | TornFactionTreeResponse
   | AttackLogResponse
+  | TornStockDetailedResponse
+  | TornStocksResponse
   | TornTerritoriesResponse
   | TornTerritoriesNoLinksResponse
   | TornItemModsResponse

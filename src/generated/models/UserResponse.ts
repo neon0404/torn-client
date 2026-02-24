@@ -52,6 +52,7 @@ import type {
   UserRacingRecordsResponse,
   UserRefillsResponse,
   UserSkillsResponse,
+  UserStocksResponse,
   UserTravelResponse,
   UserVirusResponse,
   UserWeaponExpResponse,
@@ -77,6 +78,7 @@ export type UserResponse =
   | UserCalendarResponse
   | UserRacingRecordsResponse
   | UserEducationResponse
+  | UserStocksResponse
   | UserBountiesResponse
   | UserJobRanksResponse
   | UserPropertiesResponse
