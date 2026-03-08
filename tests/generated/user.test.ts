@@ -527,6 +527,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.stocks should succeed",
+      async () => {
+        const response = await client.user.stocks();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.travel should succeed",
       async () => {
         const response = await client.user.travel();
