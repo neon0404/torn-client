@@ -15,6 +15,7 @@ import type {
   RevivesResponse,
   TimestampResponse,
   TornCrimeId,
+  TradeId,
   User,
   UserAmmoResponse,
   UserBarsResponse,
@@ -70,6 +71,8 @@ import type {
   UserSelectionName,
   UserSkillsResponse,
   UserStocksResponse,
+  UserTradeResponse,
+  UserTradesResponse,
   UserTravelResponse,
   UserVirusResponse,
   UserWeaponExpResponse,
@@ -960,6 +963,30 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your trades
+   * @param params - Optional query parameters
+   */
+  public async trades(params?: {
+    striptags?: "true" | "false";
+    limit?: number;
+    sort?: "DESC" | "ASC";
+    to?: number;
+    from?: number;
+    timestamp?: string;
+  }): Promise<PaginatedResponse<UserTradesResponse> & UserTradesResponse> {
+    const path = `/user/trades`;
+    const query = {
+      ...(params?.striptags !== undefined && { striptags: params.striptags }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.to !== undefined && { to: params.to }),
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your travel information
    * @param params - Optional query parameters
    */
@@ -1049,7 +1076,7 @@ export class UserEndpoint {
    */
   public async get(params?: {
     selections?: UserSelectionName[];
-    id?: UserDiscordPathId | TornCrimeId | string;
+    id?: UserDiscordPathId | TornCrimeId | TradeId | string;
     legacy?: UserSelectionName[];
     limit?: number;
     from?: number;
@@ -1093,6 +1120,11 @@ export class UserEndpoint {
   /** @param crimeId - The ID for this context */
   public withCrimeId(crimeId: string | number): UserCrimeIdContext {
     return new UserCrimeIdContext(this.requester, crimeId);
+  }
+
+  /** @param tradeId - The ID for this context */
+  public withTradeId(tradeId: string | number): UserTradeIdContext {
+    return new UserTradeIdContext(this.requester, tradeId);
   }
 }
 
@@ -1369,6 +1401,37 @@ export class UserCrimeIdContext {
   }): Promise<UserCrimesResponse> {
     const path = `/user/${this.contextId}/crimes`;
     const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+}
+
+/**
+ * Context class for User API endpoints that require a "tradeId"
+ * @category Endpoints
+ */
+export class UserTradeIdContext {
+  private readonly requester: Requester;
+  private readonly contextId: string | number;
+
+  constructor(requester: Requester, contextId: string | number) {
+    this.requester = requester;
+    this.contextId = contextId;
+  }
+
+  /**
+   * Get your detailed trade
+   * @param id - Path parameter: Trade id
+   * @param params - Optional query parameters
+   */
+  public async trade(
+    id: string | number,
+    params?: { striptags?: "true" | "false"; timestamp?: string },
+  ): Promise<UserTradeResponse> {
+    const path = `/user/${this.contextId}/trade`;
+    const query = {
+      ...(params?.striptags !== undefined && { striptags: params.striptags }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
