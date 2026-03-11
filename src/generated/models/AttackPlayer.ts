@@ -1,9 +1,9 @@
-import type { AttackPlayerFaction, UserId } from ".";
+import type { UserFactionBasic, UserId } from ".";
 
 /** @category Models */
 export type AttackPlayer = {
   id: UserId;
   name: string;
   level: number;
-  faction: AttackPlayerFaction | null;
+  faction: UserFactionBasic | null;
 };
