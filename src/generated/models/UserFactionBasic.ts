@@ -1,7 +1,7 @@
 import type { FactionId } from ".";
 
 /** @category Models */
-export type AttackPlayerFaction = {
+export type UserFactionBasic = {
   id: FactionId;
   name: string;
 };
