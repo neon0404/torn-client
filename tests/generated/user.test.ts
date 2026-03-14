@@ -537,6 +537,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.trades should succeed",
+      async () => {
+        const response = await client.user.trades();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.travel should succeed",
       async () => {
         const response = await client.user.travel();
@@ -769,5 +779,6 @@ describe("UserEndpoint Integration Tests", () => {
       },
       TEST_TIMEOUT,
     );
+    it.skip("user.withTradeId(...).trade should succeed", () => {});
   });
 });
