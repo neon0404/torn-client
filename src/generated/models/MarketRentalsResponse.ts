@@ -4,5 +4,6 @@ import type { MarketRentalDetails, RequestMetadataWithLinks } from ".";
 export type MarketRentalsResponse = {
   rentals: MarketRentalDetails;
   rentals_timestamp: number;
+  rentals_delay?: number;
   _metadata: RequestMetadataWithLinks;
 };
