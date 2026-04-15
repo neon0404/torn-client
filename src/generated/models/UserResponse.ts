@@ -29,6 +29,7 @@ import type {
   UserHofResponse,
   UserHonorsResponse,
   UserIconsResponse,
+  UserInventoryResponse,
   UserItemMarketResponse,
   UserJobPointsResponse,
   UserJobRanksResponse,
@@ -122,4 +123,5 @@ export type UserResponse =
   | UserMessagesResponse
   | UserNewMessagesResponse
   | UserLookupResponse
+  | UserInventoryResponse
   | TimestampResponse;
