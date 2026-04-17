@@ -242,6 +242,7 @@ export class FactionEndpoint {
       | "available"
       | "completed";
     filters?: "created_at" | "executed_at" | "ready_at" | "expired_at";
+    limit?: number;
     offset?: number;
     from?: number;
     to?: number;
@@ -254,6 +255,7 @@ export class FactionEndpoint {
     const query = {
       ...(params?.cat !== undefined && { cat: params.cat }),
       ...(params?.filters !== undefined && { filters: params.filters }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.offset !== undefined && { offset: params.offset }),
       ...(params?.from !== undefined && { from: params.from }),
       ...(params?.to !== undefined && { to: params.to }),

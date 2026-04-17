@@ -1,11 +1,11 @@
 /** @category Models */
 export type FactionPositionAbilityEnum =
-  | "Medical Item Usage"
-  | "Booster Item Usage"
-  | "Drug Item Usage"
+  | "Medical Usage"
+  | "Booster Usage"
+  | "Drug Usage"
   | "Energy Refill Usage"
   | "Nerve Refill Usage"
-  | "Temporary Item Loaning"
+  | "Temporary Loaning"
   | "Weapon & Armor Loaning"
   | "Item Retrieving"
   | "Organised Crimes"
@@ -22,5 +22,9 @@ export type FactionPositionAbilityEnum =
   | "Newsletter Sending"
   | "Announcement Changes"
   | "Description Changes"
-  | "Utility Item Loaning"
-  | "Consumable Item Usage";
+  | "Utility Loaning"
+  | "Consumable Usage"
+  | "Medical Loaning"
+  | "Consumable Loaning"
+  | "Drug Loaning"
+  | "Booster Loaning";

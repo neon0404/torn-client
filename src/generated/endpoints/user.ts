@@ -15,6 +15,7 @@ import type {
   RevivesResponse,
   TimestampResponse,
   TornCrimeId,
+  TornInventoryItemType,
   TradeCategoryEnum,
   TradeId,
   User,
@@ -43,6 +44,7 @@ import type {
   UserHonorsResponse,
   UserIconsResponse,
   UserId,
+  UserInventoryResponse,
   UserItemMarketResponse,
   UserJobPointsResponse,
   UserJobRanksResponse,
@@ -472,6 +474,28 @@ export class UserEndpoint {
   }): Promise<UserIconsResponse> {
     const path = `/user/icons`;
     const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your inventory
+   * @param params - Optional query parameters
+   */
+  public async inventory(params?: {
+    cat?: TornInventoryItemType;
+    offset?: number;
+    limit?: number;
+    timestamp?: string;
+  }): Promise<
+    PaginatedResponse<UserInventoryResponse> & UserInventoryResponse
+  > {
+    const path = `/user/inventory`;
+    const query = {
+      ...(params?.cat !== undefined && { cat: params.cat }),
+      ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -1088,6 +1112,7 @@ export class UserEndpoint {
       | UserListEnum
       | PersonalStatsCategoryEnum
       | RacingRaceTypeEnum
+      | TornInventoryItemType
       | TradeCategoryEnum;
     stat?: PersonalStatsStatName[];
     filters?: "incoming" | "outgoing" | "ownedByUser" | "ownedBySpouse";
