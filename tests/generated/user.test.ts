@@ -257,6 +257,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.inventory should succeed",
+      async () => {
+        const response = await client.user.inventory();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.itemmarket should succeed",
       async () => {
         const response = await client.user.itemmarket();

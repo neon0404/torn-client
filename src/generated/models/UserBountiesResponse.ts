@@ -4,4 +4,5 @@ import type { Bounty } from ".";
 export type UserBountiesResponse = {
   bounties: Bounty[];
   bounties_timestamp: number;
+  bounties_delay?: number;
 };

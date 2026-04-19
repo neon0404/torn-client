@@ -25,6 +25,7 @@ export type UserSelectionName =
   | "hof"
   | "honors"
   | "icons"
+  | "inventory"
   | "itemmarket"
   | "job"
   | "jobpoints"
@@ -64,7 +65,6 @@ export type UserSelectionName =
   | "display"
   | "education"
   | "gym"
-  | "inventory"
   | "networth"
   | "perks"
   | string;
