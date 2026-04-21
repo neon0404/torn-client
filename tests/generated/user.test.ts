@@ -97,6 +97,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.casino should succeed",
+      async () => {
+        const response = await client.user.casino();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.competition should succeed",
       async () => {
         const response = await client.user.competition();
