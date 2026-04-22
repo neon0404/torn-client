@@ -468,6 +468,7 @@ export * from "./UserBattleStatsResponse";
 export * from "./UserBountiesResponse";
 export type * from "./UserCalendar";
 export * from "./UserCalendarResponse";
+export type * from "./UserCasinoResponse";
 export * from "./UserClothing";
 export * from "./UserCompany";
 export * from "./UserCompanyPoints";

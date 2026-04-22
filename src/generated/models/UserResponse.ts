@@ -11,6 +11,7 @@ import type {
   UserBattleStatsResponse,
   UserBountiesResponse,
   UserCalendarResponse,
+  UserCasinoResponse,
   UserCompetitionResponse,
   UserCooldownsResponse,
   UserCrimesResponse,
@@ -111,6 +112,7 @@ export type UserResponse =
   | UserTravelResponse
   | UserVirusResponse
   | AttacksFullResponse
+  | UserCasinoResponse
   | UserMoneyResponse
   | UserJobPointsResponse
   | UserWorkStatsResponse

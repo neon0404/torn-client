@@ -25,6 +25,7 @@ import type {
   UserBattleStatsResponse,
   UserBountiesResponse,
   UserCalendarResponse,
+  UserCasinoResponse,
   UserCompetitionResponse,
   UserCooldownsResponse,
   UserCrimesResponse,
@@ -221,6 +222,20 @@ export class UserEndpoint {
     timestamp?: string;
   }): Promise<UserCalendarResponse> {
     const path = `/user/calendar`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your casino streak & tokens
+   * @param params - Optional query parameters
+   */
+  public async casino(params?: {
+    timestamp?: string;
+  }): Promise<UserCasinoResponse> {
+    const path = `/user/casino`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
