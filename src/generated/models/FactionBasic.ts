@@ -6,6 +6,7 @@ export type FactionBasic = {
   name: string;
   tag: string;
   tag_image: string;
+  banner_image: string;
   leader_id: UserId;
   co_leader_id: UserId;
   respect: number;

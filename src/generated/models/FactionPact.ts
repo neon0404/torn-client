@@ -4,5 +4,5 @@ import type { FactionId } from ".";
 export type FactionPact = {
   faction_id: FactionId;
   faction_name: string;
-  until: string;
+  until: number;
 };
