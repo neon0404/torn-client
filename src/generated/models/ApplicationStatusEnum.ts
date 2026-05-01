@@ -1,5 +1,5 @@
 /** @category Models */
-export type FactionApplicationStatusEnum =
+export type ApplicationStatusEnum =
   | "accepted"
   | "declined"
   | "withdrawn"

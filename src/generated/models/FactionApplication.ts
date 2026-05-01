@@ -1,4 +1,4 @@
-import type { FactionApplicationStatusEnum, UserId } from ".";
+import type { ApplicationStatusEnum, UserId } from ".";
 
 /** @category Models */
 export type FactionApplication = {
@@ -16,5 +16,5 @@ export type FactionApplication = {
   };
   message: string | null;
   valid_until: number;
-  status: FactionApplicationStatusEnum;
+  status: ApplicationStatusEnum;
 };
