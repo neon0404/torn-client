@@ -1,3 +1,4 @@
+export * from "./company";
 export * from "./faction";
 export * from "./forum";
 export * from "./key";
