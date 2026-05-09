@@ -1,7 +1,7 @@
-import type { ItemMarket, RequestMetadataWithLinks } from ".";
+import type { ItemMarket, RequestMetadataWithLinksAndTotal } from ".";
 
 /** @category Models */
 export type MarketItemMarketResponse = {
   itemmarket: ItemMarket;
-  _metadata: RequestMetadataWithLinks;
+  _metadata: RequestMetadataWithLinksAndTotal;
 };

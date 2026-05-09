@@ -4,6 +4,7 @@ import type { ItemModId, TornItemWeaponTypeEnum } from ".";
 export type TornItemMods = {
   id: ItemModId;
   name: string;
+  image: string;
   description: string;
   dual_fit: boolean;
   weapons: TornItemWeaponTypeEnum[];

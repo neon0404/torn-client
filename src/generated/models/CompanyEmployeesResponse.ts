@@ -1,6 +1,10 @@
-import type { CompanyEmployee, CompanyEmployeeExtended } from ".";
+import type {
+  CompanyEmployee,
+  CompanyEmployeeExtended,
+  CompanyEmployeeFull,
+} from ".";
 
 /** @category Models */
 export type CompanyEmployeesResponse = {
-  employees: CompanyEmployee | CompanyEmployeeExtended[];
+  employees: CompanyEmployee | CompanyEmployeeExtended | CompanyEmployeeFull[];
 };
