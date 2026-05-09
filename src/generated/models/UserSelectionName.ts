@@ -28,6 +28,7 @@ export type UserSelectionName =
   | "icons"
   | "inventory"
   | "itemmarket"
+  | "itemmod"
   | "job"
   | "jobpoints"
   | "jobranks"

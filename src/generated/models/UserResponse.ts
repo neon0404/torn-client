@@ -32,6 +32,7 @@ import type {
   UserIconsResponse,
   UserInventoryResponse,
   UserItemMarketResponse,
+  UserItemModsResponse,
   UserJobPointsResponse,
   UserJobRanksResponse,
   UserJobResponse,
@@ -104,6 +105,7 @@ export type UserResponse =
   | UserMissionsResponse
   | UserPersonalStatsResponse
   | UserOrganizedCrimeResponse
+  | UserItemModsResponse
   | AttacksResponse
   | UserBarsResponse
   | UserCooldownsResponse
