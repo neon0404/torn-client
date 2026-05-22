@@ -1,9 +1,9 @@
-import type { MarketRentalDetails, RequestMetadataWithLinks } from ".";
+import type { MarketRentalDetails, RequestMetadataWithLinksAndTotal } from ".";
 
 /** @category Models */
 export type MarketRentalsResponse = {
   rentals: MarketRentalDetails;
   rentals_timestamp: number;
   rentals_delay?: number;
-  _metadata: RequestMetadataWithLinks;
+  _metadata: RequestMetadataWithLinksAndTotal;
 };

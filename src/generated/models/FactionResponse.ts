@@ -12,7 +12,6 @@ import type {
   FactionHofResponse,
   FactionLookupResponse,
   FactionMembersResponse,
-  FactionNewsResponse,
   FactionOngoingChainResponse,
   FactionPositionsResponse,
   FactionRacketsResponse,
@@ -28,6 +27,7 @@ import type {
   FactionUpgradesResponse,
   FactionWarfareResponse,
   FactionWarsResponse,
+  NewsResponse,
   RevivesFullResponse,
   RevivesResponse,
   TimestampResponse,
@@ -39,7 +39,7 @@ export type FactionResponse =
   | FactionMembersResponse
   | FactionBasicResponse
   | FactionWarsResponse
-  | FactionNewsResponse
+  | NewsResponse
   | RevivesResponse
   | FactionTerritoryWarsHistoryResponse
   | AttacksResponse

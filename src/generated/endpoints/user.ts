@@ -47,6 +47,7 @@ import type {
   UserId,
   UserInventoryResponse,
   UserItemMarketResponse,
+  UserItemModsResponse,
   UserJobPointsResponse,
   UserJobRanksResponse,
   UserJobResponse,
@@ -529,6 +530,20 @@ export class UserEndpoint {
     const path = `/user/itemmarket`;
     const query = {
       ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your information about available item mods
+   * @param params - Optional query parameters
+   */
+  public async itemmods(params?: {
+    timestamp?: string;
+  }): Promise<UserItemModsResponse> {
+    const path = `/user/itemmods`;
+    const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
