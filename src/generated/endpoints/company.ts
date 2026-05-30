@@ -1,15 +1,19 @@
 import type { Requester } from "../../client/types";
+import { PaginatedResponse } from "../../client/paginated";
 import type {
+  CompaniesResponse,
   CompanyApplicationsResponse,
   CompanyEmployeesResponse,
   CompanyEmployeesResponseBasic,
   CompanyId,
   CompanyLookupResponse,
+  CompanyNewsCategory,
   CompanyProfileResponse,
   CompanyProfileResponseMixed,
   CompanyResponse,
   CompanySelectionName,
   CompanyStockResponse,
+  NewsResponse,
   TimestampResponse,
 } from "../models";
 
@@ -49,6 +53,32 @@ export class CompanyEndpoint {
     const path = `/company/employees`;
     const query = {
       ...(params?.striptags !== undefined && { striptags: params.striptags }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your company's news details
+   * @param params - Optional query parameters
+   */
+  public async news(params?: {
+    striptags?: "true" | "false";
+    limit?: number;
+    sort?: "DESC" | "ASC";
+    to?: number;
+    from?: number;
+    cat?: CompanyNewsCategory;
+    timestamp?: string;
+  }): Promise<PaginatedResponse<NewsResponse> & NewsResponse> {
+    const path = `/company/news`;
+    const query = {
+      ...(params?.striptags !== undefined && { striptags: params.striptags }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.to !== undefined && { to: params.to }),
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.cat !== undefined && { cat: params.cat }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -120,6 +150,7 @@ export class CompanyEndpoint {
     selections?: CompanySelectionName[];
     id?: CompanyId;
     legacy?: CompanySelectionName[];
+    cat?: CompanyNewsCategory;
     limit?: number;
     striptags?: "true" | "false";
     offset?: number;
@@ -130,6 +161,7 @@ export class CompanyEndpoint {
       ...(params?.selections && { selections: params.selections.join(",") }),
       ...(params?.id !== undefined && { id: params.id }),
       ...(params?.legacy && { legacy: params.legacy.join(",") }),
+      ...(params?.cat !== undefined && { cat: params.cat }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.striptags !== undefined && { striptags: params.striptags }),
       ...(params?.offset !== undefined && { offset: params.offset }),
@@ -141,6 +173,11 @@ export class CompanyEndpoint {
   /** @param id - The ID for this context */
   public withId(id: string | number): CompanyIdContext {
     return new CompanyIdContext(this.requester, id);
+  }
+
+  /** @param typeId - The ID for this context */
+  public withTypeId(typeId: string | number): CompanyTypeIdContext {
+    return new CompanyTypeIdContext(this.requester, typeId);
   }
 }
 
@@ -183,6 +220,40 @@ export class CompanyIdContext {
   }): Promise<CompanyProfileResponse> {
     const path = `/company/${this.contextId}/profile`;
     const query = {
+      ...(params?.striptags !== undefined && { striptags: params.striptags }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+}
+
+/**
+ * Context class for Company API endpoints that require a "typeId"
+ * @category Endpoints
+ */
+export class CompanyTypeIdContext {
+  private readonly requester: Requester;
+  private readonly contextId: string | number;
+
+  constructor(requester: Requester, contextId: string | number) {
+    this.requester = requester;
+    this.contextId = contextId;
+  }
+
+  /**
+   * Get a list of companies for a specific company type
+   * @param params - Optional query parameters
+   */
+  public async companies(params?: {
+    limit?: number;
+    offset?: number;
+    striptags?: "true" | "false";
+    timestamp?: string;
+  }): Promise<PaginatedResponse<CompaniesResponse> & CompaniesResponse> {
+    const path = `/company/${this.contextId}/companies`;
+    const query = {
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.offset !== undefined && { offset: params.offset }),
       ...(params?.striptags !== undefined && { striptags: params.striptags }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };

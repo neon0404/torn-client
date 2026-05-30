@@ -6,6 +6,7 @@ import type {
   CompanyProfileResponse,
   CompanyProfileResponseMixed,
   CompanyStockResponse,
+  NewsResponse,
   TimestampResponse,
 } from ".";
 
@@ -16,6 +17,7 @@ export type CompanyResponse =
   | CompanyEmployeesResponseBasic
   | CompanyProfileResponseMixed
   | CompanyProfileResponse
+  | NewsResponse
   | CompanyStockResponse
   | CompanyLookupResponse
   | TimestampResponse;

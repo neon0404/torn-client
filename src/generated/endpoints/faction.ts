@@ -20,7 +20,6 @@ import type {
   FactionLookupResponse,
   FactionMembersResponse,
   FactionNewsCategory,
-  FactionNewsResponse,
   FactionOngoingChainResponse,
   FactionPositionsResponse,
   FactionRacketsResponse,
@@ -43,6 +42,7 @@ import type {
   FactionWarfareResponse,
   FactionWarfareTypeEnum,
   FactionWarsResponse,
+  NewsResponse,
   RaidWarId,
   RankedWarId,
   ReportTypeEnum,
@@ -307,7 +307,7 @@ export class FactionEndpoint {
     from?: number;
     cat?: FactionNewsCategory;
     timestamp?: string;
-  }): Promise<PaginatedResponse<FactionNewsResponse> & FactionNewsResponse> {
+  }): Promise<PaginatedResponse<NewsResponse> & NewsResponse> {
     const path = `/faction/news`;
     const query = {
       ...(params?.striptags !== undefined && { striptags: params.striptags }),

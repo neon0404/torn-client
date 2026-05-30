@@ -287,6 +287,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.itemmods should succeed",
+      async () => {
+        const response = await client.user.itemmods();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.job should succeed",
       async () => {
         const response = await client.user.job();

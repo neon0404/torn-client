@@ -1,5 +1,5 @@
 /** @category Models */
-export type FactionNews = {
+export type News = {
   id: string;
   text: string;
   timestamp: number;

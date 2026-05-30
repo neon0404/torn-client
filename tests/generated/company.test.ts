@@ -39,6 +39,16 @@ describe("CompanyEndpoint Integration Tests", () => {
       );
 
       it(
+        "company.news should succeed",
+        async () => {
+          const response = await client.company.news();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
         "company.profile should succeed",
         async () => {
           const response = await client.company.profile();
@@ -89,6 +99,7 @@ describe("CompanyEndpoint Integration Tests", () => {
       );
       it.skip("company.withId(...).employees should succeed", () => {});
       it.skip("company.withId(...).profile should succeed", () => {});
+      it.skip("company.withTypeId(...).companies should succeed", () => {});
     },
   );
 });
