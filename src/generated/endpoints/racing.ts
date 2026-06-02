@@ -33,7 +33,7 @@ export class RacingEndpoint {
    * @param params - Optional query parameters
    */
   public async cars(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<RacingCarsResponse> {
     const path = `/racing/cars`;
     const query = {
@@ -47,7 +47,7 @@ export class RacingEndpoint {
    * @param params - Optional query parameters
    */
   public async carupgrades(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<RacingCarUpgradesResponse> {
     const path = `/racing/carupgrades`;
     const query = {
@@ -66,7 +66,7 @@ export class RacingEndpoint {
     to?: number;
     from?: number;
     cat?: RacingRaceTypeEnum;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<RacingRacesResponse> & RacingRacesResponse> {
     const path = `/racing/races`;
     const query = {
@@ -85,7 +85,7 @@ export class RacingEndpoint {
    * @param params - Optional query parameters
    */
   public async tracks(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<RacingTracksResponse> {
     const path = `/racing/tracks`;
     const query = {
@@ -99,7 +99,7 @@ export class RacingEndpoint {
    * @param params - Optional query parameters
    */
   public async lookup(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<RacingLookupResponse> {
     const path = `/racing/lookup`;
     const query = {
@@ -113,7 +113,7 @@ export class RacingEndpoint {
    * @param params - Optional query parameters
    */
   public async timestamp(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TimestampResponse> {
     const path = `/racing/timestamp`;
     const query = {
@@ -135,7 +135,7 @@ export class RacingEndpoint {
     from?: number;
     cat?: RacingRaceTypeEnum | RaceClassEnum;
     offset?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<RacingResponse> {
     const path = `/racing`;
     const query = {
@@ -181,7 +181,7 @@ export class RacingRaceIdContext {
    * @param params - Optional query parameters
    */
   public async race(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<RacingRaceDetailsResponse> {
     const path = `/racing/${this.contextId}/race`;
     const query = {
@@ -210,7 +210,7 @@ export class RacingTrackIdContext {
    */
   public async records(params?: {
     cat?: RaceClassEnum;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<RacingTrackRecordsResponse> {
     const path = `/racing/${this.contextId}/records`;
     const query = {

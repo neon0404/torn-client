@@ -6,6 +6,7 @@ import type {
   ErrorCategorySelectionUnavailableForInteractionLogs,
   ErrorClosedTemporarily,
   ErrorDailyReadLimitReached,
+  ErrorFileDoesNotExist,
   ErrorIncorrectCategory,
   ErrorIncorrectId,
   ErrorIncorrectIdEntityRelation,
@@ -62,4 +63,5 @@ export type ApiError =
   | ErrorOnlyCategoryOrStatsAllowed
   | ErrorMustMigrateToOrganizedCrimesV2
   | ErrorIncorrectLogId
-  | ErrorCategorySelectionUnavailableForInteractionLogs;
+  | ErrorCategorySelectionUnavailableForInteractionLogs
+  | ErrorFileDoesNotExist;

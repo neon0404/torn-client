@@ -7,7 +7,6 @@ export type CompanyProfileExtended = CompanyProfile & {
   efficiency: number;
   environment: number;
   trains: number;
-  applications_allowed: boolean;
   advertisement_budget: number;
   upgrades: CompanyUpgrades;
   value: number;

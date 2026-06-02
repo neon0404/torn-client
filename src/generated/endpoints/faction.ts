@@ -70,7 +70,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async applications(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionApplicationsResponse> {
     const path = `/faction/applications`;
     const query = {
@@ -89,7 +89,7 @@ export class FactionEndpoint {
     sort?: "DESC" | "ASC";
     to?: number;
     from?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<AttacksResponse> & AttacksResponse> {
     const path = `/faction/attacks`;
     const query = {
@@ -113,7 +113,7 @@ export class FactionEndpoint {
     sort?: "DESC" | "ASC";
     to?: number;
     from?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<AttacksFullResponse> & AttacksFullResponse> {
     const path = `/faction/attacksfull`;
     const query = {
@@ -133,7 +133,7 @@ export class FactionEndpoint {
    */
   public async balance(params?: {
     cat?: "all" | "current";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionBalanceResponse> {
     const path = `/faction/balance`;
     const query = {
@@ -148,7 +148,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async basic(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionBasicResponse> {
     const path = `/faction/basic`;
     const query = {
@@ -162,7 +162,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async chain(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionOngoingChainResponse> {
     const path = `/faction/chain`;
     const query = {
@@ -180,7 +180,7 @@ export class FactionEndpoint {
     sort?: "DESC" | "ASC";
     to?: number;
     from?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<FactionChainsResponse> & FactionChainsResponse
   > {
@@ -200,7 +200,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async chainreport(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionChainReportResponse> {
     const path = `/faction/chainreport`;
     const query = {
@@ -216,7 +216,7 @@ export class FactionEndpoint {
   public async contributors(params?: {
     stat?: FactionStatEnum;
     cat?: "all" | "current";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionContributorsResponse> {
     const path = `/faction/contributors`;
     const query = {
@@ -247,7 +247,7 @@ export class FactionEndpoint {
     from?: number;
     to?: number;
     sort?: "DESC" | "ASC";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<FactionCrimesResponse> & FactionCrimesResponse
   > {
@@ -270,7 +270,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async hof(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionHofResponse> {
     const path = `/faction/hof`;
     const query = {
@@ -285,7 +285,7 @@ export class FactionEndpoint {
    */
   public async members(params?: {
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionMembersResponse> {
     const path = `/faction/members`;
     const query = {
@@ -306,7 +306,7 @@ export class FactionEndpoint {
     to?: number;
     from?: number;
     cat?: FactionNewsCategory;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<NewsResponse> & NewsResponse> {
     const path = `/faction/news`;
     const query = {
@@ -326,7 +326,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async positions(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionPositionsResponse> {
     const path = `/faction/positions`;
     const query = {
@@ -340,7 +340,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async rackets(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionRacketsResponse> {
     const path = `/faction/rackets`;
     const query = {
@@ -358,7 +358,7 @@ export class FactionEndpoint {
     to?: number;
     sort?: "DESC" | "ASC";
     limit?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<FactionRaidsResponse> & FactionRaidsResponse> {
     const path = `/faction/raids`;
     const query = {
@@ -381,7 +381,7 @@ export class FactionEndpoint {
     from?: number;
     to?: number;
     sort?: "DESC" | "ASC";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<FactionRankedWarResponse> & FactionRankedWarResponse
   > {
@@ -407,7 +407,7 @@ export class FactionEndpoint {
     limit?: number;
     offset?: number;
     sort?: "DESC" | "ASC";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<ReportsResponse> & ReportsResponse> {
     const path = `/faction/reports`;
     const query = {
@@ -432,7 +432,7 @@ export class FactionEndpoint {
     to?: number;
     from?: number;
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<RevivesResponse> & RevivesResponse> {
     const path = `/faction/revives`;
     const query = {
@@ -458,7 +458,7 @@ export class FactionEndpoint {
     to?: number;
     from?: number;
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<RevivesFullResponse> & RevivesFullResponse> {
     const path = `/faction/revivesFull`;
     const query = {
@@ -488,7 +488,7 @@ export class FactionEndpoint {
     )[];
     limit?: number;
     offset?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<FactionSearchResponse> & FactionSearchResponse
   > {
@@ -508,7 +508,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async stats(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionStatsResponse> {
     const path = `/faction/stats`;
     const query = {
@@ -522,7 +522,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async territory(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionTerritoriesResponse> {
     const path = `/faction/territory`;
     const query = {
@@ -538,7 +538,7 @@ export class FactionEndpoint {
   public async territoryownership(params?: {
     offset?: number;
     limit?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionTerritoriesOwnershipResponse> {
     const path = `/faction/territoryownership`;
     const query = {
@@ -558,7 +558,7 @@ export class FactionEndpoint {
     to?: number;
     sort?: "DESC" | "ASC";
     limit?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionTerritoryWarsHistoryResponse> {
     const path = `/faction/territorywars`;
     const query = {
@@ -576,7 +576,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async upgrades(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionUpgradesResponse> {
     const path = `/faction/upgrades`;
     const query = {
@@ -595,7 +595,7 @@ export class FactionEndpoint {
     sort?: "DESC" | "ASC";
     from?: number;
     to?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<FactionWarfareResponse> & FactionWarfareResponse
   > {
@@ -616,7 +616,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async wars(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionWarsResponse> {
     const path = `/faction/wars`;
     const query = {
@@ -630,7 +630,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async lookup(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionLookupResponse> {
     const path = `/faction/lookup`;
     const query = {
@@ -644,7 +644,7 @@ export class FactionEndpoint {
    * @param params - Optional query parameters
    */
   public async timestamp(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TimestampResponse> {
     const path = `/faction/timestamp`;
     const query = {
@@ -697,7 +697,7 @@ export class FactionEndpoint {
     striptags?: "true" | "false";
     sort?: "DESC" | "ASC";
     offset?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionResponse> {
     const path = `/faction`;
     const query = {
@@ -771,7 +771,7 @@ export class FactionIdContext {
    * @param params - Optional query parameters
    */
   public async basic(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionBasicResponse> {
     const path = `/faction/${this.contextId}/basic`;
     const query = {
@@ -785,7 +785,7 @@ export class FactionIdContext {
    * @param params - Optional query parameters
    */
   public async chain(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionOngoingChainResponse> {
     const path = `/faction/${this.contextId}/chain`;
     const query = {
@@ -803,7 +803,7 @@ export class FactionIdContext {
     sort?: "DESC" | "ASC";
     to?: number;
     from?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<FactionChainsResponse> & FactionChainsResponse
   > {
@@ -823,7 +823,7 @@ export class FactionIdContext {
    * @param params - Optional query parameters
    */
   public async hof(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionHofResponse> {
     const path = `/faction/${this.contextId}/hof`;
     const query = {
@@ -838,7 +838,7 @@ export class FactionIdContext {
    */
   public async members(params?: {
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionMembersResponse> {
     const path = `/faction/${this.contextId}/members`;
     const query = {
@@ -857,7 +857,7 @@ export class FactionIdContext {
     to?: number;
     sort?: "DESC" | "ASC";
     limit?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<FactionRaidsResponse> & FactionRaidsResponse> {
     const path = `/faction/${this.contextId}/raids`;
     const query = {
@@ -877,7 +877,7 @@ export class FactionIdContext {
   public async rankedwars(params?: {
     offset?: number;
     limit?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<FactionRankedWarResponse> & FactionRankedWarResponse
   > {
@@ -895,7 +895,7 @@ export class FactionIdContext {
    * @param params - Optional query parameters
    */
   public async territory(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionTerritoriesResponse> {
     const path = `/faction/${this.contextId}/territory`;
     const query = {
@@ -913,7 +913,7 @@ export class FactionIdContext {
     to?: number;
     sort?: "DESC" | "ASC";
     limit?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionTerritoryWarsHistoryResponse> {
     const path = `/faction/${this.contextId}/territorywars`;
     const query = {
@@ -931,7 +931,7 @@ export class FactionIdContext {
    * @param params - Optional query parameters
    */
   public async wars(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionWarsResponse> {
     const path = `/faction/${this.contextId}/wars`;
     const query = {
@@ -966,7 +966,7 @@ export class FactionChainIdContext {
    * @param params - Optional query parameters
    */
   public async chainreport(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionChainReportResponse> {
     const path = `/faction/${this.contextId}/chainreport`;
     const query = {
@@ -994,7 +994,7 @@ export class FactionCrimeIdContext {
    * @param params - Optional query parameters
    */
   public async crime(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionCrimeResponse> {
     const path = `/faction/${this.contextId}/crime`;
     const query = {
@@ -1022,7 +1022,7 @@ export class FactionRaidWarIdContext {
    * @param params - Optional query parameters
    */
   public async raidreport(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionRaidWarReportResponse> {
     const path = `/faction/${this.contextId}/raidreport`;
     const query = {
@@ -1050,7 +1050,7 @@ export class FactionRankedWarIdContext {
    * @param params - Optional query parameters
    */
   public async rankedwarreport(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionRankedWarReportResponse> {
     const path = `/faction/${this.contextId}/rankedwarreport`;
     const query = {
@@ -1078,7 +1078,7 @@ export class FactionTerritoryWarIdContext {
    * @param params - Optional query parameters
    */
   public async territorywarreport(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<FactionTerritoryWarReportResponse> {
     const path = `/faction/${this.contextId}/territorywarreport`;
     const query = {

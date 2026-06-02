@@ -29,7 +29,7 @@ export class PropertyEndpoint {
    * @param params - Optional query parameters
    */
   public async lookup(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PropertyLookupResponse> {
     const path = `/property/lookup`;
     const query = {
@@ -43,7 +43,7 @@ export class PropertyEndpoint {
    * @param params - Optional query parameters
    */
   public async timestamp(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TimestampResponse> {
     const path = `/property/timestamp`;
     const query = {
@@ -59,7 +59,7 @@ export class PropertyEndpoint {
   public async get(params?: {
     selections?: PropertySelectionName[];
     id?: PropertyId;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PropertyResponse> {
     const path = `/property`;
     const query = {
@@ -89,7 +89,7 @@ export class PropertyIdContext {
    * @param params - Optional query parameters
    */
   public async get(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PropertyPropertyResponse> {
     const path = `/property/${this.contextId}/property`;
     const query = {

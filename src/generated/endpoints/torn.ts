@@ -65,7 +65,7 @@ export class TornEndpoint {
     offset?: number;
     sort?: "DESC" | "ASC";
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<AttackLogResponse> & AttackLogResponse> {
     const path = `/torn/attacklog`;
     const query = {
@@ -85,7 +85,7 @@ export class TornEndpoint {
   public async bounties(params?: {
     limit?: number;
     offset?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<TornBountiesResponse> & TornBountiesResponse> {
     const path = `/torn/bounties`;
     const query = {
@@ -101,7 +101,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async calendar(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornCalendarResponse> {
     const path = `/torn/calendar`;
     const query = {
@@ -115,7 +115,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async crimes(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornCrimesResponse> {
     const path = `/torn/crimes`;
     const query = {
@@ -129,7 +129,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async education(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornEducationResponse> {
     const path = `/torn/education`;
     const query = {
@@ -143,7 +143,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async elimination(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornEliminationTeamsResponse> {
     const path = `/torn/elimination`;
     const query = {
@@ -160,7 +160,7 @@ export class TornEndpoint {
     limit?: number;
     offset?: number;
     cat?: TornFactionHofCategory;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<TornFactionHofResponse> & TornFactionHofResponse
   > {
@@ -179,7 +179,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async factiontree(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornFactionTreeResponse> {
     const path = `/torn/factiontree`;
     const query = {
@@ -196,7 +196,7 @@ export class TornEndpoint {
     limit?: number;
     offset?: number;
     sort?: "DESC" | "ASC";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornHonorsResponse> {
     const path = `/torn/honors`;
     const query = {
@@ -216,7 +216,7 @@ export class TornEndpoint {
     limit?: number;
     offset?: number;
     cat?: TornHofCategory;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<TornHofResponse> & TornHofResponse> {
     const path = `/torn/hof`;
     const query = {
@@ -233,7 +233,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async itemammo(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornItemAmmoResponse> {
     const path = `/torn/itemammo`;
     const query = {
@@ -247,7 +247,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async itemmods(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornItemModsResponse> {
     const path = `/torn/itemmods`;
     const query = {
@@ -263,7 +263,7 @@ export class TornEndpoint {
   public async items(params?: {
     cat?: TornItemCategory;
     sort?: "DESC" | "ASC";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornItemsResponse> {
     const path = `/torn/items`;
     const query = {
@@ -279,7 +279,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async logcategories(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornLogCategoriesResponse> {
     const path = `/torn/logcategories`;
     const query = {
@@ -293,7 +293,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async logtypes(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornLogTypesResponse> {
     const path = `/torn/logtypes`;
     const query = {
@@ -307,7 +307,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async medals(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornMedalsResponse> {
     const path = `/torn/medals`;
     const query = {
@@ -321,7 +321,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async merits(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornMeritsResponse> {
     const path = `/torn/merits`;
     const query = {
@@ -335,7 +335,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async organizedcrimes(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornOrganizedCrimeResponse> {
     const path = `/torn/organizedcrimes`;
     const query = {
@@ -349,7 +349,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async properties(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornProperties> {
     const path = `/torn/properties`;
     const query = {
@@ -363,7 +363,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async stocks(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornStocksResponse> {
     const path = `/torn/stocks`;
     const query = {
@@ -380,7 +380,7 @@ export class TornEndpoint {
     ids?: FactionTerritoryEnum[];
     offset?: number;
     limit?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<TornTerritoriesResponse> & TornTerritoriesResponse
   > {
@@ -399,7 +399,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async lookup(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornLookupResponse> {
     const path = `/torn/lookup`;
     const query = {
@@ -413,7 +413,7 @@ export class TornEndpoint {
    * @param params - Optional query parameters
    */
   public async timestamp(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TimestampResponse> {
     const path = `/torn/timestamp`;
     const query = {
@@ -446,7 +446,7 @@ export class TornEndpoint {
     sort?: "DESC" | "ASC";
     cat?: TornFactionHofCategory | TornHofCategory | TornItemCategory;
     offset?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornResponse> {
     const path = `/torn`;
     const query = {
@@ -513,7 +513,7 @@ export class TornIdContext {
   public async eliminationteam(params?: {
     limit?: number;
     offset?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<TornEliminationTeamPlayersResponse> &
       TornEliminationTeamPlayersResponse
@@ -532,7 +532,7 @@ export class TornIdContext {
    * @param params - Optional query parameters
    */
   public async itemdetails(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornItemDetailsResponse> {
     const path = `/torn/${this.contextId}/itemdetails`;
     const query = {
@@ -560,7 +560,7 @@ export class TornIdsContext {
    * @param params - Optional query parameters
    */
   public async honors(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornHonorsResponse> {
     const path = `/torn/${this.contextId}/honors`;
     const query = {
@@ -575,7 +575,7 @@ export class TornIdsContext {
    */
   public async items(params?: {
     sort?: "DESC" | "ASC";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornItemsResponse> {
     const path = `/torn/${this.contextId}/items`;
     const query = {
@@ -590,7 +590,7 @@ export class TornIdsContext {
    * @param params - Optional query parameters
    */
   public async medals(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornMedalsResponse> {
     const path = `/torn/${this.contextId}/medals`;
     const query = {
@@ -618,7 +618,7 @@ export class TornLogCategoryIdContext {
    * @param params - Optional query parameters
    */
   public async logtypes(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornLogTypesResponse> {
     const path = `/torn/${this.contextId}/logtypes`;
     const query = {
@@ -646,7 +646,7 @@ export class TornStockIdContext {
    * @param params - Optional query parameters
    */
   public async stocks(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornStockDetailedResponse> {
     const path = `/torn/${this.contextId}/stocks`;
     const query = {
@@ -674,7 +674,7 @@ export class TornCrimeIdContext {
    * @param params - Optional query parameters
    */
   public async subcrimes(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TornSubcrimesResponse> {
     const path = `/torn/${this.contextId}/subcrimes`;
     const query = {

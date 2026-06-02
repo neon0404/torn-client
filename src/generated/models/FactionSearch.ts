@@ -6,6 +6,7 @@ export type FactionSearch = {
   name: string;
   respect: number;
   members: number;
+  members_max: number;
   leader: FactionSearchLeader;
   co_leader: FactionSearchLeader | null;
   image: string | null;

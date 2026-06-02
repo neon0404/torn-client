@@ -24,7 +24,7 @@ export class KeyEndpoint {
   public async log(params?: {
     limit?: number;
     offset?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<KeyLogResponse> {
     const path = `/key/log`;
     const query = {
@@ -39,7 +39,9 @@ export class KeyEndpoint {
    * Get current key info
    * @param params - Optional query parameters
    */
-  public async info(params?: { timestamp?: string }): Promise<KeyInfoResponse> {
+  public async info(params?: {
+    timestamp?: number | string;
+  }): Promise<KeyInfoResponse> {
     const path = `/key/info`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
@@ -55,7 +57,7 @@ export class KeyEndpoint {
     selections?: KeySelectionName[];
     limit?: number;
     offset?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<KeyResponse> {
     const path = `/key`;
     const query = {
