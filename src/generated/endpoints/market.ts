@@ -44,7 +44,7 @@ export class MarketEndpoint {
     sort?: "DESC" | "ASC";
     from?: number;
     to?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<AuctionHouseResponse> & AuctionHouseResponse> {
     const path = `/market/auctionhouse`;
     const query = {
@@ -63,7 +63,7 @@ export class MarketEndpoint {
    */
   public async bazaar(params?: {
     cat?: MarketSpecializedBazaarCategoryEnum;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<BazaarResponse> {
     const path = `/market/bazaar`;
     const query = {
@@ -78,7 +78,7 @@ export class MarketEndpoint {
    * @param params - Optional query parameters
    */
   public async lookup(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<MarketLookupResponse> {
     const path = `/market/lookup`;
     const query = {
@@ -92,7 +92,7 @@ export class MarketEndpoint {
    * @param params - Optional query parameters
    */
   public async timestamp(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TimestampResponse> {
     const path = `/market/timestamp`;
     const query = {
@@ -114,7 +114,7 @@ export class MarketEndpoint {
     sort?: "DESC" | "ASC";
     offset?: number;
     limit?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<MarketResponse> {
     const path = `/market`;
     const query = {
@@ -157,7 +157,7 @@ export class MarketIdContext {
    * @param params - Optional query parameters
    */
   public async auctionhouselisting(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<AuctionHouseListing> {
     const path = `/market/${this.contextId}/auctionhouselisting`;
     const query = {
@@ -175,7 +175,7 @@ export class MarketIdContext {
     sort?: "DESC" | "ASC";
     from?: number;
     to?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<AuctionHouseResponse> & AuctionHouseResponse> {
     const path = `/market/${this.contextId}/auctionhouse`;
     const query = {
@@ -193,7 +193,7 @@ export class MarketIdContext {
    * @param params - Optional query parameters
    */
   public async bazaar(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<BazaarResponseSpecialized> {
     const path = `/market/${this.contextId}/bazaar`;
     const query = {
@@ -210,7 +210,7 @@ export class MarketIdContext {
     bonus?: WeaponBonusEnum;
     limit?: number;
     offset?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<MarketItemMarketResponse> & MarketItemMarketResponse
   > {
@@ -246,7 +246,7 @@ export class MarketPropertyTypeIdContext {
     offset?: number;
     limit?: number;
     sort?: "DESC" | "ASC";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<MarketPropertiesResponse> & MarketPropertiesResponse
   > {
@@ -268,7 +268,7 @@ export class MarketPropertyTypeIdContext {
     offset?: number;
     limit?: number;
     sort?: "DESC" | "ASC";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<MarketRentalsResponse> & MarketRentalsResponse
   > {

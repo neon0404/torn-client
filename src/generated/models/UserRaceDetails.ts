@@ -2,5 +2,5 @@ import type { RacingRaceDetails } from ".";
 
 /** @category Models */
 export type UserRaceDetails = RacingRaceDetails & {
-  skill_gain: number;
+  skill_gain: number | null;
 };

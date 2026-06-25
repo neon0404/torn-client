@@ -29,7 +29,7 @@ export class ForumEndpoint {
    * @param params - Optional query parameters
    */
   public async categories(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<ForumCategoriesResponse> {
     const path = `/forum/categories`;
     const query = {
@@ -47,7 +47,7 @@ export class ForumEndpoint {
     sort?: "DESC" | "ASC";
     from?: number;
     to?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<ForumThreadsResponse> & ForumThreadsResponse> {
     const path = `/forum/threads`;
     const query = {
@@ -65,7 +65,7 @@ export class ForumEndpoint {
    * @param params - Optional query parameters
    */
   public async lookup(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<ForumLookupResponse> {
     const path = `/forum/lookup`;
     const query = {
@@ -79,7 +79,7 @@ export class ForumEndpoint {
    * @param params - Optional query parameters
    */
   public async timestamp(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TimestampResponse> {
     const path = `/forum/timestamp`;
     const query = {
@@ -101,7 +101,7 @@ export class ForumEndpoint {
     from?: number;
     to?: number;
     offset?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<ForumResponse> {
     const path = `/forum`;
     const query = {
@@ -154,7 +154,7 @@ export class ForumThreadIdContext {
     sort?: "DESC" | "ASC";
     from?: number;
     to?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<ForumPostsResponse> & ForumPostsResponse> {
     const path = `/forum/${this.contextId}/posts`;
     const query = {
@@ -173,7 +173,7 @@ export class ForumThreadIdContext {
    * @param params - Optional query parameters
    */
   public async thread(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<ForumThreadResponse> {
     const path = `/forum/${this.contextId}/thread`;
     const query = {
@@ -205,7 +205,7 @@ export class ForumCategoryIdsContext {
     sort?: "DESC" | "ASC";
     from?: number;
     to?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<ForumThreadsResponse> & ForumThreadsResponse> {
     const path = `/forum/${this.contextId}/threads`;
     const query = {

@@ -2,6 +2,7 @@ import type { Requester } from "../../client/types";
 import { PaginatedResponse } from "../../client/paginated";
 import type {
   CompaniesResponse,
+  CompaniesSearchResponse,
   CompanyApplicationsResponse,
   CompanyEmployeesResponse,
   CompanyEmployeesResponseBasic,
@@ -33,7 +34,7 @@ export class CompanyEndpoint {
    * @param params - Optional query parameters
    */
   public async applications(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<CompanyApplicationsResponse> {
     const path = `/company/applications`;
     const query = {
@@ -48,7 +49,7 @@ export class CompanyEndpoint {
    */
   public async employees(params?: {
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<CompanyEmployeesResponse> {
     const path = `/company/employees`;
     const query = {
@@ -69,7 +70,7 @@ export class CompanyEndpoint {
     to?: number;
     from?: number;
     cat?: CompanyNewsCategory;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<NewsResponse> & NewsResponse> {
     const path = `/company/news`;
     const query = {
@@ -90,7 +91,7 @@ export class CompanyEndpoint {
    */
   public async profile(params?: {
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<CompanyProfileResponseMixed> {
     const path = `/company/profile`;
     const query = {
@@ -101,11 +102,49 @@ export class CompanyEndpoint {
   }
 
   /**
+   * Search companies by name or other criteria
+   * @param params - Optional query parameters
+   */
+  public async search(params?: {
+    name?: string;
+    filters?: ("recruiting" | "notRecruiting" | string)[];
+    limit?: number;
+    offset?: number;
+    timestamp?: number | string;
+  }): Promise<
+    PaginatedResponse<CompaniesSearchResponse> & CompaniesSearchResponse
+  > {
+    const path = `/company/search`;
+    const query = {
+      ...(params?.name !== undefined && { name: params.name }),
+      ...(params?.filters && { filters: params.filters.join(",") }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get daily companies snapshot CSV
+   * @param params - Optional query parameters
+   */
+  public async snapshot(params?: {
+    timestamp?: number | string;
+  }): Promise<unknown> {
+    const path = `/company/snapshot`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your company's stock
    * @param params - Optional query parameters
    */
   public async stock(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<CompanyStockResponse> {
     const path = `/company/stock`;
     const query = {
@@ -119,7 +158,7 @@ export class CompanyEndpoint {
    * @param params - Optional query parameters
    */
   public async lookup(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<CompanyLookupResponse> {
     const path = `/company/lookup`;
     const query = {
@@ -133,7 +172,7 @@ export class CompanyEndpoint {
    * @param params - Optional query parameters
    */
   public async timestamp(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TimestampResponse> {
     const path = `/company/timestamp`;
     const query = {
@@ -154,7 +193,7 @@ export class CompanyEndpoint {
     limit?: number;
     striptags?: "true" | "false";
     offset?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<CompanyResponse> {
     const path = `/company`;
     const query = {
@@ -200,7 +239,7 @@ export class CompanyIdContext {
    */
   public async employees(params?: {
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<CompanyEmployeesResponseBasic> {
     const path = `/company/${this.contextId}/employees`;
     const query = {
@@ -216,7 +255,7 @@ export class CompanyIdContext {
    */
   public async profile(params?: {
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<CompanyProfileResponse> {
     const path = `/company/${this.contextId}/profile`;
     const query = {
@@ -248,7 +287,7 @@ export class CompanyTypeIdContext {
     limit?: number;
     offset?: number;
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<CompaniesResponse> & CompaniesResponse> {
     const path = `/company/${this.contextId}/companies`;
     const query = {

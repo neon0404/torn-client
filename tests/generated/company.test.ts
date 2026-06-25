@@ -59,6 +59,26 @@ describe("CompanyEndpoint Integration Tests", () => {
       );
 
       it(
+        "company.search should succeed",
+        async () => {
+          const response = await client.company.search();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
+        "company.snapshot should succeed",
+        async () => {
+          const response = await client.company.snapshot();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
         "company.stock should succeed",
         async () => {
           const response = await client.company.stock();

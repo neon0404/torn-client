@@ -100,7 +100,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async ammo(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserAmmoResponse> {
     const path = `/user/ammo`;
     const query = {
@@ -119,7 +119,7 @@ export class UserEndpoint {
     sort?: "DESC" | "ASC";
     to?: number;
     from?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<AttacksResponse> & AttacksResponse> {
     const path = `/user/attacks`;
     const query = {
@@ -143,7 +143,7 @@ export class UserEndpoint {
     sort?: "DESC" | "ASC";
     to?: number;
     from?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<AttacksFullResponse> & AttacksFullResponse> {
     const path = `/user/attacksfull`;
     const query = {
@@ -162,7 +162,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async bars(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserBarsResponse> {
     const path = `/user/bars`;
     const query = {
@@ -177,7 +177,7 @@ export class UserEndpoint {
    */
   public async basic(params?: {
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserBasicResponse> {
     const path = `/user/basic`;
     const query = {
@@ -192,7 +192,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async battlestats(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserBattleStatsResponse> {
     const path = `/user/battlestats`;
     const query = {
@@ -206,7 +206,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async bounties(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserBountiesResponse> {
     const path = `/user/bounties`;
     const query = {
@@ -220,7 +220,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async calendar(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserCalendarResponse> {
     const path = `/user/calendar`;
     const query = {
@@ -234,7 +234,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async casino(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserCasinoResponse> {
     const path = `/user/casino`;
     const query = {
@@ -248,7 +248,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async competition(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserCompetitionResponse> {
     const path = `/user/competition`;
     const query = {
@@ -262,7 +262,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async cooldowns(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserCooldownsResponse> {
     const path = `/user/cooldowns`;
     const query = {
@@ -276,7 +276,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async discord(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserDiscordResponse> {
     const path = `/user/discord`;
     const query = {
@@ -290,7 +290,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async education(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserEducationResponse> {
     const path = `/user/education`;
     const query = {
@@ -304,7 +304,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async enlistedcars(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserEnlistedCarsResponse> {
     const path = `/user/enlistedcars`;
     const query = {
@@ -318,7 +318,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async equipment(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserEquipmentResponse> {
     const path = `/user/equipment`;
     const query = {
@@ -336,7 +336,7 @@ export class UserEndpoint {
     limit?: number;
     from?: number;
     to?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<UserEventsResponse> & UserEventsResponse> {
     const path = `/user/events`;
     const query = {
@@ -354,7 +354,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async faction(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserFactionResponse> {
     const path = `/user/faction`;
     const query = {
@@ -368,7 +368,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async forumfeed(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserForumFeedResponse> {
     const path = `/user/forumfeed`;
     const query = {
@@ -382,7 +382,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async forumfriends(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserForumFriendsResponse> {
     const path = `/user/forumfriends`;
     const query = {
@@ -401,7 +401,7 @@ export class UserEndpoint {
     sort?: "DESC" | "ASC";
     from?: number;
     to?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<UserForumPostsResponse> & UserForumPostsResponse
   > {
@@ -422,7 +422,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async forumsubscribedthreads(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserForumSubscribedThreadsResponse> {
     const path = `/user/forumsubscribedthreads`;
     const query = {
@@ -440,7 +440,7 @@ export class UserEndpoint {
     sort?: "DESC" | "ASC";
     from?: number;
     to?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<UserForumThreadsResponse> & UserForumThreadsResponse
   > {
@@ -459,7 +459,9 @@ export class UserEndpoint {
    * Get your hall of fame rankings
    * @param params - Optional query parameters
    */
-  public async hof(params?: { timestamp?: string }): Promise<UserHofResponse> {
+  public async hof(params?: {
+    timestamp?: number | string;
+  }): Promise<UserHofResponse> {
     const path = `/user/hof`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
@@ -472,7 +474,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async honors(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserHonorsResponse> {
     const path = `/user/honors`;
     const query = {
@@ -486,7 +488,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async icons(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserIconsResponse> {
     const path = `/user/icons`;
     const query = {
@@ -503,7 +505,7 @@ export class UserEndpoint {
     cat?: TornInventoryItemType;
     offset?: number;
     limit?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<UserInventoryResponse> & UserInventoryResponse
   > {
@@ -523,7 +525,7 @@ export class UserEndpoint {
    */
   public async itemmarket(params?: {
     offset?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<UserItemMarketResponse> & UserItemMarketResponse
   > {
@@ -540,7 +542,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async itemmods(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserItemModsResponse> {
     const path = `/user/itemmods`;
     const query = {
@@ -553,7 +555,9 @@ export class UserEndpoint {
    * Get your job information
    * @param params - Optional query parameters
    */
-  public async job(params?: { timestamp?: string }): Promise<UserJobResponse> {
+  public async job(params?: {
+    timestamp?: number | string;
+  }): Promise<UserJobResponse> {
     const path = `/user/job`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
@@ -566,7 +570,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async jobpoints(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserJobPointsResponse> {
     const path = `/user/jobpoints`;
     const query = {
@@ -580,7 +584,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async jobranks(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserJobRanksResponse> {
     const path = `/user/jobranks`;
     const query = {
@@ -599,7 +603,7 @@ export class UserEndpoint {
     limit?: number;
     offset?: number;
     sort?: "DESC" | "ASC";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<UserListResponse> & UserListResponse> {
     const path = `/user/list`;
     const query = {
@@ -624,7 +628,7 @@ export class UserEndpoint {
     limit?: number;
     to?: number;
     from?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<UserLogsResponse> & UserLogsResponse> {
     const path = `/user/log`;
     const query = {
@@ -644,7 +648,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async medals(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserMedalsResponse> {
     const path = `/user/medals`;
     const query = {
@@ -658,7 +662,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async merits(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserMeritsResponse> {
     const path = `/user/merits`;
     const query = {
@@ -676,7 +680,7 @@ export class UserEndpoint {
     from?: number;
     to?: number;
     sort?: "DESC" | "ASC";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<UserMessagesResponse> & UserMessagesResponse> {
     const path = `/user/messages`;
     const query = {
@@ -694,7 +698,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async missions(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserMissionsResponse> {
     const path = `/user/missions`;
     const query = {
@@ -708,7 +712,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async money(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserMoneyResponse> {
     const path = `/user/money`;
     const query = {
@@ -723,7 +727,7 @@ export class UserEndpoint {
    */
   public async newevents(params?: {
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserNewEventsResponse> {
     const path = `/user/newevents`;
     const query = {
@@ -738,7 +742,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async newmessages(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserNewMessagesResponse> {
     const path = `/user/newmessages`;
     const query = {
@@ -752,7 +756,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async notifications(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserNotificationsResponse> {
     const path = `/user/notifications`;
     const query = {
@@ -766,7 +770,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async organizedcrime(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserOrganizedCrimeResponse> {
     const path = `/user/organizedcrime`;
     const query = {
@@ -780,7 +784,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async organizedcrimes(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<UserOrganizedCrimesResponse> & UserOrganizedCrimesResponse
   > {
@@ -815,7 +819,7 @@ export class UserEndpoint {
    */
   public async profile(params?: {
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserProfileResponse> {
     const path = `/user/profile`;
     const query = {
@@ -833,7 +837,7 @@ export class UserEndpoint {
     filters?: "ownedByUser" | "ownedBySpouse";
     offset?: number;
     limit?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<UserPropertiesResponse> & UserPropertiesResponse
   > {
@@ -852,7 +856,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async property(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserPropertyResponse> {
     const path = `/user/property`;
     const query = {
@@ -871,7 +875,7 @@ export class UserEndpoint {
     from?: number;
     to?: number;
     cat?: RacingRaceTypeEnum;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<UserRacesResponse> & UserRacesResponse> {
     const path = `/user/races`;
     const query = {
@@ -890,7 +894,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async racingrecords(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserRacingRecordsResponse> {
     const path = `/user/racingrecords`;
     const query = {
@@ -904,7 +908,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async refills(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserRefillsResponse> {
     const path = `/user/refills`;
     const query = {
@@ -923,7 +927,7 @@ export class UserEndpoint {
     limit?: number;
     offset?: number;
     sort?: "DESC" | "ASC";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<ReportsResponse> & ReportsResponse> {
     const path = `/user/reports`;
     const query = {
@@ -948,7 +952,7 @@ export class UserEndpoint {
     to?: number;
     from?: number;
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<RevivesResponse> & RevivesResponse> {
     const path = `/user/revives`;
     const query = {
@@ -974,7 +978,7 @@ export class UserEndpoint {
     to?: number;
     from?: number;
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<RevivesFullResponse> & RevivesFullResponse> {
     const path = `/user/revivesFull`;
     const query = {
@@ -994,7 +998,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async skills(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserSkillsResponse> {
     const path = `/user/skills`;
     const query = {
@@ -1008,7 +1012,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async stocks(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserStocksResponse> {
     const path = `/user/stocks`;
     const query = {
@@ -1027,7 +1031,7 @@ export class UserEndpoint {
     sort?: "DESC" | "ASC";
     to?: number;
     from?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<PaginatedResponse<UserTradesResponse> & UserTradesResponse> {
     const path = `/user/trades`;
     const query = {
@@ -1046,7 +1050,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async travel(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserTravelResponse> {
     const path = `/user/travel`;
     const query = {
@@ -1060,7 +1064,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async virus(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserVirusResponse> {
     const path = `/user/virus`;
     const query = {
@@ -1074,7 +1078,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async weaponexp(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserWeaponExpResponse> {
     const path = `/user/weaponexp`;
     const query = {
@@ -1088,7 +1092,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async workstats(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserWorkStatsResponse> {
     const path = `/user/workstats`;
     const query = {
@@ -1102,7 +1106,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async lookup(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserLookupResponse> {
     const path = `/user/lookup`;
     const query = {
@@ -1116,7 +1120,7 @@ export class UserEndpoint {
    * @param params - Optional query parameters
    */
   public async timestamp(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<TimestampResponse> {
     const path = `/user/timestamp`;
     const query = {
@@ -1148,7 +1152,7 @@ export class UserEndpoint {
     filters?: "incoming" | "outgoing" | "ownedByUser" | "ownedBySpouse";
     striptags?: "true" | "false";
     offset?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserResponse> {
     const path = `/user`;
     const query = {
@@ -1204,7 +1208,7 @@ export class UserIdContext {
    */
   public async basic(params?: {
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserBasicResponse> {
     const path = `/user/${this.contextId}/basic`;
     const query = {
@@ -1219,7 +1223,7 @@ export class UserIdContext {
    * @param params - Optional query parameters
    */
   public async bounties(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserBountiesResponse> {
     const path = `/user/${this.contextId}/bounties`;
     const query = {
@@ -1233,7 +1237,7 @@ export class UserIdContext {
    * @param params - Optional query parameters
    */
   public async competition(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserCompetitionResponse> {
     const path = `/user/${this.contextId}/competition`;
     const query = {
@@ -1247,7 +1251,7 @@ export class UserIdContext {
    * @param params - Optional query parameters
    */
   public async discord(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserDiscordResponse> {
     const path = `/user/${this.contextId}/discord`;
     const query = {
@@ -1261,7 +1265,7 @@ export class UserIdContext {
    * @param params - Optional query parameters
    */
   public async faction(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserFactionResponse> {
     const path = `/user/${this.contextId}/faction`;
     const query = {
@@ -1280,7 +1284,7 @@ export class UserIdContext {
     sort?: "DESC" | "ASC";
     from?: number;
     to?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<UserForumPostsResponse> & UserForumPostsResponse
   > {
@@ -1305,7 +1309,7 @@ export class UserIdContext {
     sort?: "DESC" | "ASC";
     from?: number;
     to?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<UserForumThreadsResponse> & UserForumThreadsResponse
   > {
@@ -1324,7 +1328,9 @@ export class UserIdContext {
    * Get hall of fame rankings for a specific player
    * @param params - Optional query parameters
    */
-  public async hof(params?: { timestamp?: string }): Promise<UserHofResponse> {
+  public async hof(params?: {
+    timestamp?: number | string;
+  }): Promise<UserHofResponse> {
     const path = `/user/${this.contextId}/hof`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
@@ -1337,7 +1343,7 @@ export class UserIdContext {
    * @param params - Optional query parameters
    */
   public async icons(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserIconsResponse> {
     const path = `/user/${this.contextId}/icons`;
     const query = {
@@ -1350,7 +1356,9 @@ export class UserIdContext {
    * Get job information for a specific player
    * @param params - Optional query parameters
    */
-  public async job(params?: { timestamp?: string }): Promise<UserJobResponse> {
+  public async job(params?: {
+    timestamp?: number | string;
+  }): Promise<UserJobResponse> {
     const path = `/user/${this.contextId}/job`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
@@ -1382,7 +1390,7 @@ export class UserIdContext {
    */
   public async profile(params?: {
     striptags?: "true" | "false";
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserProfileResponse> {
     const path = `/user/${this.contextId}/profile`;
     const query = {
@@ -1400,7 +1408,7 @@ export class UserIdContext {
     filters?: "ownedByUser" | "ownedBySpouse";
     offset?: number;
     limit?: number;
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<
     PaginatedResponse<UserPropertiesResponse> & UserPropertiesResponse
   > {
@@ -1419,7 +1427,7 @@ export class UserIdContext {
    * @param params - Optional query parameters
    */
   public async property(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserPropertyResponse> {
     const path = `/user/${this.contextId}/property`;
     const query = {
@@ -1454,7 +1462,7 @@ export class UserCrimeIdContext {
    * @param params - Optional query parameters
    */
   public async crimes(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserCrimesResponse> {
     const path = `/user/${this.contextId}/crimes`;
     const query = {
@@ -1482,7 +1490,7 @@ export class UserTradeIdContext {
    * @param params - Optional query parameters
    */
   public async trade(params?: {
-    timestamp?: string;
+    timestamp?: number | string;
   }): Promise<UserTradeResponse> {
     const path = `/user/${this.contextId}/trade`;
     const query = {

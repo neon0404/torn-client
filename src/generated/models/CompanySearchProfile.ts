@@ -1,6 +1,5 @@
 import type {
   CompanyCustomers,
-  CompanyDirector,
   CompanyEmployees,
   CompanyId,
   CompanyIncome,
@@ -8,7 +7,7 @@ import type {
 } from ".";
 
 /** @category Models */
-export type CompanyProfile = {
+export type CompanySearchProfile = {
   id: CompanyId;
   name: string;
   created_at: number;
@@ -16,7 +15,6 @@ export type CompanyProfile = {
   image: string | null;
   type: CompanyType;
   rating: number;
-  director: CompanyDirector;
   employees: CompanyEmployees;
   income: CompanyIncome;
   customers: CompanyCustomers;
