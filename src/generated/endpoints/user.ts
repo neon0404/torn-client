@@ -785,9 +785,7 @@ export class UserEndpoint {
    */
   public async organizedcrimes(params?: {
     timestamp?: number | string;
-  }): Promise<
-    PaginatedResponse<UserOrganizedCrimesResponse> & UserOrganizedCrimesResponse
-  > {
+  }): Promise<UserOrganizedCrimesResponse> {
     const path = `/user/organizedcrimes`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),

@@ -1,7 +1,7 @@
 import type { Requester } from "../../client/types";
 import { PaginatedResponse } from "../../client/paginated";
 import type {
-  AuctionHouseListing,
+  AuctionHouseListingResponse,
   AuctionHouseResponse,
   AuctionListingId,
   BazaarResponse,
@@ -158,7 +158,7 @@ export class MarketIdContext {
    */
   public async auctionhouselisting(params?: {
     timestamp?: number | string;
-  }): Promise<AuctionHouseListing> {
+  }): Promise<AuctionHouseListingResponse> {
     const path = `/market/${this.contextId}/auctionhouselisting`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),

@@ -6,5 +6,5 @@ export type TornEducationRewards = {
     endurance: number | null;
   };
   effect: string | null;
-  honor: string | null;
+  honor: number | null;
 };
