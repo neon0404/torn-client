@@ -17,7 +17,7 @@ export type PersonalStatsAttackingPublic = {
     elo: number;
     unarmored_wins: number;
     highest_level_beaten: number;
-    escapes?: {
+    escapes: {
       player: number;
       foes: number;
     };

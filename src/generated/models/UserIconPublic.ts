@@ -4,5 +4,5 @@ import type { UserIconId } from ".";
 export type UserIconPublic = {
   id: UserIconId;
   title: string;
-  description: string;
+  description: string | null;
 };

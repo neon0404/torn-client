@@ -7,5 +7,5 @@ export type FactionUpgradeDetails = {
   ability: string;
   level: number;
   cost: number;
-  unlocked_at?: number;
+  unlocked_at: number;
 };
