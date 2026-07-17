@@ -18,6 +18,7 @@ export * from "./AttacksFullResponse";
 export * from "./AttackSimplified";
 export * from "./AttacksResponse";
 export * from "./AuctionHouseListing";
+export * from "./AuctionHouseListingResponse";
 export * from "./AuctionHouseResponse";
 export * from "./AuctionHouseStackableItem";
 export type * from "./AuctionListingId";

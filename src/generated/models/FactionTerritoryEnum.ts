@@ -801,7 +801,7 @@ export type FactionTerritoryEnum =
   | "FAD"
   | "FAE"
   | "FAF"
-  | "FAG"
+  | "XAG"
   | "FBA"
   | "FBB"
   | "FBC"

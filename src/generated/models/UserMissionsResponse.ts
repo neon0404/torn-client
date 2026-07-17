@@ -30,7 +30,7 @@ export type UserMissionsResponse = {
       }[];
     }[];
     rewards: {
-      type: MissionRewardUpgrade;
+      type: MissionRewardUpgrade | string;
       details:
         | MissionRewardDetailsAmmo
         | MissionRewardDetailsUpgrade

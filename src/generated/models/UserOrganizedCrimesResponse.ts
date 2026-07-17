@@ -1,7 +1,6 @@
-import type { FactionCrime, RequestMetadataWithLinks } from ".";
+import type { FactionCrime } from ".";
 
 /** @category Models */
 export type UserOrganizedCrimesResponse = {
   organizedcrimes: FactionCrime[];
-  _metadata: RequestMetadataWithLinks;
 };
