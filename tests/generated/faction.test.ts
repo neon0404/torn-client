@@ -231,6 +231,16 @@ describe("FactionEndpoint Integration Tests", () => {
       );
 
       it(
+        "faction.snapshot should succeed",
+        async () => {
+          const response = await client.faction.snapshot();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
         "faction.stats should succeed",
         async () => {
           const response = await client.faction.stats();

@@ -504,6 +504,20 @@ export class FactionEndpoint {
   }
 
   /**
+   * Get daily factions snapshot CSV
+   * @param params - Optional query parameters
+   */
+  public async snapshot(params?: {
+    timestamp?: number | string;
+  }): Promise<unknown> {
+    const path = `/faction/snapshot`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your faction's challenges stats
    * @param params - Optional query parameters
    */

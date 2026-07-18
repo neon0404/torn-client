@@ -8,7 +8,7 @@ export type FactionChainReportAttackerAttacks = {
   retaliations: number;
   overseas: number;
   draws: number;
-  escapes?: number;
+  escapes: number;
   losses: number;
   war: number;
   bonuses: number;

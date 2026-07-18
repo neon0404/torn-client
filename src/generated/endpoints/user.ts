@@ -780,14 +780,12 @@ export class UserEndpoint {
   }
 
   /**
-   * Get available slots for organized crimes with status 'Recruiting'
+   * Get your available slots for organized crimes with status 'Recruiting'
    * @param params - Optional query parameters
    */
   public async organizedcrimes(params?: {
     timestamp?: number | string;
-  }): Promise<
-    PaginatedResponse<UserOrganizedCrimesResponse> & UserOrganizedCrimesResponse
-  > {
+  }): Promise<UserOrganizedCrimesResponse> {
     const path = `/user/organizedcrimes`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
@@ -866,7 +864,7 @@ export class UserEndpoint {
   }
 
   /**
-   * Get user races
+   * Get your races
    * @param params - Optional query parameters
    */
   public async races(params?: {
