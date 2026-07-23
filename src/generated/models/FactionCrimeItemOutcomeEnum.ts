@@ -1,2 +1,2 @@
 /** @category Models */
-export type FactionCrimeItemOutcomeEnum = "lost" | "used";
+export type FactionCrimeItemOutcomeEnum = "lost" | "used" | "unused";
