@@ -456,6 +456,8 @@ export * from "./TornMedal";
 export * from "./TornMedalsResponse";
 export * from "./TornMerit";
 export * from "./TornMeritsResponse";
+export * from "./TornMuseumResponse";
+export * from "./TornMuseumSet";
 export * from "./TornOrganizedCrime";
 export type * from "./TornOrganizedCrimePositionId";
 export type * from "./TornOrganizedCrimePositionIdDeprecated";

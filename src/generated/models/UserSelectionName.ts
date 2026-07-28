@@ -55,6 +55,7 @@ export type UserSelectionName =
   | "revives"
   | "revivesfull"
   | "skills"
+  | "snapshot"
   | "stocks"
   | "trades"
   | "trade"
