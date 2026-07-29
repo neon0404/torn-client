@@ -1006,6 +1006,20 @@ export class UserEndpoint {
   }
 
   /**
+   * Get daily active players snapshot CSV
+   * @param params - Optional query parameters
+   */
+  public async snapshot(params?: {
+    timestamp?: number | string;
+  }): Promise<unknown> {
+    const path = `/user/snapshot`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your stocks
    * @param params - Optional query parameters
    */

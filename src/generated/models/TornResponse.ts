@@ -20,6 +20,7 @@ import type {
   TornLookupResponse,
   TornMedalsResponse,
   TornMeritsResponse,
+  TornMuseumResponse,
   TornOrganizedCrimeResponse,
   TornProperties,
   TornStockDetailedResponse,
@@ -52,6 +53,7 @@ export type TornResponse =
   | TornProperties
   | TornFactionTreeResponse
   | AttackLogResponse
+  | TornMuseumResponse
   | TornStockDetailedResponse
   | TornStocksResponse
   | TornTerritoriesResponse
