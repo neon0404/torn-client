@@ -35,6 +35,7 @@ import type {
   TornLookupResponse,
   TornMedalsResponse,
   TornMeritsResponse,
+  TornMuseumResponse,
   TornOrganizedCrimeResponse,
   TornProperties,
   TornResponse,
@@ -324,6 +325,20 @@ export class TornEndpoint {
     timestamp?: number | string;
   }): Promise<TornMeritsResponse> {
     const path = `/torn/merits`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get all museum sets
+   * @param params - Optional query parameters
+   */
+  public async museum(params?: {
+    timestamp?: number | string;
+  }): Promise<TornMuseumResponse> {
+    const path = `/torn/museum`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };

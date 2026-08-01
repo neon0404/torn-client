@@ -189,6 +189,16 @@ describe("TornEndpoint Integration Tests", () => {
     );
 
     it(
+      "torn.museum should succeed",
+      async () => {
+        const response = await client.torn.museum();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "torn.organizedcrimes should succeed",
       async () => {
         const response = await client.torn.organizedcrimes();

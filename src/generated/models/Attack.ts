@@ -4,6 +4,7 @@ import type {
   AttackPlayer,
   AttackingFinishingHitEffects,
   FactionAttackResult,
+  TerritoryWarId,
 } from ".";
 
 /** @category Models */
@@ -22,6 +23,8 @@ export type Attack = {
   is_stealthed: boolean;
   is_raid: boolean;
   is_ranked_war: boolean;
+  is_territory_war: boolean;
+  territory_war_id: TerritoryWarId | null;
   finishing_hit_effects: AttackingFinishingHitEffects[];
   modifiers: {
     fair_fight: number;

@@ -557,6 +557,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.snapshot should succeed",
+      async () => {
+        const response = await client.user.snapshot();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.stocks should succeed",
       async () => {
         const response = await client.user.stocks();
