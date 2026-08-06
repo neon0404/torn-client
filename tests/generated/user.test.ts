@@ -407,6 +407,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.networth should succeed",
+      async () => {
+        const response = await client.user.networth();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.newmessages should succeed",
       async () => {
         const response = await client.user.newmessages();

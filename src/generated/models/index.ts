@@ -604,6 +604,7 @@ export * from "./UserMessagesResponse";
 export type * from "./UserMessageTypeEnum";
 export * from "./UserMissionsResponse";
 export type * from "./UserMoneyResponse";
+export type * from "./UserNetworthResponse";
 export * from "./UserNewEventsResponse";
 export * from "./UserNewMessagesResponse";
 export type * from "./UserNotificationsResponse";

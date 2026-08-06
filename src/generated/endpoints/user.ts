@@ -60,6 +60,7 @@ import type {
   UserMessagesResponse,
   UserMissionsResponse,
   UserMoneyResponse,
+  UserNetworthResponse,
   UserNewEventsResponse,
   UserNewMessagesResponse,
   UserNotificationsResponse,
@@ -732,6 +733,20 @@ export class UserEndpoint {
     const path = `/user/newevents`;
     const query = {
       ...(params?.striptags !== undefined && { striptags: params.striptags }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your networth
+   * @param params - Optional query parameters
+   */
+  public async networth(params?: {
+    timestamp?: number | string;
+  }): Promise<UserNetworthResponse> {
+    const path = `/user/networth`;
+    const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);

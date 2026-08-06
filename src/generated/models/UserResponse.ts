@@ -43,6 +43,7 @@ import type {
   UserMessagesResponse,
   UserMissionsResponse,
   UserMoneyResponse,
+  UserNetworthResponse,
   UserNewEventsResponse,
   UserNewMessagesResponse,
   UserNotificationsResponse,
@@ -115,6 +116,7 @@ export type UserResponse =
   | UserVirusResponse
   | AttacksFullResponse
   | UserCasinoResponse
+  | UserNetworthResponse
   | UserMoneyResponse
   | UserJobPointsResponse
   | UserWorkStatsResponse
