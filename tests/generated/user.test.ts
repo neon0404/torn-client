@@ -407,6 +407,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.networth should succeed",
+      async () => {
+        const response = await client.user.networth();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.newmessages should succeed",
       async () => {
         const response = await client.user.newmessages();
@@ -440,6 +450,16 @@ describe("UserEndpoint Integration Tests", () => {
       "user.organizedcrimes should succeed",
       async () => {
         const response = await client.user.organizedcrimes();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.perks should succeed",
+      async () => {
+        const response = await client.user.perks();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },

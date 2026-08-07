@@ -60,11 +60,13 @@ import type {
   UserMessagesResponse,
   UserMissionsResponse,
   UserMoneyResponse,
+  UserNetworthResponse,
   UserNewEventsResponse,
   UserNewMessagesResponse,
   UserNotificationsResponse,
   UserOrganizedCrimeResponse,
   UserOrganizedCrimesResponse,
+  UserPerksResponse,
   UserPersonalStatsResponse,
   UserProfileResponse,
   UserPropertiesResponse,
@@ -738,6 +740,20 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your networth
+   * @param params - Optional query parameters
+   */
+  public async networth(params?: {
+    timestamp?: number | string;
+  }): Promise<UserNetworthResponse> {
+    const path = `/user/networth`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your unseen messages
    * @param params - Optional query parameters
    */
@@ -787,6 +803,20 @@ export class UserEndpoint {
     timestamp?: number | string;
   }): Promise<UserOrganizedCrimesResponse> {
     const path = `/user/organizedcrimes`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your current perks
+   * @param params - Optional query parameters
+   */
+  public async perks(params?: {
+    timestamp?: number | string;
+  }): Promise<UserPerksResponse> {
+    const path = `/user/perks`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
