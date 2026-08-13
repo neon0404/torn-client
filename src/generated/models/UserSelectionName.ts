@@ -40,6 +40,7 @@ export type UserSelectionName =
   | "messages"
   | "missions"
   | "money"
+  | "networth"
   | "newevents"
   | "newmessages"
   | "notifications"
@@ -68,6 +69,5 @@ export type UserSelectionName =
   | "display"
   | "education"
   | "gym"
-  | "networth"
   | "perks"
   | string;
