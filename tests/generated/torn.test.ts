@@ -49,6 +49,16 @@ describe("TornEndpoint Integration Tests", () => {
     );
 
     it(
+      "torn.companies should succeed",
+      async () => {
+        const response = await client.torn.companies();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "torn.crimes should succeed",
       async () => {
         const response = await client.torn.crimes();
@@ -219,6 +229,26 @@ describe("TornEndpoint Integration Tests", () => {
     );
 
     it(
+      "torn.searchforcash should succeed",
+      async () => {
+        const response = await client.torn.searchforcash();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "torn.shoplifting should succeed",
+      async () => {
+        const response = await client.torn.shoplifting();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "torn.stocks should succeed",
       async () => {
         const response = await client.torn.stocks();
@@ -267,6 +297,7 @@ describe("TornEndpoint Integration Tests", () => {
       },
       TEST_TIMEOUT,
     );
+    it.skip("torn.withTypeId(...).companies should succeed", () => {});
     it.skip("torn.withId(...).eliminationteam should succeed", () => {});
 
     it(
