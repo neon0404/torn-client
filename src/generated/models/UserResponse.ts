@@ -43,10 +43,12 @@ import type {
   UserMessagesResponse,
   UserMissionsResponse,
   UserMoneyResponse,
+  UserNetworthResponse,
   UserNewEventsResponse,
   UserNewMessagesResponse,
   UserNotificationsResponse,
   UserOrganizedCrimeResponse,
+  UserPerksResponse,
   UserPersonalStatsResponse,
   UserProfileResponse,
   UserPropertiesResponse,
@@ -110,11 +112,13 @@ export type UserResponse =
   | UserBarsResponse
   | UserCooldownsResponse
   | UserNotificationsResponse
+  | UserPerksResponse
   | UserRefillsResponse
   | UserTravelResponse
   | UserVirusResponse
   | AttacksFullResponse
   | UserCasinoResponse
+  | UserNetworthResponse
   | UserMoneyResponse
   | UserJobPointsResponse
   | UserWorkStatsResponse

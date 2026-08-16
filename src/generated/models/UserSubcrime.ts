@@ -1,6 +1,8 @@
+import type { TornSubCrimeId } from ".";
+
 /** @category Models */
 export type UserSubcrime = {
-  id: number;
+  id: TornSubCrimeId;
   total: number;
   success: number;
   fail: number;

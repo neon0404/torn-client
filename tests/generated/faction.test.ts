@@ -121,6 +121,16 @@ describe("FactionEndpoint Integration Tests", () => {
       );
 
       it(
+        "faction.dirtybombs should succeed",
+        async () => {
+          const response = await client.faction.dirtybombs();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
         "faction.hof should succeed",
         async () => {
           const response = await client.faction.hof();
@@ -284,6 +294,46 @@ describe("FactionEndpoint Integration Tests", () => {
         "faction.upgrades should succeed",
         async () => {
           const response = await client.faction.upgrades();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
+        "faction.warfarechains should succeed",
+        async () => {
+          const response = await client.faction.warfarechains();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
+        "faction.warfareraids should succeed",
+        async () => {
+          const response = await client.faction.warfareraids();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
+        "faction.warfareranked should succeed",
+        async () => {
+          const response = await client.faction.warfareranked();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
+        "faction.warfareterritory should succeed",
+        async () => {
+          const response = await client.faction.warfareterritory();
           expect(response).toBeDefined();
           expect(response).not.toHaveProperty("error");
         },

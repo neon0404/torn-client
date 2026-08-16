@@ -7,6 +7,7 @@ import type {
   MarketLookupResponse,
   MarketPropertiesResponse,
   MarketRentalsResponse,
+  PointsMarketResponse,
   TimestampResponse,
 } from ".";
 
@@ -18,6 +19,7 @@ export type MarketResponse =
   | MarketRentalsResponse
   | AuctionHouseResponse
   | AuctionHouseListingResponse
+  | PointsMarketResponse
   | MarketPropertiesResponse
   | MarketLookupResponse
   | TimestampResponse;

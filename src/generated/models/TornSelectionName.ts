@@ -22,6 +22,8 @@ export type TornSelectionName =
   | "museum"
   | "organizedcrimes"
   | "properties"
+  | "searchforcash"
+  | "shoplifting"
   | "stocks"
   | "subcrimes"
   | "territory"
@@ -38,7 +40,5 @@ export type TornSelectionName =
   | "pawnshop"
   | "pokertables"
   | "rockpaperscissors"
-  | "searchforcash"
-  | "shoplifting"
   | "stats"
   | string;
