@@ -14,6 +14,7 @@ import type {
   TimestampResponse,
   TornBountiesResponse,
   TornCalendarResponse,
+  TornCompaniesResponse,
   TornCrimeId,
   TornCrimesResponse,
   TornEducationResponse,
@@ -22,6 +23,7 @@ import type {
   TornFactionHofCategory,
   TornFactionHofResponse,
   TornFactionTreeResponse,
+  TornGymsResponse,
   TornHofCategory,
   TornHofResponse,
   TornHonorsResponse,
@@ -39,7 +41,9 @@ import type {
   TornOrganizedCrimeResponse,
   TornProperties,
   TornResponse,
+  TornSearchForCashResponse,
   TornSelectionName,
+  TornShopliftingResponse,
   TornStockDetailedResponse,
   TornStocksResponse,
   TornSubcrimesResponse,
@@ -105,6 +109,20 @@ export class TornEndpoint {
     timestamp?: number | string;
   }): Promise<TornCalendarResponse> {
     const path = `/torn/calendar`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get all companies details
+   * @param params - Optional query parameters
+   */
+  public async companies(params?: {
+    timestamp?: number | string;
+  }): Promise<TornCompaniesResponse> {
+    const path = `/torn/companies`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
@@ -183,6 +201,20 @@ export class TornEndpoint {
     timestamp?: number | string;
   }): Promise<TornFactionTreeResponse> {
     const path = `/torn/factiontree`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get all gyms
+   * @param params - Optional query parameters
+   */
+  public async gyms(params?: {
+    timestamp?: number | string;
+  }): Promise<TornGymsResponse> {
+    const path = `/torn/gyms`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
@@ -374,6 +406,34 @@ export class TornEndpoint {
   }
 
   /**
+   * Get search for cash crime statuses
+   * @param params - Optional query parameters
+   */
+  public async searchforcash(params?: {
+    timestamp?: number | string;
+  }): Promise<TornSearchForCashResponse> {
+    const path = `/torn/searchforcash`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get shoplifting crime statuses
+   * @param params - Optional query parameters
+   */
+  public async shoplifting(params?: {
+    timestamp?: number | string;
+  }): Promise<TornShopliftingResponse> {
+    const path = `/torn/shoplifting`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get all stocks
    * @param params - Optional query parameters
    */
@@ -480,6 +540,11 @@ export class TornEndpoint {
     return this.requester(path, query);
   }
 
+  /** @param typeId - The ID for this context */
+  public withTypeId(typeId: string | number): TornTypeIdContext {
+    return new TornTypeIdContext(this.requester, typeId);
+  }
+
   /** @param id - The ID for this context */
   public withId(id: string | number): TornIdContext {
     return new TornIdContext(this.requester, id);
@@ -505,6 +570,34 @@ export class TornEndpoint {
   /** @param crimeId - The ID for this context */
   public withCrimeId(crimeId: string | number): TornCrimeIdContext {
     return new TornCrimeIdContext(this.requester, crimeId);
+  }
+}
+
+/**
+ * Context class for Torn API endpoints that require a "typeId"
+ * @category Endpoints
+ */
+export class TornTypeIdContext {
+  private readonly requester: Requester;
+  private readonly contextId: string | number;
+
+  constructor(requester: Requester, contextId: string | number) {
+    this.requester = requester;
+    this.contextId = contextId;
+  }
+
+  /**
+   * Get specific company details
+   * @param params - Optional query parameters
+   */
+  public async companies(params?: {
+    timestamp?: number | string;
+  }): Promise<TornCompaniesResponse> {
+    const path = `/torn/${this.contextId}/companies`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
   }
 }
 

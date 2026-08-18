@@ -9,6 +9,7 @@ import type {
   TornEliminationTeamsResponse,
   TornFactionHofResponse,
   TornFactionTreeResponse,
+  TornGymsResponse,
   TornHofResponse,
   TornHonorsResponse,
   TornItemAmmoResponse,
@@ -49,6 +50,7 @@ export type TornResponse =
   | TornEliminationTeamPlayersResponse
   | TornMedalsResponse
   | TornBountiesResponse
+  | TornGymsResponse
   | TornItemAmmoResponse
   | TornProperties
   | TornFactionTreeResponse
