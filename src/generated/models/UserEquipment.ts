@@ -1,7 +1,6 @@
 import type {
-  AmmoId,
-  TornItemAmmoTypeEnum,
   TornItemDetails,
+  UserEquipmentAmmo,
   UserEquipmentItemMod,
 } from ".";
 
@@ -9,10 +8,5 @@ import type {
 export type UserEquipment = TornItemDetails & {
   slot: number;
   mods: UserEquipmentItemMod[];
-  ammo: {
-    id: AmmoId;
-    name: string;
-    quantity: number;
-    type: TornItemAmmoTypeEnum;
-  };
+  ammo: UserEquipmentAmmo | null;
 };

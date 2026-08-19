@@ -14,6 +14,7 @@ import type {
   MarketResponse,
   MarketSelectionName,
   MarketSpecializedBazaarCategoryEnum,
+  PointsMarketResponse,
   PropertyTypeId,
   TimestampResponse,
   WeaponBonusEnum,
@@ -68,6 +69,20 @@ export class MarketEndpoint {
     const path = `/market/bazaar`;
     const query = {
       ...(params?.cat !== undefined && { cat: params.cat }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get points market listings
+   * @param params - Optional query parameters
+   */
+  public async pointsmarket(params?: {
+    timestamp?: number | string;
+  }): Promise<PointsMarketResponse> {
+    const path = `/market/pointsmarket`;
+    const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);

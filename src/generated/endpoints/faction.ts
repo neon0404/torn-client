@@ -39,7 +39,12 @@ import type {
   FactionTerritoryWarsCategoryEnum,
   FactionTerritoryWarsHistoryResponse,
   FactionUpgradesResponse,
+  FactionWarfareChainsResponse,
+  FactionWarfareDirtyBombsResponse,
+  FactionWarfareRaidsResponse,
+  FactionWarfareRankedResponse,
   FactionWarfareResponse,
+  FactionWarfareTerritoryWarsResponse,
   FactionWarfareTypeEnum,
   FactionWarsResponse,
   NewsResponse,
@@ -260,6 +265,20 @@ export class FactionEndpoint {
       ...(params?.from !== undefined && { from: params.from }),
       ...(params?.to !== undefined && { to: params.to }),
       ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get all dirty bombs
+   * @param params - Optional query parameters
+   */
+  public async dirtybombs(params?: {
+    timestamp?: number | string;
+  }): Promise<FactionWarfareDirtyBombsResponse> {
+    const path = `/faction/dirtybombs`;
+    const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -594,6 +613,107 @@ export class FactionEndpoint {
   }): Promise<FactionUpgradesResponse> {
     const path = `/faction/upgrades`;
     const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get all chains
+   * @param params - Optional query parameters
+   */
+  public async warfarechains(params?: {
+    cat?: "active" | "complete";
+    limit?: number;
+    sort?: "DESC" | "ASC";
+    from?: number;
+    to?: number;
+    timestamp?: number | string;
+  }): Promise<
+    PaginatedResponse<FactionWarfareChainsResponse> &
+      FactionWarfareChainsResponse
+  > {
+    const path = `/faction/warfarechains`;
+    const query = {
+      ...(params?.cat !== undefined && { cat: params.cat }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.to !== undefined && { to: params.to }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get all raids
+   * @param params - Optional query parameters
+   */
+  public async warfareraids(params?: {
+    limit?: number;
+    sort?: "DESC" | "ASC";
+    from?: number;
+    to?: number;
+    timestamp?: number | string;
+  }): Promise<
+    PaginatedResponse<FactionWarfareRaidsResponse> & FactionWarfareRaidsResponse
+  > {
+    const path = `/faction/warfareraids`;
+    const query = {
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.to !== undefined && { to: params.to }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get all ranked wars
+   * @param params - Optional query parameters
+   */
+  public async warfareranked(params?: {
+    limit?: number;
+    sort?: "DESC" | "ASC";
+    from?: number;
+    to?: number;
+    timestamp?: number | string;
+  }): Promise<
+    PaginatedResponse<FactionWarfareRankedResponse> &
+      FactionWarfareRankedResponse
+  > {
+    const path = `/faction/warfareranked`;
+    const query = {
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.to !== undefined && { to: params.to }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get all territory wars
+   * @param params - Optional query parameters
+   */
+  public async warfareterritory(params?: {
+    limit?: number;
+    sort?: "DESC" | "ASC";
+    from?: number;
+    to?: number;
+    timestamp?: number | string;
+  }): Promise<
+    PaginatedResponse<FactionWarfareTerritoryWarsResponse> &
+      FactionWarfareTerritoryWarsResponse
+  > {
+    const path = `/faction/warfareterritory`;
+    const query = {
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.to !== undefined && { to: params.to }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
