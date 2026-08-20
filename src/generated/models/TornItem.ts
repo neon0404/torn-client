@@ -1,6 +1,7 @@
 import type {
   ItemId,
   TornItemArmorDetails,
+  TornItemShop,
   TornItemTypeEnum,
   TornItemWeaponDetails,
   TornItemWeaponTypeEnum,
@@ -20,12 +21,13 @@ export type TornItem = {
   is_tradable: boolean;
   is_found_in_city: boolean;
   value: {
-    vendor: {
+    vendor?: {
       country: string;
       name: string;
     } | null;
-    buy_price: number | null;
-    sell_price: number | null;
+    shops: TornItemShop[];
+    buy_price?: number | null;
+    sell_price?: number | null;
     market_price: number;
   };
   circulation: number;
