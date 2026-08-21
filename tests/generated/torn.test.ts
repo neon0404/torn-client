@@ -29,6 +29,16 @@ describe("TornEndpoint Integration Tests", () => {
     );
 
     it(
+      "torn.bank should succeed",
+      async () => {
+        const response = await client.torn.bank();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "torn.bounties should succeed",
       async () => {
         const response = await client.torn.bounties();
@@ -42,6 +52,36 @@ describe("TornEndpoint Integration Tests", () => {
       "torn.calendar should succeed",
       async () => {
         const response = await client.torn.calendar();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "torn.cards should succeed",
+      async () => {
+        const response = await client.torn.cards();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "torn.cityshops should succeed",
+      async () => {
+        const response = await client.torn.cityshops();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "torn.companies should succeed",
+      async () => {
+        const response = await client.torn.companies();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
@@ -92,6 +132,16 @@ describe("TornEndpoint Integration Tests", () => {
       "torn.factiontree should succeed",
       async () => {
         const response = await client.torn.factiontree();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "torn.gyms should succeed",
+      async () => {
+        const response = await client.torn.gyms();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
@@ -209,9 +259,39 @@ describe("TornEndpoint Integration Tests", () => {
     );
 
     it(
+      "torn.pokertables should succeed",
+      async () => {
+        const response = await client.torn.pokertables();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "torn.properties should succeed",
       async () => {
         const response = await client.torn.properties();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "torn.searchforcash should succeed",
+      async () => {
+        const response = await client.torn.searchforcash();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "torn.shoplifting should succeed",
+      async () => {
+        const response = await client.torn.shoplifting();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
@@ -267,17 +347,9 @@ describe("TornEndpoint Integration Tests", () => {
       },
       TEST_TIMEOUT,
     );
+    it.skip("torn.withShopId(...).cityshops should succeed", () => {});
+    it.skip("torn.withTypeId(...).companies should succeed", () => {});
     it.skip("torn.withId(...).eliminationteam should succeed", () => {});
-
-    it(
-      "torn.withId(...).itemdetails should succeed",
-      async () => {
-        const response = await client.torn.withId("14586495905").itemdetails();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
-      },
-      TEST_TIMEOUT,
-    );
 
     it(
       "torn.withIds(...).honors should succeed",
@@ -288,6 +360,7 @@ describe("TornEndpoint Integration Tests", () => {
       },
       TEST_TIMEOUT,
     );
+    it.skip("torn.withIds(...).itemdetails should succeed", () => {});
 
     it(
       "torn.withIds(...).items should succeed",
