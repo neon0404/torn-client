@@ -81,6 +81,16 @@ describe("MarketEndpoint Integration Tests", () => {
       );
 
       it(
+        "market.pointsmarket should succeed",
+        async () => {
+          const response = await client.market.pointsmarket();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
         "market.lookup should succeed",
         async () => {
           const response = await client.market.lookup();

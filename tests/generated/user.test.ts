@@ -237,6 +237,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.gym should succeed",
+      async () => {
+        const response = await client.user.gym();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.hof should succeed",
       async () => {
         const response = await client.user.hof();
@@ -407,6 +417,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.networth should succeed",
+      async () => {
+        const response = await client.user.networth();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.newmessages should succeed",
       async () => {
         const response = await client.user.newmessages();
@@ -440,6 +460,16 @@ describe("UserEndpoint Integration Tests", () => {
       "user.organizedcrimes should succeed",
       async () => {
         const response = await client.user.organizedcrimes();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.perks should succeed",
+      async () => {
+        const response = await client.user.perks();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
@@ -550,6 +580,16 @@ describe("UserEndpoint Integration Tests", () => {
       "user.skills should succeed",
       async () => {
         const response = await client.user.skills();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.search should succeed",
+      async () => {
+        const response = await client.user.search();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
@@ -750,6 +790,16 @@ describe("UserEndpoint Integration Tests", () => {
       "user.withId(...).job should succeed",
       async () => {
         const response = await client.user.withId("3772610").job();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.withId(...).medals should succeed",
+      async () => {
+        const response = await client.user.withId("3772610").medals();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
