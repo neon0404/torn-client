@@ -1,7 +1,9 @@
+import type { CompanyStockId } from ".";
+
 /** @category Models */
 export type CompanyStockItem = {
   name: string;
-  id: number;
+  id: CompanyStockId;
   cost: number;
   rrp: number;
   price: number;

@@ -3,6 +3,7 @@ import type {
   HonorId,
   ProfileSpouse,
   PropertyId,
+  ReviveSetting,
   UserDonatorStatusEnum,
   UserGenderEnum,
   UserId,
@@ -26,6 +27,7 @@ export type UserProfileResponse = {
     signed_up: number;
     faction_id: FactionId | null;
     honor_id: HonorId;
+    revive_setting: ReviveSetting;
     property: {
       id: PropertyId;
       name: string;

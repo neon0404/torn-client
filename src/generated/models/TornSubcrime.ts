@@ -1,6 +1,8 @@
+import type { TornSubCrimeId } from ".";
+
 /** @category Models */
 export type TornSubcrime = {
-  id: number;
+  id: TornSubCrimeId;
   name: string;
   nerve_cost: number;
 };

@@ -7,9 +7,11 @@ import type {
   FactionChainReportResponse,
   FactionChainsResponse,
   FactionContributorsResponse,
+  FactionCrimeExpResponse,
   FactionCrimeResponse,
   FactionCrimesResponse,
   FactionHofResponse,
+  FactionInventoryResponse,
   FactionLookupResponse,
   FactionMembersResponse,
   FactionOngoingChainResponse,
@@ -25,7 +27,12 @@ import type {
   FactionTerritoryWarReportResponse,
   FactionTerritoryWarsHistoryResponse,
   FactionUpgradesResponse,
+  FactionWarfareChainsResponse,
+  FactionWarfareDirtyBombsResponse,
+  FactionWarfareRaidsResponse,
+  FactionWarfareRankedResponse,
   FactionWarfareResponse,
+  FactionWarfareTerritoryWarsResponse,
   FactionWarsResponse,
   NewsResponse,
   RevivesFullResponse,
@@ -63,7 +70,14 @@ export type FactionResponse =
   | FactionUpgradesResponse
   | FactionStatsResponse
   | FactionContributorsResponse
+  | FactionInventoryResponse
+  | FactionCrimeExpResponse
   | FactionRacketsResponse
   | FactionRankedWarResponse
   | FactionLookupResponse
+  | FactionWarfareDirtyBombsResponse
+  | FactionWarfareChainsResponse
+  | FactionWarfareTerritoryWarsResponse
+  | FactionWarfareRaidsResponse
+  | FactionWarfareRankedResponse
   | TimestampResponse;
