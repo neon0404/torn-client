@@ -23,6 +23,7 @@ export type UserSelectionName =
   | "forumposts"
   | "forumsubscribedthreads"
   | "forumthreads"
+  | "gym"
   | "hof"
   | "honors"
   | "icons"
@@ -40,6 +41,7 @@ export type UserSelectionName =
   | "messages"
   | "missions"
   | "money"
+  | "networth"
   | "newevents"
   | "newmessages"
   | "notifications"
@@ -67,7 +69,5 @@ export type UserSelectionName =
   | "criminalrecord"
   | "display"
   | "education"
-  | "gym"
-  | "networth"
   | "perks"
   | string;

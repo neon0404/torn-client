@@ -7,7 +7,7 @@ import type {
 /** @category Models */
 export type ItemMarketListingItemDetails = {
   uid: ItemUid;
-  stats: ItemMarketListingItemStats;
+  stats: ItemMarketListingItemStats | null;
   bonuses: ItemMarketListingItemBonus[];
   rarity: "yellow" | "orange" | "red" | null;
 };

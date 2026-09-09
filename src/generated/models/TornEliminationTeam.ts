@@ -12,5 +12,8 @@ export type TornEliminationTeam = {
   losses: number;
   eliminated: boolean;
   eliminated_timestamp: number | null;
-  leaders: TornEliminationTeamLeader[];
+  leaders: {
+    captain: TornEliminationTeamLeader | null;
+    vice_captains: TornEliminationTeamLeader[];
+  };
 };
