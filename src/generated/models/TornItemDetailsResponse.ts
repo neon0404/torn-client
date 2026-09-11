@@ -1,6 +1,6 @@
-import type { TornItemDetails } from ".";
+import type { TornItemDetails, TornItemDetailsDeprecated } from ".";
 
 /** @category Models */
 export type TornItemDetailsResponse = {
-  itemdetails: TornItemDetails;
+  itemdetails: TornItemDetails[] | TornItemDetailsDeprecated;
 };

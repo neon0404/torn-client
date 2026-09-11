@@ -1,19 +1,25 @@
 import type {
   AttackLogResponse,
   TimestampResponse,
+  TornBankResponse,
   TornBountiesResponse,
   TornCalendarResponse,
+  TornCardsResponse,
+  TornCityShopsResponse,
+  TornCityStatsResponse,
   TornCrimesResponse,
   TornEducationResponse,
   TornEliminationTeamPlayersResponse,
   TornEliminationTeamsResponse,
   TornFactionHofResponse,
   TornFactionTreeResponse,
+  TornGymsResponse,
   TornHofResponse,
   TornHonorsResponse,
   TornItemAmmoResponse,
   TornItemDetailsResponse,
   TornItemModsResponse,
+  TornItemStatsResponse,
   TornItemsResponse,
   TornLogCategoriesResponse,
   TornLogTypesResponse,
@@ -22,7 +28,9 @@ import type {
   TornMeritsResponse,
   TornMuseumResponse,
   TornOrganizedCrimeResponse,
+  TornPokerTablesResponse,
   TornProperties,
+  TornRockPaperScissorsResponse,
   TornStockDetailedResponse,
   TornStocksResponse,
   TornSubcrimesResponse,
@@ -38,17 +46,25 @@ export type TornResponse =
   | TornHofResponse
   | TornFactionHofResponse
   | TornLogTypesResponse
+  | TornCardsResponse
   | TornItemsResponse
+  | TornRockPaperScissorsResponse
+  | TornCityStatsResponse
   | TornLogCategoriesResponse
   | TornEducationResponse
   | TornMeritsResponse
   | TornOrganizedCrimeResponse
+  | TornItemStatsResponse
   | TornHonorsResponse
   | TornItemDetailsResponse
   | TornEliminationTeamsResponse
+  | TornCityShopsResponse
   | TornEliminationTeamPlayersResponse
   | TornMedalsResponse
+  | TornBankResponse
   | TornBountiesResponse
+  | TornGymsResponse
+  | TornPokerTablesResponse
   | TornItemAmmoResponse
   | TornProperties
   | TornFactionTreeResponse

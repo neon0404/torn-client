@@ -4,8 +4,10 @@ import type {
   ErrorApiKeyPaused,
   ErrorBackendError,
   ErrorCategorySelectionUnavailableForInteractionLogs,
+  ErrorCityStatsCronFailed,
   ErrorClosedTemporarily,
   ErrorDailyReadLimitReached,
+  ErrorEndpointClosedUntilAttackingPeriod,
   ErrorFileDoesNotExist,
   ErrorIncorrectCategory,
   ErrorIncorrectId,
@@ -64,4 +66,6 @@ export type ApiError =
   | ErrorMustMigrateToOrganizedCrimesV2
   | ErrorIncorrectLogId
   | ErrorCategorySelectionUnavailableForInteractionLogs
-  | ErrorFileDoesNotExist;
+  | ErrorFileDoesNotExist
+  | ErrorCityStatsCronFailed
+  | ErrorEndpointClosedUntilAttackingPeriod;
