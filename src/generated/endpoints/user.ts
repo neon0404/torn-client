@@ -41,6 +41,7 @@ import type {
   UserForumPostsResponse,
   UserForumSubscribedThreadsResponse,
   UserForumThreadsResponse,
+  UserGymResponse,
   UserHofResponse,
   UserHonorsResponse,
   UserIconsResponse,
@@ -60,11 +61,13 @@ import type {
   UserMessagesResponse,
   UserMissionsResponse,
   UserMoneyResponse,
+  UserNetworthResponse,
   UserNewEventsResponse,
   UserNewMessagesResponse,
   UserNotificationsResponse,
   UserOrganizedCrimeResponse,
   UserOrganizedCrimesResponse,
+  UserPerksResponse,
   UserPersonalStatsResponse,
   UserProfileResponse,
   UserPropertiesResponse,
@@ -73,6 +76,7 @@ import type {
   UserRacingRecordsResponse,
   UserRefillsResponse,
   UserResponse,
+  UserSearchResponse,
   UserSelectionName,
   UserSkillsResponse,
   UserStocksResponse,
@@ -456,6 +460,20 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your currently active gym
+   * @param params - Optional query parameters
+   */
+  public async gym(params?: {
+    timestamp?: number | string;
+  }): Promise<UserGymResponse> {
+    const path = `/user/gym`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your hall of fame rankings
    * @param params - Optional query parameters
    */
@@ -629,6 +647,7 @@ export class UserEndpoint {
     to?: number;
     from?: number;
     timestamp?: number | string;
+    nanostamp?: string;
   }): Promise<PaginatedResponse<UserLogsResponse> & UserLogsResponse> {
     const path = `/user/log`;
     const query = {
@@ -639,12 +658,13 @@ export class UserEndpoint {
       ...(params?.to !== undefined && { to: params.to }),
       ...(params?.from !== undefined && { from: params.from }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+      ...(params?.nanostamp !== undefined && { nanostamp: params.nanostamp }),
     };
     return this.requester(path, query);
   }
 
   /**
-   * Get your achieved medals
+   * Get all your achieved medals
    * @param params - Optional query parameters
    */
   public async medals(params?: {
@@ -738,6 +758,20 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your networth
+   * @param params - Optional query parameters
+   */
+  public async networth(params?: {
+    timestamp?: number | string;
+  }): Promise<UserNetworthResponse> {
+    const path = `/user/networth`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your unseen messages
    * @param params - Optional query parameters
    */
@@ -787,6 +821,20 @@ export class UserEndpoint {
     timestamp?: number | string;
   }): Promise<UserOrganizedCrimesResponse> {
     const path = `/user/organizedcrimes`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your current perks
+   * @param params - Optional query parameters
+   */
+  public async perks(params?: {
+    timestamp?: number | string;
+  }): Promise<UserPerksResponse> {
+    const path = `/user/perks`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
@@ -1000,6 +1048,56 @@ export class UserEndpoint {
   }): Promise<UserSkillsResponse> {
     const path = `/user/skills`;
     const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Search users by name or other criteria
+   * @param params - Optional query parameters
+   */
+  public async search(params?: {
+    name?: string;
+    filters?: (
+      | "married"
+      | "notMarried"
+      | "traveling"
+      | "notTraveling"
+      | "inFaction"
+      | "notInFaction"
+      | "inCompany"
+      | "notInCompany"
+      | "inHospital"
+      | "notInHospital"
+      | "inJail"
+      | "notInJail"
+      | "inFederalJail"
+      | "notInFederalJail"
+      | "male"
+      | "female"
+      | "enby"
+      | "lastActionNow"
+      | "lastActionRecent"
+      | "lastActionHourAgo"
+      | "lastActionDayAgo"
+      | "lastActionWeekAgo"
+      | "lastActionMonthAgo"
+      | "lastActionYearAgo"
+      | string
+    )[];
+    offset?: number;
+    sort?: "DESC" | "ASC";
+    cursor?: string;
+    timestamp?: number | string;
+  }): Promise<PaginatedResponse<UserSearchResponse> & UserSearchResponse> {
+    const path = `/user/search`;
+    const query = {
+      ...(params?.name !== undefined && { name: params.name }),
+      ...(params?.filters && { filters: params.filters.join(",") }),
+      ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.cursor !== undefined && { cursor: params.cursor }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -1372,6 +1470,20 @@ export class UserIdContext {
     timestamp?: number | string;
   }): Promise<UserJobResponse> {
     const path = `/user/${this.contextId}/job`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get medals achieved by a specific player
+   * @param params - Optional query parameters
+   */
+  public async medals(params?: {
+    timestamp?: number | string;
+  }): Promise<UserMedalsResponse> {
+    const path = `/user/${this.contextId}/medals`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };

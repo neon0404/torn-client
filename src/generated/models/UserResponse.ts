@@ -27,6 +27,7 @@ import type {
   UserForumPostsResponse,
   UserForumSubscribedThreadsResponse,
   UserForumThreadsResponse,
+  UserGymResponse,
   UserHofResponse,
   UserHonorsResponse,
   UserIconsResponse,
@@ -43,10 +44,12 @@ import type {
   UserMessagesResponse,
   UserMissionsResponse,
   UserMoneyResponse,
+  UserNetworthResponse,
   UserNewEventsResponse,
   UserNewMessagesResponse,
   UserNotificationsResponse,
   UserOrganizedCrimeResponse,
+  UserPerksResponse,
   UserPersonalStatsResponse,
   UserProfileResponse,
   UserPropertiesResponse,
@@ -110,16 +113,19 @@ export type UserResponse =
   | UserBarsResponse
   | UserCooldownsResponse
   | UserNotificationsResponse
+  | UserPerksResponse
   | UserRefillsResponse
   | UserTravelResponse
   | UserVirusResponse
   | AttacksFullResponse
   | UserCasinoResponse
+  | UserNetworthResponse
   | UserMoneyResponse
   | UserJobPointsResponse
   | UserWorkStatsResponse
   | UserSkillsResponse
   | UserBattleStatsResponse
+  | UserGymResponse
   | UserTradeResponse
   | UserTradesResponse
   | UserNewEventsResponse
