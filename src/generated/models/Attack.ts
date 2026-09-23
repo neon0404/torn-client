@@ -18,7 +18,7 @@ export type Attack = {
   result: FactionAttackResult;
   respect_gain: number;
   respect_loss: number;
-  chain: number;
+  chain: number | null;
   is_interrupted: boolean;
   is_stealthed: boolean;
   is_raid: boolean;
