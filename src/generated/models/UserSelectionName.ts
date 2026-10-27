@@ -24,6 +24,7 @@ export type UserSelectionName =
   | "forumsubscribedthreads"
   | "forumthreads"
   | "gym"
+  | "halloween"
   | "hof"
   | "honors"
   | "icons"

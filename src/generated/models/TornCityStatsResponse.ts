@@ -32,6 +32,8 @@ export type TornCityStatsResponse = {
       points_factions: number;
       points_market: number;
       points_used: number;
+      points_bought: number;
+      points_average_cost: number;
     };
     attacking: {
       attacks_won: number;
@@ -45,6 +47,9 @@ export type TornCityStatsResponse = {
       rounds_fired: number;
       money_mugged: number;
       respect_gained: number;
+      wars_ranked: number;
+      wars_territory: number;
+      wars_raid: number;
     };
     jobs: {
       army: number;
@@ -95,6 +100,7 @@ export type TornCityStatsResponse = {
       switzerland: number;
       china: number;
       cayman_islands: number;
+      canada: number;
     };
     bounties: {
       placed: number;
@@ -102,15 +108,32 @@ export type TornCityStatsResponse = {
     };
     crimes: {
       total: number;
+      today: number;
       jail_sentences: number;
     };
     communication: {
+      messages: number;
       total_messages: number;
-      friends: number;
-      coworkers: number;
-      spouses: number;
+      friends?: number;
+      mails_friends: number;
+      coworkers?: number;
+      mails_coworkers: number;
+      spouses?: number;
+      mails_spouses: number;
+      mails_faction: number;
+      mails_total: number;
+      chats: number;
+      articles: number;
+      article_views: number;
+      article_reads: number;
       classified_ads_placed: number;
       personals_placed: number;
+      events: number;
+      total_events: number;
+      forum_posts: number;
+      forum_threads: number;
+      forum_likes: number;
+      forum_dislikes: number;
     };
     other: {
       logins: number;
@@ -119,6 +142,8 @@ export type TornCityStatsResponse = {
       energy_refills: number;
       company_trains: number;
       stat_enhancers_used: number;
+      gym_trains: number;
+      users_daily: number;
     };
   };
 };

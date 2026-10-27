@@ -42,6 +42,7 @@ import type {
   UserForumSubscribedThreadsResponse,
   UserForumThreadsResponse,
   UserGymResponse,
+  UserHalloweenResponse,
   UserHofResponse,
   UserHonorsResponse,
   UserIconsResponse,
@@ -467,6 +468,20 @@ export class UserEndpoint {
     timestamp?: number | string;
   }): Promise<UserGymResponse> {
     const path = `/user/gym`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your Halloween treats information
+   * @param params - Optional query parameters
+   */
+  public async halloween(params?: {
+    timestamp?: number | string;
+  }): Promise<UserHalloweenResponse> {
+    const path = `/user/halloween`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
