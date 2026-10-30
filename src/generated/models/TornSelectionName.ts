@@ -14,6 +14,7 @@ export type TornSelectionName =
   | "factionhof"
   | "factiontree"
   | "gyms"
+  | "halloween"
   | "hof"
   | "honors"
   | "itemammo"
