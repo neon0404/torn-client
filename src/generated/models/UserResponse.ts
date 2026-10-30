@@ -28,6 +28,7 @@ import type {
   UserForumSubscribedThreadsResponse,
   UserForumThreadsResponse,
   UserGymResponse,
+  UserHalloweenResponse,
   UserHofResponse,
   UserHonorsResponse,
   UserIconsResponse,
@@ -119,6 +120,7 @@ export type UserResponse =
   | UserVirusResponse
   | AttacksFullResponse
   | UserCasinoResponse
+  | UserHalloweenResponse
   | UserNetworthResponse
   | UserMoneyResponse
   | UserJobPointsResponse
