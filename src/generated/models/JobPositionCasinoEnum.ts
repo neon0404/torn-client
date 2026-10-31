@@ -4,4 +4,5 @@ export type JobPositionCasinoEnum =
   | "Marketing Manager"
   | "Revenue Manager"
   | "Casino Manager"
-  | "Casino President";
+  | "Casino President"
+  | "Dealer";
