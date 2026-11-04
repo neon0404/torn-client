@@ -24,6 +24,7 @@ import type {
   ErrorLogUnavailable,
   ErrorMustMigrateToCrimesV2,
   ErrorMustMigrateToOrganizedCrimesV2,
+  ErrorNoCompetitionAvailable,
   ErrorOnlyAvailableInApiV1,
   ErrorOnlyAvailableInApiV2,
   ErrorOnlyCategoryOrStatsAllowed,
@@ -68,4 +69,5 @@ export type ApiError =
   | ErrorCategorySelectionUnavailableForInteractionLogs
   | ErrorFileDoesNotExist
   | ErrorCityStatsCronFailed
-  | ErrorEndpointClosedUntilAttackingPeriod;
+  | ErrorEndpointClosedUntilAttackingPeriod
+  | ErrorNoCompetitionAvailable;
