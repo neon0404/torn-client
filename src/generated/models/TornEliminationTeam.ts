@@ -1,7 +1,7 @@
 import type {
   EliminationTeamId,
   TornEliminationTeamAttacksSummary,
-  TornEliminationTeamLeader,
+  TornEliminationTeamCaptain,
 } from ".";
 
 /** @category Models */
@@ -18,8 +18,8 @@ export type TornEliminationTeam = {
   eliminated: boolean;
   attacking_summary: TornEliminationTeamAttacksSummary[];
   eliminated_timestamp: number | null;
-  leaders: {
-    captain: TornEliminationTeamLeader | null;
-    vice_captains: TornEliminationTeamLeader[];
+  captains: {
+    captain: TornEliminationTeamCaptain | null;
+    vice_captains: TornEliminationTeamCaptain[];
   };
 };
