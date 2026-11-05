@@ -247,6 +247,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.halloween should succeed",
+      async () => {
+        const response = await client.user.halloween();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.hof should succeed",
       async () => {
         const response = await client.user.hof();
@@ -630,6 +640,16 @@ describe("UserEndpoint Integration Tests", () => {
       "user.travel should succeed",
       async () => {
         const response = await client.user.travel();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.travelinventory should succeed",
+      async () => {
+        const response = await client.user.travelinventory();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
