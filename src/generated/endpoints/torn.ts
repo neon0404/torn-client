@@ -29,6 +29,7 @@ import type {
   TornFactionHofResponse,
   TornFactionTreeResponse,
   TornGymsResponse,
+  TornHalloweenResponse,
   TornHofCategory,
   TornHofResponse,
   TornHonorsResponse,
@@ -265,6 +266,20 @@ export class TornEndpoint {
     timestamp?: number | string;
   }): Promise<TornGymsResponse> {
     const path = `/torn/gyms`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get Halloween basket upgrades
+   * @param params - Optional query parameters
+   */
+  public async halloween(params?: {
+    timestamp?: number | string;
+  }): Promise<TornHalloweenResponse> {
+    const path = `/torn/halloween`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
