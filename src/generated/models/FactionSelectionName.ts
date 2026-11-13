@@ -13,6 +13,7 @@ export type FactionSelectionName =
   | "crimes"
   | "crimeexp"
   | "dirtbombs"
+  | "headlines"
   | "hof"
   | "lookup"
   | "members"
