@@ -141,6 +141,16 @@ describe("FactionEndpoint Integration Tests", () => {
       );
 
       it(
+        "faction.headlines should succeed",
+        async () => {
+          const response = await client.faction.headlines();
+          expect(response).toBeDefined();
+          expect(response).not.toHaveProperty("error");
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
         "faction.hof should succeed",
         async () => {
           const response = await client.faction.hof();

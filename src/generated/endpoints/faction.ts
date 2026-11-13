@@ -17,6 +17,7 @@ import type {
   FactionCrimeId,
   FactionCrimeResponse,
   FactionCrimesResponse,
+  FactionHeadlinesResponse,
   FactionHofResponse,
   FactionId,
   FactionInventoryResponse,
@@ -296,6 +297,22 @@ export class FactionEndpoint {
   }): Promise<FactionWarfareDirtyBombsResponse> {
     const path = `/faction/dirtybombs`;
     const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your faction's news ticker headlines
+   * @param params - Optional query parameters
+   */
+  public async headlines(params?: {
+    striptags?: "true" | "false";
+    timestamp?: number | string;
+  }): Promise<FactionHeadlinesResponse> {
+    const path = `/faction/headlines`;
+    const query = {
+      ...(params?.striptags !== undefined && { striptags: params.striptags }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);

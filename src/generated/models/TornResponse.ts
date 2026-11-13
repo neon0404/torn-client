@@ -14,6 +14,8 @@ import type {
   TornFactionHofResponse,
   TornFactionTreeResponse,
   TornGymsResponse,
+  TornHalloweenResponse,
+  TornHeadlinesResponse,
   TornHofResponse,
   TornHonorsResponse,
   TornItemAmmoResponse,
@@ -62,6 +64,8 @@ export type TornResponse =
   | TornEliminationTeamPlayersResponse
   | TornMedalsResponse
   | TornBankResponse
+  | TornHalloweenResponse
+  | TornHeadlinesResponse
   | TornBountiesResponse
   | TornGymsResponse
   | TornPokerTablesResponse
