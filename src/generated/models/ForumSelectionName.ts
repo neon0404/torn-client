@@ -1,9 +1,9 @@
 /** @category Models */
 export type ForumSelectionName =
   | "categories"
-  | "lookup"
   | "posts"
   | "thread"
   | "threads"
+  | "lookup"
   | "timestamp"
   | string;

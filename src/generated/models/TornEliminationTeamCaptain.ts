@@ -1,6 +1,6 @@
 import type { BasicUser } from ".";
 
 /** @category Models */
-export type TornEliminationTeamLeader = BasicUser & {
+export type TornEliminationTeamCaptain = BasicUser & {
   active: boolean;
 };

@@ -8,7 +8,7 @@ import type {
   RacingCarsResponse,
   RacingLookupResponse,
   RacingRaceDetailsResponse,
-  RacingRaceTypeEnum,
+  RacingRacesCategoryEnum,
   RacingRacesResponse,
   RacingResponse,
   RacingSelectionName,
@@ -65,7 +65,7 @@ export class RacingEndpoint {
     sort?: "DESC" | "ASC";
     to?: number;
     from?: number;
-    cat?: RacingRaceTypeEnum;
+    cat?: RacingRacesCategoryEnum;
     timestamp?: number | string;
   }): Promise<PaginatedResponse<RacingRacesResponse> & RacingRacesResponse> {
     const path = `/racing/races`;
@@ -133,7 +133,7 @@ export class RacingEndpoint {
     sort?: "DESC" | "ASC";
     to?: number;
     from?: number;
-    cat?: RacingRaceTypeEnum | RaceClassEnum;
+    cat?: RacingRacesCategoryEnum | RaceClassEnum;
     offset?: number;
     timestamp?: number | string;
   }): Promise<RacingResponse> {

@@ -35,6 +35,8 @@ export type KeyInfoResponse = {
     access: {
       level: number;
       type: ApiKeyAccessTypeEnum;
+      sensitive_data: boolean;
+      legacy_permissions: boolean;
       faction: boolean;
       company: boolean;
       log: {
