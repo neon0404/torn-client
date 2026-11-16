@@ -23,6 +23,7 @@ import type {
   UserBarsResponse,
   UserBasicResponse,
   UserBattleStatsResponse,
+  UserBazaarResponse,
   UserBountiesResponse,
   UserCalendarResponse,
   UserCasinoResponse,
@@ -31,6 +32,7 @@ import type {
   UserCrimesResponse,
   UserDiscordPathId,
   UserDiscordResponse,
+  UserDisplayResponse,
   UserEducationResponse,
   UserEnlistedCarsResponse,
   UserEquipmentResponse,
@@ -42,6 +44,7 @@ import type {
   UserForumSubscribedThreadsResponse,
   UserForumThreadsResponse,
   UserGymResponse,
+  UserHalloweenResponse,
   UserHofResponse,
   UserHonorsResponse,
   UserIconsResponse,
@@ -49,6 +52,7 @@ import type {
   UserInventoryResponse,
   UserItemMarketResponse,
   UserItemModsResponse,
+  UserItemsCategory,
   UserJobPointsResponse,
   UserJobRanksResponse,
   UserJobResponse,
@@ -82,6 +86,7 @@ import type {
   UserStocksResponse,
   UserTradeResponse,
   UserTradesResponse,
+  UserTravelInventoryResponse,
   UserTravelResponse,
   UserVirusResponse,
   UserWeaponExpResponse,
@@ -170,6 +175,28 @@ export class UserEndpoint {
   }): Promise<UserBarsResponse> {
     const path = `/user/bars`;
     const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your bazaar
+   * @param params - Optional query parameters
+   */
+  public async bazaar(params?: {
+    cat?: UserItemsCategory;
+    offset?: number;
+    limit?: number;
+    sort?: "DESC" | "ASC";
+    timestamp?: number | string;
+  }): Promise<PaginatedResponse<UserBazaarResponse> & UserBazaarResponse> {
+    const path = `/user/bazaar`;
+    const query = {
+      ...(params?.cat !== undefined && { cat: params.cat }),
+      ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -284,6 +311,28 @@ export class UserEndpoint {
   }): Promise<UserDiscordResponse> {
     const path = `/user/discord`;
     const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your display case
+   * @param params - Optional query parameters
+   */
+  public async display(params?: {
+    cat?: UserItemsCategory;
+    offset?: number;
+    limit?: number;
+    sort?: "DESC" | "ASC";
+    timestamp?: number | string;
+  }): Promise<PaginatedResponse<UserDisplayResponse> & UserDisplayResponse> {
+    const path = `/user/display`;
+    const query = {
+      ...(params?.cat !== undefined && { cat: params.cat }),
+      ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -467,6 +516,20 @@ export class UserEndpoint {
     timestamp?: number | string;
   }): Promise<UserGymResponse> {
     const path = `/user/gym`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get your Halloween treats information
+   * @param params - Optional query parameters
+   */
+  public async halloween(params?: {
+    timestamp?: number | string;
+  }): Promise<UserHalloweenResponse> {
+    const path = `/user/halloween`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
@@ -1170,6 +1233,20 @@ export class UserEndpoint {
   }
 
   /**
+   * Get your travel inventory capacity
+   * @param params - Optional query parameters
+   */
+  public async travelinventory(params?: {
+    timestamp?: number | string;
+  }): Promise<UserTravelInventoryResponse> {
+    const path = `/user/travelinventory`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
    * Get your virus coding information
    * @param params - Optional query parameters
    */
@@ -1365,6 +1442,28 @@ export class UserIdContext {
   }): Promise<UserDiscordResponse> {
     const path = `/user/${this.contextId}/discord`;
     const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get display case for a specific player
+   * @param params - Optional query parameters
+   */
+  public async display(params?: {
+    cat?: UserItemsCategory;
+    offset?: number;
+    limit?: number;
+    sort?: "DESC" | "ASC";
+    timestamp?: number | string;
+  }): Promise<PaginatedResponse<UserDisplayResponse> & UserDisplayResponse> {
+    const path = `/user/${this.contextId}/display`;
+    const query = {
+      ...(params?.cat !== undefined && { cat: params.cat }),
+      ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);

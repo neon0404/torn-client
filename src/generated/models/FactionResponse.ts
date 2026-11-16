@@ -10,6 +10,7 @@ import type {
   FactionCrimeExpResponse,
   FactionCrimeResponse,
   FactionCrimesResponse,
+  FactionHeadlinesResponse,
   FactionHofResponse,
   FactionInventoryResponse,
   FactionLookupResponse,
@@ -47,6 +48,7 @@ export type FactionResponse =
   | FactionBasicResponse
   | FactionWarsResponse
   | NewsResponse
+  | FactionHeadlinesResponse
   | RevivesResponse
   | FactionTerritoryWarsHistoryResponse
   | AttacksResponse
