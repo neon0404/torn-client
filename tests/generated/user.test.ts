@@ -47,9 +47,29 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.auctionhouse should succeed",
+      async () => {
+        const response = await client.user.auctionhouse();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.bars should succeed",
       async () => {
         const response = await client.user.bars();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.bazaar should succeed",
+      async () => {
+        const response = await client.user.bazaar();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
@@ -130,6 +150,16 @@ describe("UserEndpoint Integration Tests", () => {
       "user.discord should succeed",
       async () => {
         const response = await client.user.discord();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.display should succeed",
+      async () => {
+        const response = await client.user.display();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
@@ -240,6 +270,16 @@ describe("UserEndpoint Integration Tests", () => {
       "user.gym should succeed",
       async () => {
         const response = await client.user.gym();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.halloween should succeed",
+      async () => {
+        const response = await client.user.halloween();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },
@@ -637,6 +677,16 @@ describe("UserEndpoint Integration Tests", () => {
     );
 
     it(
+      "user.travelinventory should succeed",
+      async () => {
+        const response = await client.user.travelinventory();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "user.virus should succeed",
       async () => {
         const response = await client.user.virus();
@@ -730,6 +780,16 @@ describe("UserEndpoint Integration Tests", () => {
       "user.withId(...).discord should succeed",
       async () => {
         const response = await client.user.withId("3772610").discord();
+        expect(response).toBeDefined();
+        expect(response).not.toHaveProperty("error");
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "user.withId(...).display should succeed",
+      async () => {
+        const response = await client.user.withId("3772610").display();
         expect(response).toBeDefined();
         expect(response).not.toHaveProperty("error");
       },

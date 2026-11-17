@@ -6,9 +6,11 @@ import type {
   RevivesResponse,
   TimestampResponse,
   UserAmmoResponse,
+  UserAuctionHouseResponse,
   UserBarsResponse,
   UserBasicResponse,
   UserBattleStatsResponse,
+  UserBazaarResponse,
   UserBountiesResponse,
   UserCalendarResponse,
   UserCasinoResponse,
@@ -16,11 +18,11 @@ import type {
   UserCooldownsResponse,
   UserCrimesResponse,
   UserDiscordResponse,
+  UserDisplayResponse,
   UserEducationResponse,
   UserEnlistedCarsResponse,
   UserEquipmentResponse,
   UserEventsResponse,
-  UserFactionBalanceResponse,
   UserFactionResponse,
   UserForumFeedResponse,
   UserForumFriendsResponse,
@@ -28,6 +30,7 @@ import type {
   UserForumSubscribedThreadsResponse,
   UserForumThreadsResponse,
   UserGymResponse,
+  UserHalloweenResponse,
   UserHofResponse,
   UserHonorsResponse,
   UserIconsResponse,
@@ -61,6 +64,7 @@ import type {
   UserStocksResponse,
   UserTradeResponse,
   UserTradesResponse,
+  UserTravelInventoryResponse,
   UserTravelResponse,
   UserVirusResponse,
   UserWeaponExpResponse,
@@ -90,7 +94,6 @@ export type UserResponse =
   | UserBountiesResponse
   | UserJobRanksResponse
   | UserPropertiesResponse
-  | UserFactionBalanceResponse
   | UserBasicResponse
   | RevivesResponse
   | UserHonorsResponse
@@ -116,9 +119,11 @@ export type UserResponse =
   | UserPerksResponse
   | UserRefillsResponse
   | UserTravelResponse
+  | UserTravelInventoryResponse
   | UserVirusResponse
   | AttacksFullResponse
   | UserCasinoResponse
+  | UserHalloweenResponse
   | UserNetworthResponse
   | UserMoneyResponse
   | UserJobPointsResponse
@@ -132,6 +137,9 @@ export type UserResponse =
   | UserEventsResponse
   | UserMessagesResponse
   | UserNewMessagesResponse
-  | UserLookupResponse
   | UserInventoryResponse
+  | UserBazaarResponse
+  | UserDisplayResponse
+  | UserAuctionHouseResponse
+  | UserLookupResponse
   | TimestampResponse;
