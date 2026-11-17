@@ -3,10 +3,9 @@ export type CompanySelectionName =
   | "applications"
   | "companies"
   | "employees"
-  | "lookup"
   | "news"
   | "profile"
-  | "snapshot"
   | "stock"
+  | "lookup"
   | "timestamp"
   | string;
