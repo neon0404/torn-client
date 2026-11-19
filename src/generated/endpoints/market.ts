@@ -7,6 +7,7 @@ import type {
   BazaarResponse,
   BazaarResponseSpecialized,
   ItemId,
+  MarketAuctionHouseCategory,
   MarketItemMarketResponse,
   MarketLookupResponse,
   MarketPropertiesResponse,
@@ -41,6 +42,7 @@ export class MarketEndpoint {
    * @param params - Optional query parameters
    */
   public async auctionhouse(params?: {
+    cat?: MarketAuctionHouseCategory;
     limit?: number;
     sort?: "DESC" | "ASC";
     from?: number;
@@ -49,6 +51,7 @@ export class MarketEndpoint {
   }): Promise<PaginatedResponse<AuctionHouseResponse> & AuctionHouseResponse> {
     const path = `/market/auctionhouse`;
     const query = {
+      ...(params?.cat !== undefined && { cat: params.cat }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.from !== undefined && { from: params.from }),
@@ -186,6 +189,7 @@ export class MarketIdContext {
    * @param params - Optional query parameters
    */
   public async auctionhouse(params?: {
+    cat?: MarketAuctionHouseCategory;
     limit?: number;
     sort?: "DESC" | "ASC";
     from?: number;
@@ -194,6 +198,7 @@ export class MarketIdContext {
   }): Promise<PaginatedResponse<AuctionHouseResponse> & AuctionHouseResponse> {
     const path = `/market/${this.contextId}/auctionhouse`;
     const query = {
+      ...(params?.cat !== undefined && { cat: params.cat }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.sort !== undefined && { sort: params.sort }),
       ...(params?.from !== undefined && { from: params.from }),
