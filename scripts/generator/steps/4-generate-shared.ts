@@ -6,6 +6,13 @@ import { toPascalCase, getContextMethodName } from "../utils.ts";
 import type { OpenAPI3, TestDataConfig } from "../types.ts";
 import { groupEndpointsByTagAndContext } from "./3-generate-endpoints.ts";
 
+/** A test config value of the form { "from": "racing.races", "pick": "races.0.id" } */
+const isLookup = (value: unknown): boolean =>
+  typeof value === "object" &&
+  value !== null &&
+  "from" in value &&
+  "pick" in value;
+
 /**
  * @description Generates End-to-End (E2E) test files for each endpoint tag
  * @param {OpenAPI3} spec The OpenAPI3 specification object
@@ -45,6 +52,7 @@ export async function generateE2ETests(
     });
 
     let testBody = "";
+    let usesTestData = false;
 
     for (const contextName in endpointsByTagAndContext[tag]) {
       const methods = endpointsByTagAndContext[tag][contextName];
@@ -55,7 +63,8 @@ export async function generateE2ETests(
             ? tagConfig[`${method.name}WithContext`] || tagConfig[method.name]
             : tagConfig[method.name] || {};
 
-        const queryParams = methodConfig?.queryParams || {};
+        const queryParams: Record<string, unknown> =
+          methodConfig?.queryParams || {};
         const queryParamsString =
           Object.keys(queryParams).length > 0
             ? JSON.stringify(queryParams)
@@ -65,14 +74,16 @@ export async function generateE2ETests(
         let testTitle: string;
         let shouldSkip = false;
         let skipReason = "missing or placeholder data";
+        let contextIdParam: unknown;
+        let withMethodName = "";
 
         if (contextName === "global") {
           methodCall = `client.${lowerCaseTag}.${method.name}(${queryParamsString})`;
           testTitle = `${lowerCaseTag}.${method.name} should succeed`;
         } else {
-          const contextIdParam =
+          contextIdParam =
             methodConfig?.[contextName] || tagConfig[contextName];
-          const withMethodName = getContextMethodName(contextName);
+          withMethodName = getContextMethodName(contextName);
           testTitle = `${lowerCaseTag}.${withMethodName}(...).${method.name} should succeed`;
           shouldSkip = !contextIdParam;
           if (!contextIdParam) {
@@ -81,20 +92,46 @@ export async function generateE2ETests(
           methodCall = `client.${lowerCaseTag}.${withMethodName}('${contextIdParam}').${method.name}(${queryParamsString})`;
         }
 
+        // Values given as live lookups ({ from, pick }) are resolved at test time
+        const needsLookup =
+          isLookup(contextIdParam) || Object.values(queryParams).some(isLookup);
+
         if (shouldSkip) {
           testBody += `it.skip('${testTitle}', () => {});\n`;
           console.log(`[WARN] Skipped test: ${testTitle} due to ${skipReason}`);
+        } else if (needsLookup) {
+          usesTestData = true;
+          const data = {
+            ...(contextName !== "global" && { id: contextIdParam }),
+            ...(queryParamsString && { params: queryParams }),
+          };
+          const target =
+            contextName === "global"
+              ? `client.${lowerCaseTag}`
+              : `client.${lowerCaseTag}.${withMethodName}(id)`;
+          testBody += `
+            it('${testTitle}', async () => {
+              await withTestData(client, ${JSON.stringify(data)}, ({ ${contextName === "global" ? "" : "id, "}params }) =>
+                expectApiSuccess(() => ${target}.${method.name}(params as never)),
+              );
+            }, TEST_TIMEOUT);
+          `;
         } else {
           testBody += `
             it('${testTitle}', async () => {
-              const response = await ${methodCall};
-              expect(response).toBeDefined();
-              expect(response).not.toHaveProperty('error');
+              await expectApiSuccess(() => ${methodCall});
             }, TEST_TIMEOUT);
           `;
         }
       }
     }
+
+    testFile.addImportDeclaration({
+      namedImports: usesTestData
+        ? ["expectApiSuccess", "withTestData"]
+        : ["expectApiSuccess"],
+      moduleSpecifier: "../e2e-helpers",
+    });
 
     testFile.addStatements(`
       describe("${mainClassName} Integration Tests", () => {

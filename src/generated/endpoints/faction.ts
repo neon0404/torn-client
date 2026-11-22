@@ -584,7 +584,7 @@ export class FactionEndpoint {
    */
   public async snapshot(params?: {
     timestamp?: number | string;
-  }): Promise<unknown> {
+  }): Promise<string> {
     const path = `/faction/snapshot`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),

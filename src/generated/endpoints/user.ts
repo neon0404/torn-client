@@ -1215,7 +1215,7 @@ export class UserEndpoint {
    */
   public async snapshot(params?: {
     timestamp?: number | string;
-  }): Promise<unknown> {
+  }): Promise<string> {
     const path = `/user/snapshot`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),

@@ -19,6 +19,17 @@
       "queryParams": {
         "cat": "popular"
       }
+    },
+    "inventory": {
+      "queryParams": {
+        "cat": "Primary"
+      }
+    },
+    "trade": {
+      "tradeId": {
+        "from": "user.trades",
+        "pick": "trades.0.id"
+      }
     }
   },
   "faction": {
@@ -29,7 +40,10 @@
       }
     },
     "crime": {
-      "crimeId": 670659
+      "crimeId": {
+        "from": "faction.crimes",
+        "pick": "crimes.0.id"
+      }
     },
     "news": {
       "queryParams": {
@@ -55,6 +69,11 @@
     },
     "rankedwarreport": {
       "rankedWarId": 27616
+    },
+    "inventory": {
+      "queryParams": {
+        "cat": "weapons"
+      }
     }
   },
   "market": {
@@ -104,7 +123,10 @@
   "torn": {
     "attacklog": {
       "queryParams": {
-        "log": "4c24b79143ab701a6c7910acaef7927d"
+        "log": {
+          "from": "user.attacks",
+          "pick": "attacks.0.code"
+        }
       }
     },
     "factionhof": {
@@ -126,9 +148,6 @@
     "items": {
       "ids": 1
     },
-    "itemdetails" :{
-      "id": 14586495905
-    },
     "honors": {
       "ids": 317
     },
@@ -141,11 +160,47 @@
           "stats"
         ]
       }
+    },
+    "shopId": {
+      "from": "torn.cityshops",
+      "pick": "cityshops.0.id"
+    },
+    "typeId": 1,
+    "stockId": {
+      "from": "torn.stocks",
+      "pick": "stocks.0.id"
+    },
+    "eliminationteam": {
+      "id": {
+        "from": "torn.elimination",
+        "pick": "elimination.0.id"
+      }
+    },
+    "itemdetails": {
+      "ids": {
+        "from": "user.inventory",
+        "params": {
+          "cat": "Primary"
+        },
+        "pick": "inventory.items.0.uid"
+      }
+    },
+    "itemstats": {
+      "ids": {
+        "from": "user.inventory",
+        "params": {
+          "cat": "Primary"
+        },
+        "pick": "inventory.items.0.uid"
+      }
     }
   },
   "racing": {
     "race": {
-      "raceId": 15528012
+      "raceId": {
+        "from": "racing.races",
+        "pick": "races.0.id"
+      }
     },
     "records": {
       "trackId": 6,
@@ -160,6 +215,12 @@
         ]
       }
     }
+  },
+  "company": {
+    "id": {
+      "from": "company.withTypeId(1).companies",
+      "pick": "companies.0.id"
+    },
+    "typeId": 1
   }
-
 }

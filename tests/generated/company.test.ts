@@ -1,4 +1,5 @@
 import { TornAPI } from "../../src";
+import { expectApiSuccess, withTestData } from "../e2e-helpers";
 
 describe("CompanyEndpoint Integration Tests", () => {
   let client: TornAPI;
@@ -21,9 +22,7 @@ describe("CompanyEndpoint Integration Tests", () => {
       it(
         "company.applications should succeed",
         async () => {
-          const response = await client.company.applications();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.company.applications());
         },
         TEST_TIMEOUT,
       );
@@ -31,9 +30,7 @@ describe("CompanyEndpoint Integration Tests", () => {
       it(
         "company.employees should succeed",
         async () => {
-          const response = await client.company.employees();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.company.employees());
         },
         TEST_TIMEOUT,
       );
@@ -41,9 +38,7 @@ describe("CompanyEndpoint Integration Tests", () => {
       it(
         "company.news should succeed",
         async () => {
-          const response = await client.company.news();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.company.news());
         },
         TEST_TIMEOUT,
       );
@@ -51,9 +46,7 @@ describe("CompanyEndpoint Integration Tests", () => {
       it(
         "company.profile should succeed",
         async () => {
-          const response = await client.company.profile();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.company.profile());
         },
         TEST_TIMEOUT,
       );
@@ -61,9 +54,7 @@ describe("CompanyEndpoint Integration Tests", () => {
       it(
         "company.search should succeed",
         async () => {
-          const response = await client.company.search();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.company.search());
         },
         TEST_TIMEOUT,
       );
@@ -71,9 +62,7 @@ describe("CompanyEndpoint Integration Tests", () => {
       it(
         "company.snapshot should succeed",
         async () => {
-          const response = await client.company.snapshot();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.company.snapshot());
         },
         TEST_TIMEOUT,
       );
@@ -81,9 +70,7 @@ describe("CompanyEndpoint Integration Tests", () => {
       it(
         "company.stock should succeed",
         async () => {
-          const response = await client.company.stock();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.company.stock());
         },
         TEST_TIMEOUT,
       );
@@ -91,9 +78,7 @@ describe("CompanyEndpoint Integration Tests", () => {
       it(
         "company.lookup should succeed",
         async () => {
-          const response = await client.company.lookup();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.company.lookup());
         },
         TEST_TIMEOUT,
       );
@@ -101,9 +86,7 @@ describe("CompanyEndpoint Integration Tests", () => {
       it(
         "company.timestamp should succeed",
         async () => {
-          const response = await client.company.timestamp();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.company.timestamp());
         },
         TEST_TIMEOUT,
       );
@@ -111,15 +94,60 @@ describe("CompanyEndpoint Integration Tests", () => {
       it(
         "company.get should succeed",
         async () => {
-          const response = await client.company.get();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.company.get());
         },
         TEST_TIMEOUT,
       );
-      it.skip("company.withId(...).employees should succeed", () => {});
-      it.skip("company.withId(...).profile should succeed", () => {});
-      it.skip("company.withTypeId(...).companies should succeed", () => {});
+
+      it(
+        "company.withId(...).employees should succeed",
+        async () => {
+          await withTestData(
+            client,
+            {
+              id: {
+                from: "company.withTypeId(1).companies",
+                pick: "companies.0.id",
+              },
+            },
+            ({ id, params }) =>
+              expectApiSuccess(() =>
+                client.company.withId(id).employees(params as never),
+              ),
+          );
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
+        "company.withId(...).profile should succeed",
+        async () => {
+          await withTestData(
+            client,
+            {
+              id: {
+                from: "company.withTypeId(1).companies",
+                pick: "companies.0.id",
+              },
+            },
+            ({ id, params }) =>
+              expectApiSuccess(() =>
+                client.company.withId(id).profile(params as never),
+              ),
+          );
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
+        "company.withTypeId(...).companies should succeed",
+        async () => {
+          await expectApiSuccess(() =>
+            client.company.withTypeId("1").companies(),
+          );
+        },
+        TEST_TIMEOUT,
+      );
     },
   );
 });

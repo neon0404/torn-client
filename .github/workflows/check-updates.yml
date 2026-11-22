@@ -5,6 +5,10 @@ on:
     - cron: '0 8 * * *'
   workflow_dispatch:
 
+concurrency:
+  group: check-updates
+  cancel-in-progress: false
+
 jobs:
   check:
     runs-on: ubuntu-latest
@@ -47,24 +51,56 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Snapshot public API before regeneration
+        run: pnpm exec tsx scripts/api-surface.ts extract . > "$RUNNER_TEMP/before.json"
+
       - name: Regenerate API Client
         run: pnpm api:generate
 
-      - name: Create Pull Request
+      - name: Read generated version
+        id: version
+        run: echo "version=$(cat .torn-api-version)" >> "$GITHUB_OUTPUT"
+
+      - name: Compare public API
+        id: surface
+        run: |
+          pnpm exec tsx scripts/api-surface.ts extract . > "$RUNNER_TEMP/after.json"
+          pnpm exec tsx scripts/api-surface.ts compare "$RUNNER_TEMP/before.json" "$RUNNER_TEMP/after.json" \
+            --summary "$RUNNER_TEMP/api-surface.md"
+
+      # The release version ships inside the PR, so CI tests exactly what gets published:
+      # patch normally, minor (0.x) / major when public API was removed
+      - name: Bump package version
+        id: bump
+        run: node scripts/bump-version.mjs "${{ steps.surface.outputs.breaking }}"
+
+      - name: Write PR body
+        run: |
+          {
+            echo "This Pull Request was created automatically by workflow 🤖"
+            echo
+            echo "- **New API Version:** \`${{ steps.version.outputs.version }}\`"
+            echo "- **Package release:** \`${{ steps.bump.outputs.version }}\` (${{ steps.bump.outputs.type }})"
+            echo
+            echo "The client has been regenerated to match the latest official OpenAPI specification."
+            echo "Once lint, type check, build, unit and E2E tests pass, it is merged automatically,"
+            echo "then \`${{ steps.bump.outputs.version }}\` is published to npm with a GitHub release."
+            echo
+            cat "$RUNNER_TEMP/api-surface.md"
+          } > "$RUNNER_TEMP/pr-body.md"
+
+      # One rolling branch: a newer API version updates the open PR instead of
+      # opening another one that conflicts with it. WORKFLOW_PAT (not GITHUB_TOKEN)
+      # is required so the PR triggers CI, which auto-merges it when green.
+      - name: Create or update Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.WORKFLOW_PAT }}
-          commit-message: "chore(api): regenerate client for API v${{ needs.check.outputs.new_version }}"
-          branch: "chore/api-update-v${{ needs.check.outputs.new_version }}"
-          title: "chore(api): regenerate client for v${{ needs.check.outputs.new_version }}"
-          body: |
-            This Pull Request was created automatically by workflow 🤖
-            
-            - **New API Version:** `${{ needs.check.outputs.new_version }}`
-            
-            The client has been regenerated to match the latest official OpenAPI specification
-            
-            Please review the changes and merge if they are correct
+          commit-message: "chore(api): regenerate client for API v${{ steps.version.outputs.version }}, release ${{ steps.bump.outputs.version }}"
+          branch: chore/api-update
+          delete-branch: true
+          title: "chore(api): regenerate client for v${{ steps.version.outputs.version }} (release ${{ steps.bump.outputs.version }})"
+          body-path: ${{ runner.temp }}/pr-body.md
           labels: automated
           committer: Neon0404 <neon040404@gmail.com>
           author: Neon0404 <neon040404@gmail.com>

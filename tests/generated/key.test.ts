@@ -1,4 +1,5 @@
 import { TornAPI } from "../../src";
+import { expectApiSuccess } from "../e2e-helpers";
 
 describe("KeyEndpoint Integration Tests", () => {
   let client: TornAPI;
@@ -19,9 +20,7 @@ describe("KeyEndpoint Integration Tests", () => {
     it(
       "key.log should succeed",
       async () => {
-        const response = await client.key.log();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.key.log());
       },
       TEST_TIMEOUT,
     );
@@ -29,9 +28,7 @@ describe("KeyEndpoint Integration Tests", () => {
     it(
       "key.info should succeed",
       async () => {
-        const response = await client.key.info();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.key.info());
       },
       TEST_TIMEOUT,
     );
@@ -39,9 +36,7 @@ describe("KeyEndpoint Integration Tests", () => {
     it(
       "key.get should succeed",
       async () => {
-        const response = await client.key.get({ selections: ["log"] });
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.key.get({ selections: ["log"] }));
       },
       TEST_TIMEOUT,
     );

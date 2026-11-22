@@ -3,8 +3,16 @@ name: Continuous Integration
 on:
   pull_request:
     branches: [ main ]
+    types: [ opened, synchronize, reopened, labeled ]
   push:
     branches: [ main ]
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
   build-and-test:
@@ -31,8 +39,152 @@ jobs:
       - name: Linter
         run: pnpm lint
 
+      - name: Type check (src, scripts and tests)
+        run: pnpm typecheck
+
       - name: Build
         run: pnpm build
 
       - name: Unit Tests
         run: pnpm test:unit
+
+  # The job name must stay "E2E Tests": it is a required status check on `main`.
+  # Same-repo PRs get the TORN_API_KEY secret and run against the live API;
+  # fork PRs don't get secrets, so the suite skips itself and passes.
+  e2e:
+    name: E2E Tests
+    if: github.event_name == 'pull_request' ||
+      (github.event_name == 'push' && contains(github.event.head_commit.message, '[run e2e]'))
+    runs-on: ubuntu-latest
+    # Never run two E2E suites at once: they share one key's 100 req/min budget.
+    concurrency:
+      group: e2e-torn-api
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run E2E Tests
+        run: pnpm test:e2e
+        env:
+          TORN_API_KEY: ${{ secrets.TORN_API_KEY }}
+
+  # Detects removed exports / endpoint methods compared to the PR base.
+  # A breaking change never blocks CI, it only stops the PR from being auto-merged.
+  api-surface:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    outputs:
+      breaking: ${{ steps.compare.outputs.breaking }}
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+
+      - name: Checkout base
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: .base
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Compare public API surface
+        id: compare
+        run: |
+          pnpm exec tsx scripts/api-surface.ts extract .base > "$RUNNER_TEMP/base.json"
+          pnpm exec tsx scripts/api-surface.ts extract . > "$RUNNER_TEMP/head.json"
+          pnpm exec tsx scripts/api-surface.ts compare "$RUNNER_TEMP/base.json" "$RUNNER_TEMP/head.json" \
+            --summary "$RUNNER_TEMP/api-surface.md"
+          cat "$RUNNER_TEMP/api-surface.md" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-surface
+          path: ${{ runner.temp }}/api-surface.md
+
+  # Merges PRs opened by the "Check for Torn API Updates" workflow as soon as
+  # every check above is green; no manual click needed.
+  # Updates that remove public API are still merged, but get the `breaking-change`
+  # label and a comment, so you know to bump the version on the next release.
+  # Set the repository variable AUTOMERGE_HOLD_BREAKING=true to leave those for you instead.
+  automerge:
+    needs: [ build-and-test, e2e, api-surface ]
+    if: github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      startsWith(github.event.pull_request.head.ref, 'chore/api-update') &&
+      contains(github.event.pull_request.labels.*.name, 'automated')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+      PR: ${{ github.event.pull_request.number }}
+      HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+    steps:
+      - name: Download API surface report
+        uses: actions/download-artifact@v4
+        with:
+          name: api-surface
+          path: report
+
+      - name: Flag breaking changes
+        if: needs.api-surface.outputs.breaking == 'true'
+        env:
+          HOLD: ${{ vars.AUTOMERGE_HOLD_BREAKING == 'true' }}
+        run: |
+          gh label create breaking-change --color B60205 \
+            --description "Removes public API; bump the version accordingly on release" 2>/dev/null || true
+          gh pr edit "$PR" --add-label breaking-change
+          {
+            if [ "$HOLD" = "true" ]; then
+              echo "### 🛑 Not auto-merged: this update removes public API"
+            else
+              echo "### ⚠️ Auto-merged, but this update removes public API"
+            fi
+            echo
+            cat report/api-surface.md
+            echo
+            echo "Remember to bump the package version accordingly on the next release."
+          } > comment.md
+          gh pr comment "$PR" --body-file comment.md
+
+      - name: Merge
+        if: needs.api-surface.outputs.breaking != 'true' || vars.AUTOMERGE_HOLD_BREAKING != 'true'
+        run: gh pr merge "$PR" --squash --delete-branch --match-head-commit "$HEAD_SHA"
+
+      # A merge made with GITHUB_TOKEN does not trigger `push` workflows,
+      # but it may dispatch them. publish.yml skips versions already on npm
+      - name: Publish release and docs
+        if: needs.api-surface.outputs.breaking != 'true' || vars.AUTOMERGE_HOLD_BREAKING != 'true'
+        run: |
+          gh workflow run publish.yml --ref main
+          gh workflow run docs.yml --ref main

@@ -19,6 +19,15 @@ export default tseslint.config(
   eslint.configs.recommended,
   tseslint.configs.recommended,
   pluginJest.configs["flat/recommended"],
+  {
+    rules: {
+      // Generated E2E tests assert through the helper in tests/e2e-helpers.ts
+      "jest/expect-expect": [
+        "warn",
+        { assertFunctionNames: ["expect", "expectApiSuccess"] },
+      ],
+    },
+  },
   prettierConfig,
   pluginPrettierRecommended,
 );

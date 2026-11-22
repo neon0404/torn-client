@@ -131,7 +131,7 @@ export class CompanyEndpoint {
    */
   public async snapshot(params?: {
     timestamp?: number | string;
-  }): Promise<unknown> {
+  }): Promise<string> {
     const path = `/company/snapshot`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),

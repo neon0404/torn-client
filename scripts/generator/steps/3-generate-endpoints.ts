@@ -200,7 +200,7 @@ export async function generateEndpoints(
       if (method.isPaginated) {
         isPaginated = true;
       }
-      if (method.responseType !== "unknown") {
+      if (!["unknown", "string"].includes(method.responseType)) {
         generatedTypes.add(method.responseType);
       }
 

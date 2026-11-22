@@ -1,4 +1,5 @@
 import { TornAPI } from "../../src";
+import { expectApiSuccess, withTestData } from "../e2e-helpers";
 
 describe("UserEndpoint Integration Tests", () => {
   let client: TornAPI;
@@ -19,9 +20,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.ammo should succeed",
       async () => {
-        const response = await client.user.ammo();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.ammo());
       },
       TEST_TIMEOUT,
     );
@@ -29,9 +28,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.attacks should succeed",
       async () => {
-        const response = await client.user.attacks();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.attacks());
       },
       TEST_TIMEOUT,
     );
@@ -39,9 +36,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.attacksfull should succeed",
       async () => {
-        const response = await client.user.attacksfull();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.attacksfull());
       },
       TEST_TIMEOUT,
     );
@@ -49,9 +44,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.auctionhouse should succeed",
       async () => {
-        const response = await client.user.auctionhouse();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.auctionhouse());
       },
       TEST_TIMEOUT,
     );
@@ -59,9 +52,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.bars should succeed",
       async () => {
-        const response = await client.user.bars();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.bars());
       },
       TEST_TIMEOUT,
     );
@@ -69,9 +60,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.bazaar should succeed",
       async () => {
-        const response = await client.user.bazaar();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.bazaar());
       },
       TEST_TIMEOUT,
     );
@@ -79,9 +68,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.basic should succeed",
       async () => {
-        const response = await client.user.basic();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.basic());
       },
       TEST_TIMEOUT,
     );
@@ -89,9 +76,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.battlestats should succeed",
       async () => {
-        const response = await client.user.battlestats();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.battlestats());
       },
       TEST_TIMEOUT,
     );
@@ -99,9 +84,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.bounties should succeed",
       async () => {
-        const response = await client.user.bounties();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.bounties());
       },
       TEST_TIMEOUT,
     );
@@ -109,9 +92,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.calendar should succeed",
       async () => {
-        const response = await client.user.calendar();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.calendar());
       },
       TEST_TIMEOUT,
     );
@@ -119,9 +100,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.casino should succeed",
       async () => {
-        const response = await client.user.casino();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.casino());
       },
       TEST_TIMEOUT,
     );
@@ -129,9 +108,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.competition should succeed",
       async () => {
-        const response = await client.user.competition();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.competition());
       },
       TEST_TIMEOUT,
     );
@@ -139,9 +116,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.cooldowns should succeed",
       async () => {
-        const response = await client.user.cooldowns();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.cooldowns());
       },
       TEST_TIMEOUT,
     );
@@ -149,9 +124,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.criminalrecord should succeed",
       async () => {
-        const response = await client.user.criminalrecord();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.criminalrecord());
       },
       TEST_TIMEOUT,
     );
@@ -159,9 +132,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.discord should succeed",
       async () => {
-        const response = await client.user.discord();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.discord());
       },
       TEST_TIMEOUT,
     );
@@ -169,9 +140,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.display should succeed",
       async () => {
-        const response = await client.user.display();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.display());
       },
       TEST_TIMEOUT,
     );
@@ -179,9 +148,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.education should succeed",
       async () => {
-        const response = await client.user.education();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.education());
       },
       TEST_TIMEOUT,
     );
@@ -189,9 +156,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.enlistedcars should succeed",
       async () => {
-        const response = await client.user.enlistedcars();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.enlistedcars());
       },
       TEST_TIMEOUT,
     );
@@ -199,9 +164,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.equipment should succeed",
       async () => {
-        const response = await client.user.equipment();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.equipment());
       },
       TEST_TIMEOUT,
     );
@@ -209,9 +172,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.events should succeed",
       async () => {
-        const response = await client.user.events();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.events());
       },
       TEST_TIMEOUT,
     );
@@ -219,9 +180,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.faction should succeed",
       async () => {
-        const response = await client.user.faction();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.faction());
       },
       TEST_TIMEOUT,
     );
@@ -229,9 +188,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.forumfeed should succeed",
       async () => {
-        const response = await client.user.forumfeed();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.forumfeed());
       },
       TEST_TIMEOUT,
     );
@@ -239,9 +196,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.forumfriends should succeed",
       async () => {
-        const response = await client.user.forumfriends();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.forumfriends());
       },
       TEST_TIMEOUT,
     );
@@ -249,9 +204,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.forumposts should succeed",
       async () => {
-        const response = await client.user.forumposts();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.forumposts());
       },
       TEST_TIMEOUT,
     );
@@ -259,9 +212,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.forumsubscribedthreads should succeed",
       async () => {
-        const response = await client.user.forumsubscribedthreads();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.forumsubscribedthreads());
       },
       TEST_TIMEOUT,
     );
@@ -269,9 +220,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.forumthreads should succeed",
       async () => {
-        const response = await client.user.forumthreads();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.forumthreads());
       },
       TEST_TIMEOUT,
     );
@@ -279,9 +228,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.gym should succeed",
       async () => {
-        const response = await client.user.gym();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.gym());
       },
       TEST_TIMEOUT,
     );
@@ -289,9 +236,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.halloween should succeed",
       async () => {
-        const response = await client.user.halloween();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.halloween());
       },
       TEST_TIMEOUT,
     );
@@ -299,9 +244,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.hof should succeed",
       async () => {
-        const response = await client.user.hof();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.hof());
       },
       TEST_TIMEOUT,
     );
@@ -309,9 +252,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.honors should succeed",
       async () => {
-        const response = await client.user.honors();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.honors());
       },
       TEST_TIMEOUT,
     );
@@ -319,9 +260,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.icons should succeed",
       async () => {
-        const response = await client.user.icons();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.icons());
       },
       TEST_TIMEOUT,
     );
@@ -329,9 +268,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.inventory should succeed",
       async () => {
-        const response = await client.user.inventory();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.inventory({ cat: "Primary" }));
       },
       TEST_TIMEOUT,
     );
@@ -339,9 +276,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.itemmarket should succeed",
       async () => {
-        const response = await client.user.itemmarket();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.itemmarket());
       },
       TEST_TIMEOUT,
     );
@@ -349,9 +284,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.itemmods should succeed",
       async () => {
-        const response = await client.user.itemmods();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.itemmods());
       },
       TEST_TIMEOUT,
     );
@@ -359,9 +292,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.job should succeed",
       async () => {
-        const response = await client.user.job();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.job());
       },
       TEST_TIMEOUT,
     );
@@ -369,9 +300,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.jobpoints should succeed",
       async () => {
-        const response = await client.user.jobpoints();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.jobpoints());
       },
       TEST_TIMEOUT,
     );
@@ -379,9 +308,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.jobranks should succeed",
       async () => {
-        const response = await client.user.jobranks();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.jobranks());
       },
       TEST_TIMEOUT,
     );
@@ -389,9 +316,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.list should succeed",
       async () => {
-        const response = await client.user.list({ cat: "Friends" });
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.list({ cat: "Friends" }));
       },
       TEST_TIMEOUT,
     );
@@ -399,9 +324,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.log should succeed",
       async () => {
-        const response = await client.user.log();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.log());
       },
       TEST_TIMEOUT,
     );
@@ -409,9 +332,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.medals should succeed",
       async () => {
-        const response = await client.user.medals();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.medals());
       },
       TEST_TIMEOUT,
     );
@@ -419,9 +340,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.merits should succeed",
       async () => {
-        const response = await client.user.merits();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.merits());
       },
       TEST_TIMEOUT,
     );
@@ -429,9 +348,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.messages should succeed",
       async () => {
-        const response = await client.user.messages();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.messages());
       },
       TEST_TIMEOUT,
     );
@@ -439,9 +356,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.missions should succeed",
       async () => {
-        const response = await client.user.missions();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.missions());
       },
       TEST_TIMEOUT,
     );
@@ -449,9 +364,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.money should succeed",
       async () => {
-        const response = await client.user.money();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.money());
       },
       TEST_TIMEOUT,
     );
@@ -459,9 +372,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.newevents should succeed",
       async () => {
-        const response = await client.user.newevents();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.newevents());
       },
       TEST_TIMEOUT,
     );
@@ -469,9 +380,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.networth should succeed",
       async () => {
-        const response = await client.user.networth();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.networth());
       },
       TEST_TIMEOUT,
     );
@@ -479,9 +388,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.newmessages should succeed",
       async () => {
-        const response = await client.user.newmessages();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.newmessages());
       },
       TEST_TIMEOUT,
     );
@@ -489,9 +396,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.notifications should succeed",
       async () => {
-        const response = await client.user.notifications();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.notifications());
       },
       TEST_TIMEOUT,
     );
@@ -499,9 +404,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.organizedcrime should succeed",
       async () => {
-        const response = await client.user.organizedcrime();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.organizedcrime());
       },
       TEST_TIMEOUT,
     );
@@ -509,9 +412,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.organizedcrimes should succeed",
       async () => {
-        const response = await client.user.organizedcrimes();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.organizedcrimes());
       },
       TEST_TIMEOUT,
     );
@@ -519,9 +420,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.perks should succeed",
       async () => {
-        const response = await client.user.perks();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.perks());
       },
       TEST_TIMEOUT,
     );
@@ -529,9 +428,9 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.personalstats should succeed",
       async () => {
-        const response = await client.user.personalstats({ cat: "popular" });
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.user.personalstats({ cat: "popular" }),
+        );
       },
       TEST_TIMEOUT,
     );
@@ -539,9 +438,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.profile should succeed",
       async () => {
-        const response = await client.user.profile();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.profile());
       },
       TEST_TIMEOUT,
     );
@@ -549,9 +446,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.properties should succeed",
       async () => {
-        const response = await client.user.properties();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.properties());
       },
       TEST_TIMEOUT,
     );
@@ -559,9 +454,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.property should succeed",
       async () => {
-        const response = await client.user.property();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.property());
       },
       TEST_TIMEOUT,
     );
@@ -569,9 +462,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.races should succeed",
       async () => {
-        const response = await client.user.races();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.races());
       },
       TEST_TIMEOUT,
     );
@@ -579,9 +470,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.racingrecords should succeed",
       async () => {
-        const response = await client.user.racingrecords();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.racingrecords());
       },
       TEST_TIMEOUT,
     );
@@ -589,9 +478,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.refills should succeed",
       async () => {
-        const response = await client.user.refills();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.refills());
       },
       TEST_TIMEOUT,
     );
@@ -599,9 +486,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.reports should succeed",
       async () => {
-        const response = await client.user.reports();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.reports());
       },
       TEST_TIMEOUT,
     );
@@ -609,9 +494,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.revives should succeed",
       async () => {
-        const response = await client.user.revives();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.revives());
       },
       TEST_TIMEOUT,
     );
@@ -619,9 +502,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.revivesfull should succeed",
       async () => {
-        const response = await client.user.revivesfull();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.revivesfull());
       },
       TEST_TIMEOUT,
     );
@@ -629,9 +510,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.skills should succeed",
       async () => {
-        const response = await client.user.skills();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.skills());
       },
       TEST_TIMEOUT,
     );
@@ -639,9 +518,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.search should succeed",
       async () => {
-        const response = await client.user.search();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.search());
       },
       TEST_TIMEOUT,
     );
@@ -649,9 +526,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.snapshot should succeed",
       async () => {
-        const response = await client.user.snapshot();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.snapshot());
       },
       TEST_TIMEOUT,
     );
@@ -659,9 +534,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.stocks should succeed",
       async () => {
-        const response = await client.user.stocks();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.stocks());
       },
       TEST_TIMEOUT,
     );
@@ -669,9 +542,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.trades should succeed",
       async () => {
-        const response = await client.user.trades();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.trades());
       },
       TEST_TIMEOUT,
     );
@@ -679,9 +550,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.travel should succeed",
       async () => {
-        const response = await client.user.travel();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.travel());
       },
       TEST_TIMEOUT,
     );
@@ -689,9 +558,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.travelinventory should succeed",
       async () => {
-        const response = await client.user.travelinventory();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.travelinventory());
       },
       TEST_TIMEOUT,
     );
@@ -699,9 +566,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.virus should succeed",
       async () => {
-        const response = await client.user.virus();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.virus());
       },
       TEST_TIMEOUT,
     );
@@ -709,9 +574,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.weaponexp should succeed",
       async () => {
-        const response = await client.user.weaponexp();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.weaponexp());
       },
       TEST_TIMEOUT,
     );
@@ -719,9 +582,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.workstats should succeed",
       async () => {
-        const response = await client.user.workstats();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.workstats());
       },
       TEST_TIMEOUT,
     );
@@ -729,9 +590,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.lookup should succeed",
       async () => {
-        const response = await client.user.lookup();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.lookup());
       },
       TEST_TIMEOUT,
     );
@@ -739,9 +598,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.timestamp should succeed",
       async () => {
-        const response = await client.user.timestamp();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.timestamp());
       },
       TEST_TIMEOUT,
     );
@@ -749,9 +606,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.get should succeed",
       async () => {
-        const response = await client.user.get();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.get());
       },
       TEST_TIMEOUT,
     );
@@ -759,9 +614,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).basic should succeed",
       async () => {
-        const response = await client.user.withId("3772610").basic();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.withId("3772610").basic());
       },
       TEST_TIMEOUT,
     );
@@ -769,9 +622,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).bounties should succeed",
       async () => {
-        const response = await client.user.withId("3772610").bounties();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.withId("3772610").bounties());
       },
       TEST_TIMEOUT,
     );
@@ -779,9 +630,9 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).competition should succeed",
       async () => {
-        const response = await client.user.withId("3772610").competition();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.user.withId("3772610").competition(),
+        );
       },
       TEST_TIMEOUT,
     );
@@ -789,9 +640,9 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).criminalrecord should succeed",
       async () => {
-        const response = await client.user.withId("3772610").criminalrecord();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.user.withId("3772610").criminalrecord(),
+        );
       },
       TEST_TIMEOUT,
     );
@@ -799,9 +650,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).discord should succeed",
       async () => {
-        const response = await client.user.withId("3772610").discord();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.withId("3772610").discord());
       },
       TEST_TIMEOUT,
     );
@@ -809,9 +658,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).display should succeed",
       async () => {
-        const response = await client.user.withId("3772610").display();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.withId("3772610").display());
       },
       TEST_TIMEOUT,
     );
@@ -819,9 +666,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).faction should succeed",
       async () => {
-        const response = await client.user.withId("3772610").faction();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.withId("3772610").faction());
       },
       TEST_TIMEOUT,
     );
@@ -829,9 +674,9 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).forumposts should succeed",
       async () => {
-        const response = await client.user.withId("3772610").forumposts();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.user.withId("3772610").forumposts(),
+        );
       },
       TEST_TIMEOUT,
     );
@@ -839,9 +684,9 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).forumthreads should succeed",
       async () => {
-        const response = await client.user.withId("3772610").forumthreads();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.user.withId("3772610").forumthreads(),
+        );
       },
       TEST_TIMEOUT,
     );
@@ -849,9 +694,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).hof should succeed",
       async () => {
-        const response = await client.user.withId("3772610").hof();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.withId("3772610").hof());
       },
       TEST_TIMEOUT,
     );
@@ -859,9 +702,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).icons should succeed",
       async () => {
-        const response = await client.user.withId("3772610").icons();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.withId("3772610").icons());
       },
       TEST_TIMEOUT,
     );
@@ -869,9 +710,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).job should succeed",
       async () => {
-        const response = await client.user.withId("3772610").job();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.withId("3772610").job());
       },
       TEST_TIMEOUT,
     );
@@ -879,9 +718,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).medals should succeed",
       async () => {
-        const response = await client.user.withId("3772610").medals();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.withId("3772610").medals());
       },
       TEST_TIMEOUT,
     );
@@ -889,11 +726,9 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).personalstats should succeed",
       async () => {
-        const response = await client.user
-          .withId("3772610")
-          .personalstats({ cat: "popular" });
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.user.withId("3772610").personalstats({ cat: "popular" }),
+        );
       },
       TEST_TIMEOUT,
     );
@@ -901,9 +736,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).profile should succeed",
       async () => {
-        const response = await client.user.withId("3772610").profile();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.withId("3772610").profile());
       },
       TEST_TIMEOUT,
     );
@@ -911,9 +744,9 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).properties should succeed",
       async () => {
-        const response = await client.user.withId("3772610").properties();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.user.withId("3772610").properties(),
+        );
       },
       TEST_TIMEOUT,
     );
@@ -921,9 +754,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).property should succeed",
       async () => {
-        const response = await client.user.withId("3772610").property();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.withId("3772610").property());
       },
       TEST_TIMEOUT,
     );
@@ -931,9 +762,7 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withId(...).get should succeed",
       async () => {
-        const response = await client.user.withId("3772610").get();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.user.withId("3772610").get());
       },
       TEST_TIMEOUT,
     );
@@ -941,14 +770,26 @@ describe("UserEndpoint Integration Tests", () => {
     it(
       "user.withCrimeId(...).crimes should succeed",
       async () => {
-        const response = await client.user
-          .withCrimeId("1")
-          .crimes({ timestamp: "1672531200" });
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.user.withCrimeId("1").crimes({ timestamp: "1672531200" }),
+        );
       },
       TEST_TIMEOUT,
     );
-    it.skip("user.withTradeId(...).trade should succeed", () => {});
+
+    it(
+      "user.withTradeId(...).trade should succeed",
+      async () => {
+        await withTestData(
+          client,
+          { id: { from: "user.trades", pick: "trades.0.id" } },
+          ({ id, params }) =>
+            expectApiSuccess(() =>
+              client.user.withTradeId(id).trade(params as never),
+            ),
+        );
+      },
+      TEST_TIMEOUT,
+    );
   });
 });

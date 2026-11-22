@@ -1,4 +1,5 @@
 import { TornAPI } from "../../src";
+import { expectApiSuccess } from "../e2e-helpers";
 
 describe("MarketEndpoint Integration Tests", () => {
   let client: TornAPI;
@@ -21,11 +22,9 @@ describe("MarketEndpoint Integration Tests", () => {
       it(
         "market.withId(...).auctionhouselisting should succeed",
         async () => {
-          const response = await client.market
-            .withId("1")
-            .auctionhouselisting();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.market.withId("1").auctionhouselisting(),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -33,9 +32,9 @@ describe("MarketEndpoint Integration Tests", () => {
       it(
         "market.withId(...).auctionhouse should succeed",
         async () => {
-          const response = await client.market.withId("1").auctionhouse();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.market.withId("1").auctionhouse(),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -43,9 +42,7 @@ describe("MarketEndpoint Integration Tests", () => {
       it(
         "market.withId(...).bazaar should succeed",
         async () => {
-          const response = await client.market.withId("1").bazaar();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.market.withId("1").bazaar());
         },
         TEST_TIMEOUT,
       );
@@ -53,9 +50,7 @@ describe("MarketEndpoint Integration Tests", () => {
       it(
         "market.withId(...).itemmarket should succeed",
         async () => {
-          const response = await client.market.withId("1").itemmarket();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.market.withId("1").itemmarket());
         },
         TEST_TIMEOUT,
       );
@@ -63,9 +58,7 @@ describe("MarketEndpoint Integration Tests", () => {
       it(
         "market.auctionhouse should succeed",
         async () => {
-          const response = await client.market.auctionhouse();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.market.auctionhouse());
         },
         TEST_TIMEOUT,
       );
@@ -73,9 +66,7 @@ describe("MarketEndpoint Integration Tests", () => {
       it(
         "market.bazaar should succeed",
         async () => {
-          const response = await client.market.bazaar();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.market.bazaar());
         },
         TEST_TIMEOUT,
       );
@@ -83,9 +74,7 @@ describe("MarketEndpoint Integration Tests", () => {
       it(
         "market.pointsmarket should succeed",
         async () => {
-          const response = await client.market.pointsmarket();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.market.pointsmarket());
         },
         TEST_TIMEOUT,
       );
@@ -93,9 +82,7 @@ describe("MarketEndpoint Integration Tests", () => {
       it(
         "market.lookup should succeed",
         async () => {
-          const response = await client.market.lookup();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.market.lookup());
         },
         TEST_TIMEOUT,
       );
@@ -103,9 +90,7 @@ describe("MarketEndpoint Integration Tests", () => {
       it(
         "market.timestamp should succeed",
         async () => {
-          const response = await client.market.timestamp();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.market.timestamp());
         },
         TEST_TIMEOUT,
       );
@@ -113,9 +98,7 @@ describe("MarketEndpoint Integration Tests", () => {
       it(
         "market.get should succeed",
         async () => {
-          const response = await client.market.get();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.market.get());
         },
         TEST_TIMEOUT,
       );
@@ -123,11 +106,9 @@ describe("MarketEndpoint Integration Tests", () => {
       it(
         "market.withPropertyTypeId(...).properties should succeed",
         async () => {
-          const response = await client.market
-            .withPropertyTypeId("1")
-            .properties();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.market.withPropertyTypeId("1").properties(),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -135,11 +116,9 @@ describe("MarketEndpoint Integration Tests", () => {
       it(
         "market.withPropertyTypeId(...).rentals should succeed",
         async () => {
-          const response = await client.market
-            .withPropertyTypeId("1")
-            .rentals();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.market.withPropertyTypeId("1").rentals(),
+          );
         },
         TEST_TIMEOUT,
       );

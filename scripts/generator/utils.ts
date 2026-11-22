@@ -68,7 +68,11 @@ export function getResponseType(
 
   const schema = resolvedResponse.content?.["application/json"]?.schema;
   if (!schema) {
-    return "unknown";
+    // Non-JSON bodies (e.g. text/csv snapshots) are returned as raw text by the requester
+    const isText = Object.keys(resolvedResponse.content ?? {}).some((type) =>
+      type.startsWith("text/"),
+    );
+    return isText ? "string" : "unknown";
   }
 
   if ("$ref" in schema) {

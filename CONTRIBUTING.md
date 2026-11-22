@@ -96,6 +96,27 @@ These are the most important scripts for development:
 
   This runs the entire test suite. Please ensure all tests pass before submitting a pull request
 
+  E2E test data lives in `tests/e2e.config.json`. Instead of hard-coding an ID that may stop existing,
+  a value can be a live lookup that runs right before the test:
+
+  ```json
+  "racing": {
+    "race": { "raceId": { "from": "racing.races", "pick": "races.0.id" } }
+  }
+  ```
+
+  `from` is a client call path (context calls work too, e.g. `company.withTypeId(1).companies`),
+  `params` are optional query params for that call and `pick` is a dot path into its response.
+  If the lookup finds nothing, the test is skipped with a warning.
+  Torn API errors that only mean "this data is not available right now" (e.g. *Incorrect ID*,
+  *No competition available*) are logged instead of failing the test, see `tests/e2e-helpers.ts`
+
+
+* **Type check (src, scripts and tests):**
+  ```bash
+  pnpm typecheck
+  ```
+
 
 * **Check code style:**
   ```bash
@@ -171,6 +192,19 @@ Must be one of the following:
     * Provide a clear title that also follows the Conventional Commits format
     * In the description, explain the "why" and "what" of your changes
     * Link to the issue you are resolving using the `Closes #123` keyword
+
+### Automated API updates
+
+A scheduled workflow checks the Torn OpenAPI spec daily. When it changes, the client is regenerated
+on the rolling `chore/api-update` branch and a PR labelled `automated` is opened (or updated)
+
+The PR also bumps the package version: patch normally, minor (major from 1.0.0 on) when public API was removed
+(`scripts/bump-version.mjs`). CI merges that PR automatically once lint, type check, build, unit tests and E2E tests pass,
+then dispatches `publish.yml` (npm + GitHub release) and `docs.yml`. No manual step is needed.
+`publish.yml` skips versions that are already on npm, so re-running it is safe.
+If the update removes public API (exports or endpoint methods, see `pnpm api:surface`), it is still merged,
+but gets the `breaking-change` label and a comment listing the removals, so the next release can bump the version accordingly.
+Set the repository variable `AUTOMERGE_HOLD_BREAKING=true` to leave those PRs for a maintainer instead
 
 ## Styleguides
 

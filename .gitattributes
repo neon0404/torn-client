@@ -1,0 +1,3 @@
+# Keep LF line endings in the working tree on every OS (Prettier enforces LF).
+# Without this, Windows checkouts with core.autocrlf=true fail `pnpm lint`.
+* text=auto eol=lf
