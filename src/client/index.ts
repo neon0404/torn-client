@@ -7,6 +7,7 @@ import {
   KeyEndpoint,
   RacingEndpoint,
   ForumEndpoint,
+  CompanyEndpoint,
 } from "../generated";
 
 import { RequestHandler, RequestHandlerOptions } from "./requester";
@@ -66,6 +67,7 @@ export interface TornAPIOptions extends Omit<RequestHandlerOptions, "apiKeys"> {
  * -   `client.forum`
  * -   `client.key`
  * -   `client.torn`
+ * -   `client.company`
  *
  * ### Pagination
  *
@@ -92,6 +94,7 @@ export class TornAPI {
   public readonly forum: ForumEndpoint;
   public readonly key: KeyEndpoint;
   public readonly torn: TornEndpoint;
+  public readonly company: CompanyEndpoint;
 
   public readonly rateLimitMode: RateLimitMode;
   private readonly requestHandler: RequestHandler;
@@ -119,6 +122,7 @@ export class TornAPI {
     this.forum = new ForumEndpoint(requester);
     this.torn = new TornEndpoint(requester);
     this.key = new KeyEndpoint(requester);
+    this.company = new CompanyEndpoint(requester);
   }
 
   /**

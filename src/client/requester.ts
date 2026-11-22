@@ -3,11 +3,28 @@ import { PaginatedResponse } from "./paginated";
 import type { Requester, RateLimitMode, ApiKeyBalancing } from "./types";
 
 /**
- * Checks if an unknown value is an instance of the Error class
+ * Checks if an unknown value is an Error
+ *
+ * Also accepts error-like objects, because errors created in another realm
+ * (e.g. by `fetch` under Jest or in a worker) fail `instanceof Error`
  * @param {unknown} error - The value to check
  * @returns {boolean} True if the value is an Error, false otherwise
  */
-const isError = (error: unknown): error is Error => error instanceof Error;
+const isError = (error: unknown): error is Error =>
+  error instanceof Error ||
+  (typeof error === "object" &&
+    error !== null &&
+    typeof (error as { message?: unknown }).message === "string" &&
+    typeof (error as { name?: unknown }).name === "string");
+
+/**
+ * Some endpoints (e.g. `user/snapshot`) return CSV instead of JSON;
+ * their body is returned as a plain string
+ * @param {string} contentType - The response Content-Type header
+ * @returns {boolean} True if the response body should not be parsed as JSON
+ */
+const isCsvResponse = (contentType: string): boolean =>
+  /\bcsv\b/i.test(contentType);
 
 /**
  * Type definition for the raw error structure returned by the Torn API
@@ -157,13 +174,22 @@ export class RequestHandler {
   }
 
   /**
-   * Finds the next available API key
+   * Finds the next available API key and reserves a request slot on it
+   *
+   * The slot is reserved synchronously, before the request is sent, so concurrent
+   * calls (e.g. `Promise.all`) cannot all pass the limit check at the same time
+   *
+   * Starts at the key chosen by the balancing strategy, then checks every other key once
    * @returns {string | null} An available API key, or null if all keys are currently rate-limited
    */
-  private findAvailableKey(): string | null {
+  private acquireKey(): string | null {
+    const start = this.apiKeys.indexOf(this.getApiKey());
     for (let i = 0; i < this.apiKeys.length; i++) {
-      const key = this.getApiKey();
+      const key = this.apiKeys[(start + i) % this.apiKeys.length];
       if (this.isKeyAvailable(key)) {
+        if (this.rateLimitMode !== "ignore") {
+          this.requestTimestamps.get(key)?.push(Date.now());
+        }
         return key;
       }
     }
@@ -226,23 +252,23 @@ export class RequestHandler {
   ): Promise<T> {
     this.log("Request received:", path, query);
 
-    let apiKey = this.findAvailableKey();
+    let apiKey = this.acquireKey();
+
+    // In autoDelay mode, keep waiting until a slot frees up: other queued
+    // requests may take the slot we waited for, so a single wait is not enough
+    while (!apiKey && this.rateLimitMode === "autoDelay") {
+      const waitTime = this.getMinWaitTime();
+      this.log(`All keys are on cooldown. Delaying for ${waitTime}ms...`);
+      await new Promise((resolve) => setTimeout(resolve, waitTime));
+      apiKey = this.acquireKey();
+    }
 
     if (!apiKey) {
-      if (this.rateLimitMode === "autoDelay") {
-        const waitTime = this.getMinWaitTime();
-        this.log(`All keys are on cooldown. Delaying for ${waitTime}ms...`);
-        await new Promise((resolve) => setTimeout(resolve, waitTime));
-        apiKey = this.findAvailableKey();
-      }
-
-      if (!apiKey) {
-        const error = new TornRateLimitError(
-          "Rate limit of 100 requests/minute exceeded for all available keys",
-        );
-        this.log("Rate limit exceeded for all keys");
-        throw error;
-      }
+      const error = new TornRateLimitError(
+        "Rate limit of 100 requests/minute exceeded for all available keys",
+      );
+      this.log("Rate limit exceeded for all keys");
+      throw error;
     }
 
     this.log(`Using API key: ${apiKey.slice(0, 5)}...`);
@@ -272,16 +298,17 @@ export class RequestHandler {
       this.log("Fetching:", url.toString());
       const response = await fetch(url.toString(), requestOptions);
 
-      if (this.rateLimitMode !== "ignore") {
-        const timestamps = this.requestTimestamps.get(apiKey) ?? [];
-        timestamps.push(Date.now());
-        this.requestTimestamps.set(apiKey, timestamps);
-      }
-
       if (!response.ok) {
         throw new Error(
           `Request failed with status ${response.status}: ${response.statusText}`,
         );
+      }
+
+      const contentType = response.headers.get("content-type") ?? "";
+      if (isCsvResponse(contentType)) {
+        const text = await response.text();
+        this.log(`Response data: <${contentType}, ${text.length} chars>`);
+        return text as T;
       }
 
       const data: unknown = await response.json();
@@ -309,7 +336,7 @@ export class RequestHandler {
     } catch (error) {
       const err = isError(error)
         ? error
-        : new Error("An unknown error occurred");
+        : new Error(`An unknown error occurred: ${String(error)}`);
       this.log("Request failed:", err.message);
 
       throw err;

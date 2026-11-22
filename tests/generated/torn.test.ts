@@ -1,4 +1,5 @@
 import { TornAPI } from "../../src";
+import { expectApiSuccess, withTestData } from "../e2e-helpers";
 
 describe("TornEndpoint Integration Tests", () => {
   let client: TornAPI;
@@ -19,11 +20,12 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.attacklog should succeed",
       async () => {
-        const response = await client.torn.attacklog({
-          log: "4c24b79143ab701a6c7910acaef7927d",
-        });
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await withTestData(
+          client,
+          { params: { log: { from: "user.attacks", pick: "attacks.0.code" } } },
+          ({ params }) =>
+            expectApiSuccess(() => client.torn.attacklog(params as never)),
+        );
       },
       TEST_TIMEOUT,
     );
@@ -31,9 +33,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.bank should succeed",
       async () => {
-        const response = await client.torn.bank();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.bank());
       },
       TEST_TIMEOUT,
     );
@@ -41,9 +41,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.bounties should succeed",
       async () => {
-        const response = await client.torn.bounties();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.bounties());
       },
       TEST_TIMEOUT,
     );
@@ -51,9 +49,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.calendar should succeed",
       async () => {
-        const response = await client.torn.calendar();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.calendar());
       },
       TEST_TIMEOUT,
     );
@@ -61,9 +57,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.cards should succeed",
       async () => {
-        const response = await client.torn.cards();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.cards());
       },
       TEST_TIMEOUT,
     );
@@ -71,9 +65,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.cityshops should succeed",
       async () => {
-        const response = await client.torn.cityshops();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.cityshops());
       },
       TEST_TIMEOUT,
     );
@@ -81,9 +73,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.companies should succeed",
       async () => {
-        const response = await client.torn.companies();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.companies());
       },
       TEST_TIMEOUT,
     );
@@ -91,9 +81,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.crimes should succeed",
       async () => {
-        const response = await client.torn.crimes();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.crimes());
       },
       TEST_TIMEOUT,
     );
@@ -101,9 +89,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.education should succeed",
       async () => {
-        const response = await client.torn.education();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.education());
       },
       TEST_TIMEOUT,
     );
@@ -111,9 +97,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.elimination should succeed",
       async () => {
-        const response = await client.torn.elimination();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.elimination());
       },
       TEST_TIMEOUT,
     );
@@ -121,9 +105,9 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.factionhof should succeed",
       async () => {
-        const response = await client.torn.factionhof({ cat: "respect" });
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.torn.factionhof({ cat: "respect" }),
+        );
       },
       TEST_TIMEOUT,
     );
@@ -131,9 +115,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.factiontree should succeed",
       async () => {
-        const response = await client.torn.factiontree();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.factiontree());
       },
       TEST_TIMEOUT,
     );
@@ -141,9 +123,23 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.gyms should succeed",
       async () => {
-        const response = await client.torn.gyms();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.gyms());
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "torn.halloween should succeed",
+      async () => {
+        await expectApiSuccess(() => client.torn.halloween());
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "torn.headlines should succeed",
+      async () => {
+        await expectApiSuccess(() => client.torn.headlines());
       },
       TEST_TIMEOUT,
     );
@@ -151,9 +147,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.honors should succeed",
       async () => {
-        const response = await client.torn.honors();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.honors());
       },
       TEST_TIMEOUT,
     );
@@ -161,9 +155,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.hof should succeed",
       async () => {
-        const response = await client.torn.hof({ cat: "level" });
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.hof({ cat: "level" }));
       },
       TEST_TIMEOUT,
     );
@@ -171,9 +163,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.itemammo should succeed",
       async () => {
-        const response = await client.torn.itemammo();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.itemammo());
       },
       TEST_TIMEOUT,
     );
@@ -181,9 +171,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.itemmods should succeed",
       async () => {
-        const response = await client.torn.itemmods();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.itemmods());
       },
       TEST_TIMEOUT,
     );
@@ -191,9 +179,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.items should succeed",
       async () => {
-        const response = await client.torn.items();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.items());
       },
       TEST_TIMEOUT,
     );
@@ -201,9 +187,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.logcategories should succeed",
       async () => {
-        const response = await client.torn.logcategories();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.logcategories());
       },
       TEST_TIMEOUT,
     );
@@ -211,9 +195,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.logtypes should succeed",
       async () => {
-        const response = await client.torn.logtypes();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.logtypes());
       },
       TEST_TIMEOUT,
     );
@@ -221,9 +203,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.medals should succeed",
       async () => {
-        const response = await client.torn.medals();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.medals());
       },
       TEST_TIMEOUT,
     );
@@ -231,9 +211,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.merits should succeed",
       async () => {
-        const response = await client.torn.merits();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.merits());
       },
       TEST_TIMEOUT,
     );
@@ -241,9 +219,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.museum should succeed",
       async () => {
-        const response = await client.torn.museum();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.museum());
       },
       TEST_TIMEOUT,
     );
@@ -251,9 +227,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.organizedcrimes should succeed",
       async () => {
-        const response = await client.torn.organizedcrimes();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.organizedcrimes());
       },
       TEST_TIMEOUT,
     );
@@ -261,9 +235,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.pokertables should succeed",
       async () => {
-        const response = await client.torn.pokertables();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.pokertables());
       },
       TEST_TIMEOUT,
     );
@@ -271,9 +243,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.properties should succeed",
       async () => {
-        const response = await client.torn.properties();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.properties());
       },
       TEST_TIMEOUT,
     );
@@ -281,9 +251,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.rockpaperscissors should succeed",
       async () => {
-        const response = await client.torn.rockpaperscissors();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.rockpaperscissors());
       },
       TEST_TIMEOUT,
     );
@@ -291,9 +259,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.searchforcash should succeed",
       async () => {
-        const response = await client.torn.searchforcash();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.searchforcash());
       },
       TEST_TIMEOUT,
     );
@@ -301,9 +267,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.shoplifting should succeed",
       async () => {
-        const response = await client.torn.shoplifting();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.shoplifting());
       },
       TEST_TIMEOUT,
     );
@@ -311,9 +275,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.stats should succeed",
       async () => {
-        const response = await client.torn.stats();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.stats());
       },
       TEST_TIMEOUT,
     );
@@ -321,9 +283,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.stocks should succeed",
       async () => {
-        const response = await client.torn.stocks();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.stocks());
       },
       TEST_TIMEOUT,
     );
@@ -331,9 +291,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.territory should succeed",
       async () => {
-        const response = await client.torn.territory();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.territory());
       },
       TEST_TIMEOUT,
     );
@@ -341,9 +299,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.lookup should succeed",
       async () => {
-        const response = await client.torn.lookup();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.lookup());
       },
       TEST_TIMEOUT,
     );
@@ -351,9 +307,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.timestamp should succeed",
       async () => {
-        const response = await client.torn.timestamp();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.timestamp());
       },
       TEST_TIMEOUT,
     );
@@ -361,34 +315,105 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.get should succeed",
       async () => {
-        const response = await client.torn.get({ selections: ["stats"] });
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.torn.get({ selections: ["stats"] }),
+        );
       },
       TEST_TIMEOUT,
     );
-    it.skip("torn.withShopId(...).cityshops should succeed", () => {});
-    it.skip("torn.withTypeId(...).companies should succeed", () => {});
-    it.skip("torn.withId(...).eliminationteam should succeed", () => {});
+
+    it(
+      "torn.withShopId(...).cityshops should succeed",
+      async () => {
+        await withTestData(
+          client,
+          { id: { from: "torn.cityshops", pick: "cityshops.0.id" } },
+          ({ id, params }) =>
+            expectApiSuccess(() =>
+              client.torn.withShopId(id).cityshops(params as never),
+            ),
+        );
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "torn.withTypeId(...).companies should succeed",
+      async () => {
+        await expectApiSuccess(() => client.torn.withTypeId("1").companies());
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "torn.withId(...).eliminationteam should succeed",
+      async () => {
+        await withTestData(
+          client,
+          { id: { from: "torn.elimination", pick: "elimination.0.id" } },
+          ({ id, params }) =>
+            expectApiSuccess(() =>
+              client.torn.withId(id).eliminationteam(params as never),
+            ),
+        );
+      },
+      TEST_TIMEOUT,
+    );
 
     it(
       "torn.withIds(...).honors should succeed",
       async () => {
-        const response = await client.torn.withIds("317").honors();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.withIds("317").honors());
       },
       TEST_TIMEOUT,
     );
-    it.skip("torn.withIds(...).itemdetails should succeed", () => {});
-    it.skip("torn.withIds(...).itemstats should succeed", () => {});
+
+    it(
+      "torn.withIds(...).itemdetails should succeed",
+      async () => {
+        await withTestData(
+          client,
+          {
+            id: {
+              from: "user.inventory",
+              params: { cat: "Primary" },
+              pick: "inventory.items.0.uid",
+            },
+          },
+          ({ id, params }) =>
+            expectApiSuccess(() =>
+              client.torn.withIds(id).itemdetails(params as never),
+            ),
+        );
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
+      "torn.withIds(...).itemstats should succeed",
+      async () => {
+        await withTestData(
+          client,
+          {
+            id: {
+              from: "user.inventory",
+              params: { cat: "Primary" },
+              pick: "inventory.items.0.uid",
+            },
+          },
+          ({ id, params }) =>
+            expectApiSuccess(() =>
+              client.torn.withIds(id).itemstats(params as never),
+            ),
+        );
+      },
+      TEST_TIMEOUT,
+    );
 
     it(
       "torn.withIds(...).items should succeed",
       async () => {
-        const response = await client.torn.withIds("1").items();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.withIds("1").items());
       },
       TEST_TIMEOUT,
     );
@@ -396,9 +421,7 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.withIds(...).medals should succeed",
       async () => {
-        const response = await client.torn.withIds("241").medals();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.withIds("241").medals());
       },
       TEST_TIMEOUT,
     );
@@ -406,20 +429,32 @@ describe("TornEndpoint Integration Tests", () => {
     it(
       "torn.withLogCategoryId(...).logtypes should succeed",
       async () => {
-        const response = await client.torn.withLogCategoryId("1").logtypes();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.torn.withLogCategoryId("1").logtypes(),
+        );
       },
       TEST_TIMEOUT,
     );
-    it.skip("torn.withStockId(...).stocks should succeed", () => {});
+
+    it(
+      "torn.withStockId(...).stocks should succeed",
+      async () => {
+        await withTestData(
+          client,
+          { id: { from: "torn.stocks", pick: "stocks.0.id" } },
+          ({ id, params }) =>
+            expectApiSuccess(() =>
+              client.torn.withStockId(id).stocks(params as never),
+            ),
+        );
+      },
+      TEST_TIMEOUT,
+    );
 
     it(
       "torn.withCrimeId(...).subcrimes should succeed",
       async () => {
-        const response = await client.torn.withCrimeId("1").subcrimes();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.torn.withCrimeId("1").subcrimes());
       },
       TEST_TIMEOUT,
     );

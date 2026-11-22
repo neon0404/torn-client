@@ -1,4 +1,5 @@
 import { TornAPI } from "../../src";
+import { expectApiSuccess } from "../e2e-helpers";
 
 describe("PropertyEndpoint Integration Tests", () => {
   let client: TornAPI;
@@ -21,9 +22,7 @@ describe("PropertyEndpoint Integration Tests", () => {
       it(
         "property.withId(...).get should succeed",
         async () => {
-          const response = await client.property.withId("100").get();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.property.withId("100").get());
         },
         TEST_TIMEOUT,
       );
@@ -31,9 +30,7 @@ describe("PropertyEndpoint Integration Tests", () => {
       it(
         "property.lookup should succeed",
         async () => {
-          const response = await client.property.lookup();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.property.lookup());
         },
         TEST_TIMEOUT,
       );
@@ -41,9 +38,7 @@ describe("PropertyEndpoint Integration Tests", () => {
       it(
         "property.timestamp should succeed",
         async () => {
-          const response = await client.property.timestamp();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.property.timestamp());
         },
         TEST_TIMEOUT,
       );
@@ -51,12 +46,9 @@ describe("PropertyEndpoint Integration Tests", () => {
       it(
         "property.get should succeed",
         async () => {
-          const response = await client.property.get({
-            selections: ["property"],
-            id: 100,
-          });
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.property.get({ selections: ["property"], id: 100 }),
+          );
         },
         TEST_TIMEOUT,
       );

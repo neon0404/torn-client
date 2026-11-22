@@ -1,4 +1,5 @@
 import { TornAPI } from "../../src";
+import { expectApiSuccess, withTestData } from "../e2e-helpers";
 
 describe("FactionEndpoint Integration Tests", () => {
   let client: TornAPI;
@@ -21,9 +22,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.applications should succeed",
         async () => {
-          const response = await client.faction.applications();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.applications());
         },
         TEST_TIMEOUT,
       );
@@ -31,9 +30,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.attacks should succeed",
         async () => {
-          const response = await client.faction.attacks();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.attacks());
         },
         TEST_TIMEOUT,
       );
@@ -41,9 +38,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.attacksfull should succeed",
         async () => {
-          const response = await client.faction.attacksfull();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.attacksfull());
         },
         TEST_TIMEOUT,
       );
@@ -51,9 +46,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.balance should succeed",
         async () => {
-          const response = await client.faction.balance();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.balance());
         },
         TEST_TIMEOUT,
       );
@@ -61,9 +54,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.basic should succeed",
         async () => {
-          const response = await client.faction.basic();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.basic());
         },
         TEST_TIMEOUT,
       );
@@ -71,9 +62,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.chain should succeed",
         async () => {
-          const response = await client.faction.chain();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.chain());
         },
         TEST_TIMEOUT,
       );
@@ -81,9 +70,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.chains should succeed",
         async () => {
-          const response = await client.faction.chains();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.chains());
         },
         TEST_TIMEOUT,
       );
@@ -91,9 +78,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.chainreport should succeed",
         async () => {
-          const response = await client.faction.chainreport();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.chainreport());
         },
         TEST_TIMEOUT,
       );
@@ -101,11 +86,9 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.contributors should succeed",
         async () => {
-          const response = await client.faction.contributors({
-            stat: "attackswon",
-          });
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.faction.contributors({ stat: "attackswon" }),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -113,9 +96,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.crimeexp should succeed",
         async () => {
-          const response = await client.faction.crimeexp();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.crimeexp());
         },
         TEST_TIMEOUT,
       );
@@ -123,9 +104,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.crimes should succeed",
         async () => {
-          const response = await client.faction.crimes();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.crimes());
         },
         TEST_TIMEOUT,
       );
@@ -133,9 +112,15 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.dirtybombs should succeed",
         async () => {
-          const response = await client.faction.dirtybombs();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.dirtybombs());
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
+        "faction.headlines should succeed",
+        async () => {
+          await expectApiSuccess(() => client.faction.headlines());
         },
         TEST_TIMEOUT,
       );
@@ -143,9 +128,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.hof should succeed",
         async () => {
-          const response = await client.faction.hof();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.hof());
         },
         TEST_TIMEOUT,
       );
@@ -153,9 +136,9 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.inventory should succeed",
         async () => {
-          const response = await client.faction.inventory();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.faction.inventory({ cat: "weapons" }),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -163,9 +146,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.members should succeed",
         async () => {
-          const response = await client.faction.members();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.members());
         },
         TEST_TIMEOUT,
       );
@@ -173,9 +154,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.news should succeed",
         async () => {
-          const response = await client.faction.news({ cat: "main" });
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.news({ cat: "main" }));
         },
         TEST_TIMEOUT,
       );
@@ -183,9 +162,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.positions should succeed",
         async () => {
-          const response = await client.faction.positions();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.positions());
         },
         TEST_TIMEOUT,
       );
@@ -193,9 +170,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.rackets should succeed",
         async () => {
-          const response = await client.faction.rackets();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.rackets());
         },
         TEST_TIMEOUT,
       );
@@ -203,9 +178,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.raids should succeed",
         async () => {
-          const response = await client.faction.raids();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.raids());
         },
         TEST_TIMEOUT,
       );
@@ -213,9 +186,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.rankedwars should succeed",
         async () => {
-          const response = await client.faction.rankedwars();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.rankedwars());
         },
         TEST_TIMEOUT,
       );
@@ -223,9 +194,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.reports should succeed",
         async () => {
-          const response = await client.faction.reports();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.reports());
         },
         TEST_TIMEOUT,
       );
@@ -233,9 +202,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.revives should succeed",
         async () => {
-          const response = await client.faction.revives();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.revives());
         },
         TEST_TIMEOUT,
       );
@@ -243,9 +210,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.revivesfull should succeed",
         async () => {
-          const response = await client.faction.revivesfull();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.revivesfull());
         },
         TEST_TIMEOUT,
       );
@@ -253,9 +218,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.search should succeed",
         async () => {
-          const response = await client.faction.search();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.search());
         },
         TEST_TIMEOUT,
       );
@@ -263,9 +226,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.snapshot should succeed",
         async () => {
-          const response = await client.faction.snapshot();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.snapshot());
         },
         TEST_TIMEOUT,
       );
@@ -273,9 +234,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.stats should succeed",
         async () => {
-          const response = await client.faction.stats();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.stats());
         },
         TEST_TIMEOUT,
       );
@@ -283,9 +242,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.territory should succeed",
         async () => {
-          const response = await client.faction.territory();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.territory());
         },
         TEST_TIMEOUT,
       );
@@ -293,9 +250,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.territoryownership should succeed",
         async () => {
-          const response = await client.faction.territoryownership();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.territoryownership());
         },
         TEST_TIMEOUT,
       );
@@ -303,9 +258,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.territorywars should succeed",
         async () => {
-          const response = await client.faction.territorywars();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.territorywars());
         },
         TEST_TIMEOUT,
       );
@@ -313,9 +266,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.upgrades should succeed",
         async () => {
-          const response = await client.faction.upgrades();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.upgrades());
         },
         TEST_TIMEOUT,
       );
@@ -323,9 +274,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.warfarechains should succeed",
         async () => {
-          const response = await client.faction.warfarechains();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.warfarechains());
         },
         TEST_TIMEOUT,
       );
@@ -333,9 +282,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.warfareraids should succeed",
         async () => {
-          const response = await client.faction.warfareraids();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.warfareraids());
         },
         TEST_TIMEOUT,
       );
@@ -343,9 +290,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.warfareranked should succeed",
         async () => {
-          const response = await client.faction.warfareranked();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.warfareranked());
         },
         TEST_TIMEOUT,
       );
@@ -353,9 +298,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.warfareterritory should succeed",
         async () => {
-          const response = await client.faction.warfareterritory();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.warfareterritory());
         },
         TEST_TIMEOUT,
       );
@@ -363,9 +306,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.warfare should succeed",
         async () => {
-          const response = await client.faction.warfare({ cat: "raid" });
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.warfare({ cat: "raid" }));
         },
         TEST_TIMEOUT,
       );
@@ -373,9 +314,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.wars should succeed",
         async () => {
-          const response = await client.faction.wars();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.wars());
         },
         TEST_TIMEOUT,
       );
@@ -383,9 +322,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.lookup should succeed",
         async () => {
-          const response = await client.faction.lookup();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.lookup());
         },
         TEST_TIMEOUT,
       );
@@ -393,9 +330,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.timestamp should succeed",
         async () => {
-          const response = await client.faction.timestamp();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.timestamp());
         },
         TEST_TIMEOUT,
       );
@@ -403,9 +338,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.get should succeed",
         async () => {
-          const response = await client.faction.get();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.get());
         },
         TEST_TIMEOUT,
       );
@@ -413,9 +346,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withId(...).basic should succeed",
         async () => {
-          const response = await client.faction.withId("46166").basic();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.withId("46166").basic());
         },
         TEST_TIMEOUT,
       );
@@ -423,9 +354,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withId(...).chain should succeed",
         async () => {
-          const response = await client.faction.withId("46166").chain();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.withId("46166").chain());
         },
         TEST_TIMEOUT,
       );
@@ -433,9 +362,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withId(...).chains should succeed",
         async () => {
-          const response = await client.faction.withId("46166").chains();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.withId("46166").chains());
         },
         TEST_TIMEOUT,
       );
@@ -443,9 +370,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withId(...).hof should succeed",
         async () => {
-          const response = await client.faction.withId("46166").hof();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.withId("46166").hof());
         },
         TEST_TIMEOUT,
       );
@@ -453,9 +378,9 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withId(...).members should succeed",
         async () => {
-          const response = await client.faction.withId("46166").members();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.faction.withId("46166").members(),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -463,9 +388,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withId(...).raids should succeed",
         async () => {
-          const response = await client.faction.withId("46166").raids();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.withId("46166").raids());
         },
         TEST_TIMEOUT,
       );
@@ -473,9 +396,9 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withId(...).rankedwars should succeed",
         async () => {
-          const response = await client.faction.withId("46166").rankedwars();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.faction.withId("46166").rankedwars(),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -483,9 +406,9 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withId(...).territory should succeed",
         async () => {
-          const response = await client.faction.withId("46166").territory();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.faction.withId("46166").territory(),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -493,9 +416,9 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withId(...).territorywars should succeed",
         async () => {
-          const response = await client.faction.withId("9176").territorywars();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.faction.withId("9176").territorywars(),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -503,9 +426,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withId(...).wars should succeed",
         async () => {
-          const response = await client.faction.withId("46166").wars();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.withId("46166").wars());
         },
         TEST_TIMEOUT,
       );
@@ -513,9 +434,7 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withId(...).get should succeed",
         async () => {
-          const response = await client.faction.withId("46166").get();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.faction.withId("46166").get());
         },
         TEST_TIMEOUT,
       );
@@ -523,11 +442,9 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withChainId(...).chainreport should succeed",
         async () => {
-          const response = await client.faction
-            .withChainId("49918782")
-            .chainreport();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.faction.withChainId("49918782").chainreport(),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -535,9 +452,14 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withCrimeId(...).crime should succeed",
         async () => {
-          const response = await client.faction.withCrimeId("670659").crime();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await withTestData(
+            client,
+            { id: { from: "faction.crimes", pick: "crimes.0.id" } },
+            ({ id, params }) =>
+              expectApiSuccess(() =>
+                client.faction.withCrimeId(id).crime(params as never),
+              ),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -545,11 +467,9 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withRaidWarId(...).raidreport should succeed",
         async () => {
-          const response = await client.faction
-            .withRaidWarId("6590")
-            .raidreport();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.faction.withRaidWarId("6590").raidreport(),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -557,11 +477,9 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withRankedWarId(...).rankedwarreport should succeed",
         async () => {
-          const response = await client.faction
-            .withRankedWarId("27616")
-            .rankedwarreport();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.faction.withRankedWarId("27616").rankedwarreport(),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -569,11 +487,9 @@ describe("FactionEndpoint Integration Tests", () => {
       it(
         "faction.withTerritoryWarId(...).territorywarreport should succeed",
         async () => {
-          const response = await client.faction
-            .withTerritoryWarId("43017")
-            .territorywarreport();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.faction.withTerritoryWarId("43017").territorywarreport(),
+          );
         },
         TEST_TIMEOUT,
       );

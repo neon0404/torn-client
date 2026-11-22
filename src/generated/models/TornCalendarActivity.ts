@@ -4,5 +4,7 @@ export type TornCalendarActivity = {
   description: string;
   start: number;
   end: number;
-  fixed_start_time?: boolean;
+  earliest_start: number;
+  latest_end: number;
+  fixed_start_time: boolean;
 };

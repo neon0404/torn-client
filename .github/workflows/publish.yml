@@ -3,7 +3,12 @@ name: Publish to NPM and GitHub Releases
 on:
   push:
     branches: [ main ]
+  # Also dispatched by CI after an automated API update is auto-merged
   workflow_dispatch:
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
 
 jobs:
   publish:
@@ -31,21 +36,47 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build
-        run: pnpm build
-
       - name: Extract version from package.json
         id: get_version
         run: echo "VERSION=$(jq -r .version package.json)" >> $GITHUB_OUTPUT
 
+      # Makes the workflow safe to re-run or dispatch twice: an existing version is never republished
+      - name: Check whether this version is already published
+        id: published
+        env:
+          VERSION: ${{ steps.get_version.outputs.VERSION }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          NAME=$(jq -r .name package.json)
+          if npm view "$NAME@$VERSION" version >/dev/null 2>&1; then
+            echo "$NAME@$VERSION is already on npm, skipping publish" | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "npm=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "npm=false" >> "$GITHUB_OUTPUT"
+          fi
+          if gh release view "v$VERSION" >/dev/null 2>&1; then
+            echo "release=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "release=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install dependencies
+        if: steps.published.outputs.npm != 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        if: steps.published.outputs.npm != 'true'
+        run: pnpm build
+
       - name: Publish to NPM
+        if: steps.published.outputs.npm != 'true'
         run: pnpm publish --access=public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Create GitHub Release
         id: create_release
+        if: steps.published.outputs.release != 'true'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: "v${{ steps.get_version.outputs.VERSION }}"

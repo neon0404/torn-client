@@ -1,4 +1,5 @@
 import { TornAPI } from "../../src";
+import { expectApiSuccess } from "../e2e-helpers";
 
 describe("ForumEndpoint Integration Tests", () => {
   let client: TornAPI;
@@ -19,9 +20,7 @@ describe("ForumEndpoint Integration Tests", () => {
     it(
       "forum.categories should succeed",
       async () => {
-        const response = await client.forum.categories();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.forum.categories());
       },
       TEST_TIMEOUT,
     );
@@ -29,9 +28,7 @@ describe("ForumEndpoint Integration Tests", () => {
     it(
       "forum.threads should succeed",
       async () => {
-        const response = await client.forum.threads();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.forum.threads());
       },
       TEST_TIMEOUT,
     );
@@ -39,9 +36,7 @@ describe("ForumEndpoint Integration Tests", () => {
     it(
       "forum.lookup should succeed",
       async () => {
-        const response = await client.forum.lookup();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.forum.lookup());
       },
       TEST_TIMEOUT,
     );
@@ -49,9 +44,7 @@ describe("ForumEndpoint Integration Tests", () => {
     it(
       "forum.timestamp should succeed",
       async () => {
-        const response = await client.forum.timestamp();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() => client.forum.timestamp());
       },
       TEST_TIMEOUT,
     );
@@ -59,9 +52,9 @@ describe("ForumEndpoint Integration Tests", () => {
     it(
       "forum.get should succeed",
       async () => {
-        const response = await client.forum.get({ selections: ["categories"] });
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.forum.get({ selections: ["categories"] }),
+        );
       },
       TEST_TIMEOUT,
     );
@@ -69,9 +62,9 @@ describe("ForumEndpoint Integration Tests", () => {
     it(
       "forum.withThreadId(...).posts should succeed",
       async () => {
-        const response = await client.forum.withThreadId("16485512").posts();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.forum.withThreadId("16485512").posts(),
+        );
       },
       TEST_TIMEOUT,
     );
@@ -79,9 +72,9 @@ describe("ForumEndpoint Integration Tests", () => {
     it(
       "forum.withThreadId(...).thread should succeed",
       async () => {
-        const response = await client.forum.withThreadId("16485512").thread();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.forum.withThreadId("16485512").thread(),
+        );
       },
       TEST_TIMEOUT,
     );
@@ -89,9 +82,9 @@ describe("ForumEndpoint Integration Tests", () => {
     it(
       "forum.withCategoryIds(...).threads should succeed",
       async () => {
-        const response = await client.forum.withCategoryIds("63").threads();
-        expect(response).toBeDefined();
-        expect(response).not.toHaveProperty("error");
+        await expectApiSuccess(() =>
+          client.forum.withCategoryIds("63").threads(),
+        );
       },
       TEST_TIMEOUT,
     );

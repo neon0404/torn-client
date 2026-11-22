@@ -1,4 +1,5 @@
 import { TornAPI } from "../../src";
+import { expectApiSuccess, withTestData } from "../e2e-helpers";
 
 describe("RacingEndpoint Integration Tests", () => {
   let client: TornAPI;
@@ -21,9 +22,7 @@ describe("RacingEndpoint Integration Tests", () => {
       it(
         "racing.cars should succeed",
         async () => {
-          const response = await client.racing.cars();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.racing.cars());
         },
         TEST_TIMEOUT,
       );
@@ -31,9 +30,7 @@ describe("RacingEndpoint Integration Tests", () => {
       it(
         "racing.carupgrades should succeed",
         async () => {
-          const response = await client.racing.carupgrades();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.racing.carupgrades());
         },
         TEST_TIMEOUT,
       );
@@ -41,9 +38,7 @@ describe("RacingEndpoint Integration Tests", () => {
       it(
         "racing.races should succeed",
         async () => {
-          const response = await client.racing.races();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.racing.races());
         },
         TEST_TIMEOUT,
       );
@@ -51,9 +46,7 @@ describe("RacingEndpoint Integration Tests", () => {
       it(
         "racing.tracks should succeed",
         async () => {
-          const response = await client.racing.tracks();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.racing.tracks());
         },
         TEST_TIMEOUT,
       );
@@ -61,9 +54,7 @@ describe("RacingEndpoint Integration Tests", () => {
       it(
         "racing.lookup should succeed",
         async () => {
-          const response = await client.racing.lookup();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.racing.lookup());
         },
         TEST_TIMEOUT,
       );
@@ -71,9 +62,7 @@ describe("RacingEndpoint Integration Tests", () => {
       it(
         "racing.timestamp should succeed",
         async () => {
-          const response = await client.racing.timestamp();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() => client.racing.timestamp());
         },
         TEST_TIMEOUT,
       );
@@ -81,9 +70,9 @@ describe("RacingEndpoint Integration Tests", () => {
       it(
         "racing.get should succeed",
         async () => {
-          const response = await client.racing.get({ selections: ["cars"] });
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.racing.get({ selections: ["cars"] }),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -91,9 +80,14 @@ describe("RacingEndpoint Integration Tests", () => {
       it(
         "racing.withRaceId(...).race should succeed",
         async () => {
-          const response = await client.racing.withRaceId("15528012").race();
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await withTestData(
+            client,
+            { id: { from: "racing.races", pick: "races.0.id" } },
+            ({ id, params }) =>
+              expectApiSuccess(() =>
+                client.racing.withRaceId(id).race(params as never),
+              ),
+          );
         },
         TEST_TIMEOUT,
       );
@@ -101,11 +95,9 @@ describe("RacingEndpoint Integration Tests", () => {
       it(
         "racing.withTrackId(...).records should succeed",
         async () => {
-          const response = await client.racing
-            .withTrackId("6")
-            .records({ cat: "A" });
-          expect(response).toBeDefined();
-          expect(response).not.toHaveProperty("error");
+          await expectApiSuccess(() =>
+            client.racing.withTrackId("6").records({ cat: "A" }),
+          );
         },
         TEST_TIMEOUT,
       );
