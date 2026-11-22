@@ -202,6 +202,8 @@ The PR also bumps the package version: patch normally, minor (major from 1.0.0 o
 (`scripts/bump-version.mjs`). CI merges that PR automatically once lint, type check, build, unit tests and E2E tests pass,
 then dispatches `publish.yml` (npm + GitHub release) and `docs.yml`. No manual step is needed.
 `publish.yml` skips versions that are already on npm, so re-running it is safe.
+It publishes with [npm trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC), so there is no npm token to rotate;
+the trusted publisher is configured on npmjs.com for this repository and the `publish.yml` workflow
 If the update removes public API (exports or endpoint methods, see `pnpm api:surface`), it is still merged,
 but gets the `breaking-change` label and a comment listing the removals, so the next release can bump the version accordingly.
 Set the repository variable `AUTOMERGE_HOLD_BREAKING=true` to leave those PRs for a maintainer instead

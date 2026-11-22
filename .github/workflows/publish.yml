@@ -18,6 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      # npm trusted publishing: GitHub proves the workflow's identity to npm (OIDC),
+      # so no NPM_TOKEN is needed and nothing expires. Configured on npmjs.com under
+      # torn-client > Settings > Trusted Publisher (repo neon0404/torn-client, workflow publish.yml)
+      id-token: write
 
     steps:
       - uses: actions/checkout@v4
@@ -30,11 +34,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org/'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Extract version from package.json
         id: get_version
@@ -68,11 +70,20 @@ jobs:
         if: steps.published.outputs.npm != 'true'
         run: pnpm build
 
+      # Trusted publishing needs npm CLI >= 11.5.1
+      - name: Ensure npm supports trusted publishing
+        if: steps.published.outputs.npm != 'true'
+        run: |
+          if ! node -e 'const [a,b,c]=process.argv[1].split(".").map(Number); process.exit(a>11||(a===11&&(b>5||(b===5&&c>=1)))?0:1)' "$(npm --version)"; then
+            npm install -g npm@latest
+          fi
+          echo "npm $(npm --version)"
+
+      # npm (not pnpm) handles the OIDC exchange; it still runs prepublishOnly
+      # (lint, tests, build) through pnpm, and adds provenance automatically
       - name: Publish to NPM
         if: steps.published.outputs.npm != 'true'
-        run: pnpm publish --access=public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public
 
       - name: Create GitHub Release
         id: create_release
