@@ -16,6 +16,7 @@ export type FactionSelectionName =
   | "inventory"
   | "members"
   | "news"
+  | "ochistory"
   | "positions"
   | "rackets"
   | "raidreport"

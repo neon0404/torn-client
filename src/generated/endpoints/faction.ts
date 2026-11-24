@@ -24,6 +24,7 @@ import type {
   FactionLookupResponse,
   FactionMembersResponse,
   FactionNewsCategory,
+  FactionOcHistoryResponse,
   FactionOngoingChainResponse,
   FactionPositionsResponse,
   FactionRacketsResponse,
@@ -1189,6 +1190,22 @@ export class FactionCrimeIdContext {
   }): Promise<FactionCrimeResponse> {
     const path = `/faction/${this.contextId}/crime`;
     const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get the history of a specific organized crime
+   * @param params - Optional query parameters
+   */
+  public async ochistory(params?: {
+    striptags?: "true" | "false";
+    timestamp?: number | string;
+  }): Promise<FactionOcHistoryResponse> {
+    const path = `/faction/${this.contextId}/ochistory`;
+    const query = {
+      ...(params?.striptags !== undefined && { striptags: params.striptags }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);

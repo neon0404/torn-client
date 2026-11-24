@@ -15,6 +15,7 @@ import type {
   FactionInventoryResponse,
   FactionLookupResponse,
   FactionMembersResponse,
+  FactionOcHistoryResponse,
   FactionOngoingChainResponse,
   FactionPositionsResponse,
   FactionRacketsResponse,
@@ -64,6 +65,7 @@ export type FactionResponse =
   | FactionChainReportResponse
   | FactionCrimesResponse
   | FactionCrimeResponse
+  | FactionOcHistoryResponse
   | FactionRaidsResponse
   | FactionWarfareResponse
   | FactionRankedWarReportResponse
