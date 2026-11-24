@@ -463,6 +463,7 @@ describe("FactionEndpoint Integration Tests", () => {
         },
         TEST_TIMEOUT,
       );
+      it.skip("faction.withCrimeId(...).ochistory should succeed", () => {});
 
       it(
         "faction.withRaidWarId(...).raidreport should succeed",
