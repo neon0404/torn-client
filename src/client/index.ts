@@ -11,7 +11,7 @@ import {
 } from "../generated";
 
 import { RequestHandler, RequestHandlerOptions } from "./requester";
-import type { Requester, RateLimitMode } from "./types";
+import type { Requester, RateLimitMode, RateLimitStatus } from "./types";
 
 /**
  * Configuration options for the TornAPI client
@@ -52,6 +52,7 @@ export interface TornAPIOptions extends Omit<RequestHandlerOptions, "apiKeys"> {
  * | `comment` | `string` | `undefined` | A comment to include in the `comment` query parameter for your requests |
  * | `headers` | `Record<string, string>` | `{}` | Custom headers to send with each request |
  * | `verbose` | `boolean` | `false` | If `true`, logs all outgoing requests, responses, and rate limit events |
+ * | `onRateLimit` | `(event: RateLimitEvent) => void` | `undefined` | Called when a request starts waiting for the rate limit and when it resumes (`autoDelay` only) |
  *
  * ## Core Concepts
  *
@@ -82,6 +83,38 @@ export interface TornAPIOptions extends Omit<RequestHandlerOptions, "apiKeys"> {
  * -   **`autoDelay` (Default)**: Automatically queues requests to ensure you do not exceed the 100 req/min limit
  * -   **`throwOnLimit`**: Throws a `TornRateLimitError` if a request would exceed the limit
  * -   **`ignore`**: Disables rate limiting. Not recommended unless you have your own external limiter
+ *
+ * ### Observing rate limiting
+ *
+ * In `autoDelay` mode a request over the limit silently waits, up to a minute.
+ * Pass `onRateLimit` to find out when that happens, e.g. to render a countdown:
+ *
+ * ```
+ * let timer: ReturnType<typeof setInterval> | undefined;
+ *
+ * const client = new TornAPI({
+ *   apiKeys: ["YOUR_API_KEY"],
+ *   // Re-render on every event; the status tells us what is still waiting
+ *   onRateLimit: () => {
+ *     clearInterval(timer);
+ *     render();
+ *     timer = setInterval(render, 1000);
+ *   },
+ * });
+ *
+ * function render() {
+ *   const { waiting, resumeAt } = client.getRateLimitStatus();
+ *   if (resumeAt === null) {
+ *     clearInterval(timer);
+ *     return showStatus(""); // nothing is waiting anymore
+ *   }
+ *   const seconds = Math.ceil(Math.max(0, resumeAt - Date.now()) / 1000);
+ *   showStatus(`Waiting ${seconds}s for rate limit (${waiting} queued)`);
+ * }
+ * ```
+ *
+ * `waiting` events repeat whenever a request has to wait again (another request took the freed slot),
+ * each with a fresh `resumeAt`. `getRateLimitStatus()` returns the same information on demand
  *
  * @category Core
  */
@@ -134,5 +167,16 @@ export class TornAPI {
     { used: number; remaining: number; resetInMs: number }
   > {
     return this.requestHandler.getRateLimitInfo();
+  }
+
+  /**
+   * Returns how many requests are currently held back by the client-side rate limiter
+   * and the earliest time one of them will try again (`null` if nothing is waiting)
+   *
+   * Useful for polling; use the `onRateLimit` option to be notified instead
+   * `waiting` is always 0 outside `autoDelay` mode
+   */
+  public getRateLimitStatus(): RateLimitStatus {
+    return this.requestHandler.getRateLimitStatus();
   }
 }
