@@ -1,4 +1,10 @@
-import type { FactionId, ItemId, RankedWarId, UserId } from ".";
+import type {
+  FactionId,
+  FactionRankedWarTemplate,
+  ItemId,
+  RankedWarId,
+  UserId,
+} from ".";
 
 /** @category Models */
 export type FactionRankedWarReportResponse = {
@@ -8,6 +14,7 @@ export type FactionRankedWarReportResponse = {
     end: number;
     winner: FactionId;
     forfeit: boolean;
+    template: FactionRankedWarTemplate;
     factions: {
       id: FactionId;
       name: string;

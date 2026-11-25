@@ -1,7 +1,8 @@
-import type { FactionId, RankedWarId } from ".";
+import type { FactionId, FactionRankedWarTemplate, RankedWarId } from ".";
 
 /** @category Models */
 export type FactionRankedWarDetails = {
+  template: FactionRankedWarTemplate;
   id: RankedWarId;
   start: number;
   end: number;

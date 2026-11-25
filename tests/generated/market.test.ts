@@ -56,6 +56,14 @@ describe("MarketEndpoint Integration Tests", () => {
       );
 
       it(
+        "market.withId(...).itemhistory should succeed",
+        async () => {
+          await expectApiSuccess(() => client.market.withId("1").itemhistory());
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
         "market.auctionhouse should succeed",
         async () => {
           await expectApiSuccess(() => client.market.auctionhouse());
@@ -75,6 +83,14 @@ describe("MarketEndpoint Integration Tests", () => {
         "market.pointsmarket should succeed",
         async () => {
           await expectApiSuccess(() => client.market.pointsmarket());
+        },
+        TEST_TIMEOUT,
+      );
+
+      it(
+        "market.pointshistory should succeed",
+        async () => {
+          await expectApiSuccess(() => client.market.pointshistory());
         },
         TEST_TIMEOUT,
       );

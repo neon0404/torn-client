@@ -49,7 +49,7 @@ import type {
   UserGymResponse,
   UserHalloweenResponse,
   UserHofResponse,
-  UserHonorsResponse,
+  UserHonorsCategory,
   UserIconsResponse,
   UserId,
   UserInventoryResponse,
@@ -63,6 +63,7 @@ import type {
   UserListResponse,
   UserLogsResponse,
   UserLookupResponse,
+  UserMedalsCategory,
   UserMedalsResponse,
   UserMeritsResponse,
   UserMessagesResponse,
@@ -594,14 +595,16 @@ export class UserEndpoint {
   }
 
   /**
-   * Get your achieved honors
+   * Get your honors
    * @param params - Optional query parameters
    */
   public async honors(params?: {
+    cat?: UserHonorsCategory;
     timestamp?: number | string;
-  }): Promise<UserHonorsResponse> {
+  }): Promise<UserResponse> {
     const path = `/user/honors`;
     const query = {
+      ...(params?.cat !== undefined && { cat: params.cat }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -770,14 +773,16 @@ export class UserEndpoint {
   }
 
   /**
-   * Get all your achieved medals
+   * Get your medals
    * @param params - Optional query parameters
    */
   public async medals(params?: {
+    cat?: UserMedalsCategory;
     timestamp?: number | string;
-  }): Promise<UserMedalsResponse> {
+  }): Promise<UserResponse> {
     const path = `/user/medals`;
     const query = {
+      ...(params?.cat !== undefined && { cat: params.cat }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
