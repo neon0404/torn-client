@@ -8,8 +8,10 @@ import type {
   BazaarResponseSpecialized,
   ItemId,
   MarketAuctionHouseCategory,
+  MarketItemHistoryResponse,
   MarketItemMarketResponse,
   MarketLookupResponse,
+  MarketPointsHistoryResponse,
   MarketPropertiesResponse,
   MarketRentalsResponse,
   MarketResponse,
@@ -86,6 +88,30 @@ export class MarketEndpoint {
   }): Promise<PointsMarketResponse> {
     const path = `/market/pointsmarket`;
     const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get points price and circulation history
+   * @param params - Optional query parameters
+   */
+  public async pointshistory(params?: {
+    limit?: number;
+    sort?: "DESC" | "ASC";
+    from?: number;
+    to?: number;
+    timestamp?: number | string;
+  }): Promise<
+    PaginatedResponse<MarketPointsHistoryResponse> & MarketPointsHistoryResponse
+  > {
+    const path = `/market/pointshistory`;
+    const query = {
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.to !== undefined && { to: params.to }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
@@ -239,6 +265,30 @@ export class MarketIdContext {
       ...(params?.bonus !== undefined && { bonus: params.bonus }),
       ...(params?.limit !== undefined && { limit: params.limit }),
       ...(params?.offset !== undefined && { offset: params.offset }),
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get item price and circulation history
+   * @param params - Optional query parameters
+   */
+  public async itemhistory(params?: {
+    limit?: number;
+    sort?: "DESC" | "ASC";
+    from?: number;
+    to?: number;
+    timestamp?: number | string;
+  }): Promise<
+    PaginatedResponse<MarketItemHistoryResponse> & MarketItemHistoryResponse
+  > {
+    const path = `/market/${this.contextId}/itemhistory`;
+    const query = {
+      ...(params?.limit !== undefined && { limit: params.limit }),
+      ...(params?.sort !== undefined && { sort: params.sort }),
+      ...(params?.from !== undefined && { from: params.from }),
+      ...(params?.to !== undefined && { to: params.to }),
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
     return this.requester(path, query);
