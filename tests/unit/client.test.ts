@@ -29,3 +29,57 @@ describe("TornAPI", () => {
     expect(client.company).toBeInstanceOf(lib.CompanyEndpoint);
   });
 });
+
+describe("TornAPI rate limit observation", () => {
+  const mockFetch = jest.spyOn(global, "fetch");
+
+  beforeEach(() => {
+    jest.useFakeTimers();
+    mockFetch.mockReset();
+    mockFetch.mockImplementation(() =>
+      Promise.resolve(new Response(JSON.stringify({ ok: true }))),
+    );
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
+  it("should pass onRateLimit through and expose getRateLimitStatus", async () => {
+    const onRateLimit = jest.fn();
+    const client = new TornAPI({ apiKeys: ["KEY1"], onRateLimit });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const handler = (client as any).requestHandler;
+    const now = Date.now();
+    const timestamps = handler.requestTimestamps.get("KEY1");
+    for (let i = 0; i < 100; i++) timestamps.push(now);
+
+    expect(client.getRateLimitStatus()).toEqual({ waiting: 0, resumeAt: null });
+
+    const request = handler.requester("/test", {});
+    await jest.advanceTimersByTimeAsync(0);
+
+    expect(client.getRateLimitStatus()).toEqual({
+      waiting: 1,
+      resumeAt: now + 60_100,
+    });
+    expect(onRateLimit).toHaveBeenCalledWith({
+      type: "waiting",
+      waitMs: 60_100,
+      resumeAt: now + 60_100,
+      queued: 1,
+    });
+
+    await jest.advanceTimersByTimeAsync(60_100);
+    await request;
+
+    expect(onRateLimit).toHaveBeenLastCalledWith({
+      type: "resumed",
+      waitedMs: 60_100,
+      queued: 0,
+    });
+    expect(client.getRateLimitStatus()).toEqual({ waiting: 0, resumeAt: null });
+    // Existing per-key info is unchanged and still only shows the key prefix
+    expect(Object.keys(client.getRateLimitInfo())).toEqual(["KEY1"]);
+  });
+});

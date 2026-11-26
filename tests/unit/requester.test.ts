@@ -267,4 +267,210 @@ describe("RequestHandler", () => {
       }
     });
   });
+
+  describe("Observing rate limiting", () => {
+    const okResponse = () =>
+      Promise.resolve(new Response(JSON.stringify({ ok: true })));
+
+    /**
+     * Fills KEY1 so the next free slot opens in 5100ms (oldest request 55s ago)
+     * and the rest open in 60100ms
+     */
+    const fillKey = (handler: RequestHandler) => {
+      const now = Date.now();
+      const timestamps = (handler as any).requestTimestamps.get("KEY1");
+      timestamps.push(now - 55_000);
+      for (let i = 0; i < 99; i++) timestamps.push(now);
+      return now;
+    };
+
+    it("should emit waiting then resumed for a single request over the limit", async () => {
+      mockFetch.mockImplementation(okResponse);
+      const onRateLimit = jest.fn();
+      const handler = new RequestHandler({ apiKeys: ["KEY1"], onRateLimit });
+      const now = fillKey(handler);
+
+      const request = (handler as any).makeRequest("/test", {});
+      await jest.advanceTimersByTimeAsync(0);
+
+      expect(onRateLimit.mock.calls).toEqual([
+        [{ type: "waiting", waitMs: 5100, resumeAt: now + 5100, queued: 1 }],
+      ]);
+      expect(mockFetch).not.toHaveBeenCalled();
+
+      await jest.advanceTimersByTimeAsync(5100);
+      await request;
+
+      expect(onRateLimit.mock.calls).toEqual([
+        [{ type: "waiting", waitMs: 5100, resumeAt: now + 5100, queued: 1 }],
+        [{ type: "resumed", waitedMs: 5100, queued: 0 }],
+      ]);
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+    });
+
+    it("should report queue sizes for concurrent requests and resume each of them", async () => {
+      mockFetch.mockImplementation(okResponse);
+      const onRateLimit = jest.fn();
+      const handler = new RequestHandler({ apiKeys: ["KEY1"], onRateLimit });
+      const now = fillKey(handler);
+
+      const all = Promise.all(
+        Array.from({ length: 3 }, () =>
+          (handler as any).makeRequest("/test", {}),
+        ),
+      );
+      await jest.advanceTimersByTimeAsync(0);
+
+      expect(onRateLimit.mock.calls.map(([event]) => event)).toEqual([
+        { type: "waiting", waitMs: 5100, resumeAt: now + 5100, queued: 1 },
+        { type: "waiting", waitMs: 5100, resumeAt: now + 5100, queued: 2 },
+        { type: "waiting", waitMs: 5100, resumeAt: now + 5100, queued: 3 },
+      ]);
+      onRateLimit.mockClear();
+
+      // One slot frees up: the first request takes it, the other two must wait again
+      await jest.advanceTimersByTimeAsync(5100);
+      expect(onRateLimit.mock.calls.map(([event]) => event)).toEqual([
+        { type: "resumed", waitedMs: 5100, queued: 2 },
+        { type: "waiting", waitMs: 55_000, resumeAt: now + 60_100, queued: 2 },
+        { type: "waiting", waitMs: 55_000, resumeAt: now + 60_100, queued: 2 },
+      ]);
+      expect(handler.getRateLimitStatus()).toEqual({
+        waiting: 2,
+        resumeAt: now + 60_100,
+      });
+      onRateLimit.mockClear();
+
+      await jest.advanceTimersByTimeAsync(55_000);
+      await all;
+
+      expect(onRateLimit.mock.calls.map(([event]) => event)).toEqual([
+        { type: "resumed", waitedMs: 60_100, queued: 1 },
+        { type: "resumed", waitedMs: 60_100, queued: 0 },
+      ]);
+      expect(mockFetch).toHaveBeenCalledTimes(3);
+      expect(handler.getRateLimitStatus()).toEqual({
+        waiting: 0,
+        resumeAt: null,
+      });
+    });
+
+    it.each([
+      [
+        "throws",
+        () => {
+          throw new Error("listener failed");
+        },
+      ],
+      ["returns a rejected promise", () => Promise.reject(new Error("nope"))],
+    ])(
+      "should complete the request when the callback %s",
+      async (_, listener) => {
+        mockFetch.mockImplementation(okResponse);
+        const onRateLimit = jest.fn(listener);
+        const handler = new RequestHandler({ apiKeys: ["KEY1"], onRateLimit });
+        fillKey(handler);
+
+        const request = (handler as any).makeRequest("/test", {});
+        await jest.advanceTimersByTimeAsync(5100);
+
+        await expect(request).resolves.toEqual({ ok: true });
+        expect(onRateLimit).toHaveBeenCalledTimes(2);
+        expect(handler.getRateLimitStatus()).toEqual({
+          waiting: 0,
+          resumeAt: null,
+        });
+      },
+    );
+
+    it('should not emit events in "throwOnLimit" mode', async () => {
+      const onRateLimit = jest.fn();
+      const handler = new RequestHandler({
+        apiKeys: ["KEY1"],
+        rateLimitMode: "throwOnLimit",
+        onRateLimit,
+      });
+      fillKey(handler);
+
+      await expect((handler as any).makeRequest("/test", {})).rejects.toThrow(
+        TornRateLimitError,
+      );
+      expect(onRateLimit).not.toHaveBeenCalled();
+      expect(handler.getRateLimitStatus()).toEqual({
+        waiting: 0,
+        resumeAt: null,
+      });
+    });
+
+    it('should not emit events in "ignore" mode', async () => {
+      mockFetch.mockImplementation(okResponse);
+      const onRateLimit = jest.fn();
+      const handler = new RequestHandler({
+        apiKeys: ["KEY1"],
+        rateLimitMode: "ignore",
+        onRateLimit,
+      });
+      fillKey(handler);
+
+      const request = (handler as any).makeRequest("/test", {});
+      expect(handler.getRateLimitStatus()).toEqual({
+        waiting: 0,
+        resumeAt: null,
+      });
+      await request;
+
+      expect(onRateLimit).not.toHaveBeenCalled();
+      expect(mockFetch).toHaveBeenCalledTimes(1);
+    });
+
+    it("should reflect the waiting state in getRateLimitStatus", async () => {
+      mockFetch.mockImplementation(okResponse);
+      const handler = new RequestHandler({ apiKeys: ["KEY1"] });
+      const now = fillKey(handler);
+
+      expect(handler.getRateLimitStatus()).toEqual({
+        waiting: 0,
+        resumeAt: null,
+      });
+
+      const request = (handler as any).makeRequest("/test", {});
+      await jest.advanceTimersByTimeAsync(1000);
+      expect(handler.getRateLimitStatus()).toEqual({
+        waiting: 1,
+        resumeAt: now + 5100,
+      });
+
+      await jest.advanceTimersByTimeAsync(4100);
+      await request;
+      expect(handler.getRateLimitStatus()).toEqual({
+        waiting: 0,
+        resumeAt: null,
+      });
+    });
+
+    it("should stop counting a request that throws while waiting", async () => {
+      const handler = new RequestHandler({ apiKeys: ["KEY1"] });
+      fillKey(handler);
+      const acquireKey = jest
+        .spyOn(handler as any, "acquireKey")
+        .mockReturnValueOnce(null)
+        .mockImplementationOnce(() => {
+          throw new Error("boom");
+        });
+
+      // Catch right away so the rejection is not unhandled while timers advance
+      const outcome = (handler as any)
+        .makeRequest("/test", {})
+        .catch((error: Error) => error);
+      await jest.advanceTimersByTimeAsync(5100);
+
+      expect(await outcome).toEqual(new Error("boom"));
+
+      expect(acquireKey).toHaveBeenCalledTimes(2);
+      expect(handler.getRateLimitStatus()).toEqual({
+        waiting: 0,
+        resumeAt: null,
+      });
+    });
+  });
 });

@@ -1,6 +1,13 @@
 import { TornApiError, TornRateLimitError } from "./errors";
 import { PaginatedResponse } from "./paginated";
-import type { Requester, RateLimitMode, ApiKeyBalancing } from "./types";
+import type {
+  Requester,
+  RateLimitMode,
+  ApiKeyBalancing,
+  RateLimitEvent,
+  RateLimitListener,
+  RateLimitStatus,
+} from "./types";
 
 /**
  * Checks if an unknown value is an Error
@@ -103,6 +110,13 @@ export interface RequestHandlerOptions {
   apiKeyBalancing?: ApiKeyBalancing;
   /** If true, logs detailed information about requests, responses, and rate limiting to the console */
   verbose?: boolean;
+  /**
+   * Called when a request starts waiting for the rate limit and when it resumes,
+   * e.g. to show "waiting 12s for rate limit" instead of appearing frozen
+   *
+   * Only used in `autoDelay` mode. Errors thrown by the callback are caught and never affect the request
+   */
+  onRateLimit?: RateLimitListener;
 }
 
 /**
@@ -117,8 +131,14 @@ export class RequestHandler {
   private readonly apiUrl: string;
   private readonly apiKeyBalancing: ApiKeyBalancing;
   private readonly verbose: boolean;
+  private readonly onRateLimit: RateLimitListener | undefined;
   private apiKeyIndex = 0;
   private readonly requestTimestamps: Map<string, number[]> = new Map();
+  /**
+   * Requests currently in the autoDelay loop, mapped to the time each will next wake up
+   * Its size is the number of waiting requests
+   */
+  private readonly waiters: Map<symbol, number> = new Map();
 
   constructor(options: RequestHandlerOptions) {
     if (!options.apiKeys || options.apiKeys.length === 0) {
@@ -131,6 +151,7 @@ export class RequestHandler {
     this.apiUrl = options.apiUrl ?? "https://api.torn.com/v2";
     this.apiKeyBalancing = options.apiKeyBalancing ?? "roundRobin";
     this.verbose = !!options.verbose;
+    this.onRateLimit = options.onRateLimit;
 
     for (const key of this.apiKeys) {
       this.requestTimestamps.set(key, []);
@@ -144,6 +165,27 @@ export class RequestHandler {
   private log(...args: unknown[]) {
     if (this.verbose) {
       console.log("[TornClient]", ...args);
+    }
+  }
+
+  /**
+   * Passes an event to the `onRateLimit` callback, if one is set
+   *
+   * Errors thrown by the callback, and rejections of a promise it returns,
+   * are swallowed (and logged in verbose mode) so they never break the request
+   * @param {RateLimitEvent} event - The event to emit
+   */
+  private emitRateLimit(event: RateLimitEvent) {
+    if (!this.onRateLimit) return;
+    const report = (error: unknown) =>
+      this.log("onRateLimit callback threw:", error);
+    try {
+      const result: unknown = this.onRateLimit(event);
+      if (typeof (result as PromiseLike<unknown> | null)?.then === "function") {
+        Promise.resolve(result).catch(report);
+      }
+    } catch (error) {
+      report(error);
     }
   }
 
@@ -256,11 +298,32 @@ export class RequestHandler {
 
     // In autoDelay mode, keep waiting until a slot frees up: other queued
     // requests may take the slot we waited for, so a single wait is not enough
-    while (!apiKey && this.rateLimitMode === "autoDelay") {
-      const waitTime = this.getMinWaitTime();
-      this.log(`All keys are on cooldown. Delaying for ${waitTime}ms...`);
-      await new Promise((resolve) => setTimeout(resolve, waitTime));
-      apiKey = this.acquireKey();
+    if (!apiKey && this.rateLimitMode === "autoDelay") {
+      const waiter = Symbol();
+      const waitStart = Date.now();
+      try {
+        while (!apiKey) {
+          const waitTime = this.getMinWaitTime();
+          const resumeAt = Date.now() + waitTime;
+          this.waiters.set(waiter, resumeAt);
+          this.log(`All keys are on cooldown. Delaying for ${waitTime}ms...`);
+          this.emitRateLimit({
+            type: "waiting",
+            waitMs: waitTime,
+            resumeAt,
+            queued: this.waiters.size,
+          });
+          await new Promise((resolve) => setTimeout(resolve, waitTime));
+          apiKey = this.acquireKey();
+        }
+      } finally {
+        this.waiters.delete(waiter);
+      }
+      this.emitRateLimit({
+        type: "resumed",
+        waitedMs: Date.now() - waitStart,
+        queued: this.waiters.size,
+      });
     }
 
     if (!apiKey) {
@@ -377,5 +440,17 @@ export class RequestHandler {
       };
     }
     return info;
+  }
+
+  /**
+   * Returns how many requests are currently waiting for the rate limit and when the next one wakes up
+   * @returns {RateLimitStatus} The number of waiting requests and the earliest pending wake time
+   */
+  public getRateLimitStatus(): RateLimitStatus {
+    let resumeAt: number | null = null;
+    for (const wakeAt of this.waiters.values()) {
+      if (resumeAt === null || wakeAt < resumeAt) resumeAt = wakeAt;
+    }
+    return { waiting: this.waiters.size, resumeAt };
   }
 }

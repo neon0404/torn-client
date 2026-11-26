@@ -95,6 +95,44 @@ const profile = await userContext.profile();
 const personalStats = await userContext.personalstats({ cat: 'all' });
 const properties = await userContext.properties();
 ```
+## Observing rate limiting
+
+With the default `rateLimitMode: 'autoDelay'`, a request over the 100 requests/minute limit waits (up to a minute) until a key frees up  
+Pass `onRateLimit` to be told when that happens, so your app can show a countdown instead of appearing frozen
+
+```ts
+let timer: ReturnType<typeof setInterval> | undefined;
+
+const client = new TornAPI({
+    apiKeys: ['YOUR_API_KEY'],
+    // Re-render on every event; the status tells us what is still waiting
+    onRateLimit: () => {
+        clearInterval(timer);
+        render();
+        timer = setInterval(render, 1000);
+    },
+});
+
+function render() {
+    const { waiting, resumeAt } = client.getRateLimitStatus();
+    if (resumeAt === null) {
+        clearInterval(timer);
+        return showStatus(''); // nothing is waiting anymore
+    }
+    const seconds = Math.ceil(Math.max(0, resumeAt - Date.now()) / 1000);
+    showStatus(`Waiting ${seconds}s for rate limit (${waiting} queued)`);
+}
+```
+
+The callback receives a `RateLimitEvent`:
+
+-   `{ type: 'waiting', waitMs, resumeAt, queued }` each time a request starts (or, after losing the freed slot to another request, restarts) waiting
+-   `{ type: 'resumed', waitedMs, queued }` when a waiting request gets a key and is sent
+
+`queued` is the number of requests waiting at that moment. Errors thrown by the callback are caught and never affect the request  
+`client.getRateLimitStatus()` returns `{ waiting, resumeAt }` on demand (`resumeAt` is `null` when nothing is waiting)  
+No events are emitted in `throwOnLimit` or `ignore` mode
+
 ## Documentation
 
 Full API client reference is available at the [Torn Client Docs](https://neon0404.github.io/torn-client/)  
