@@ -49,6 +49,7 @@ import type {
   TornOrganizedCrimeResponse,
   TornPokerTablesResponse,
   TornProperties,
+  TornRankedWarTemplatesResponse,
   TornResponse,
   TornRockPaperScissorsResponse,
   TornSearchForCashResponse,
@@ -495,6 +496,20 @@ export class TornEndpoint {
     timestamp?: number | string;
   }): Promise<TornProperties> {
     const path = `/torn/properties`;
+    const query = {
+      ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
+    };
+    return this.requester(path, query);
+  }
+
+  /**
+   * Get all ranked war modes and rules
+   * @param params - Optional query parameters
+   */
+  public async rankedwartemplates(params?: {
+    timestamp?: number | string;
+  }): Promise<TornRankedWarTemplatesResponse> {
+    const path = `/torn/rankedwartemplates`;
     const query = {
       ...(params?.timestamp !== undefined && { timestamp: params.timestamp }),
     };
