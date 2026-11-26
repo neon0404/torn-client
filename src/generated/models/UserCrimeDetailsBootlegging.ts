@@ -18,5 +18,5 @@ export type UserCrimeDetailsBootlegging = {
     total: number;
     earnings: number;
   };
-  dvds_copied?: number;
+  dvds_copied: number;
 };

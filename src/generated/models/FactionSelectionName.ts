@@ -10,9 +10,11 @@ export type FactionSelectionName =
   | "chains"
   | "contributors"
   | "crime"
+  | "crimeexp"
   | "crimes"
   | "dirtybombs"
   | "headlines"
+  | "hof"
   | "inventory"
   | "members"
   | "news"
@@ -40,6 +42,4 @@ export type FactionSelectionName =
   | "wars"
   | "lookup"
   | "timestamp"
-  | "crimeexp"
-  | "hof"
   | string;

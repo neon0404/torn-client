@@ -31,6 +31,7 @@ export type TornSelectionName =
   | "organizedcrimes"
   | "pokertables"
   | "properties"
+  | "rankedwartemplates"
   | "rockpaperscissors"
   | "searchforcash"
   | "shoplifting"

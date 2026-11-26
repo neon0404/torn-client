@@ -1,2 +1,2 @@
 /** @category Models */
-export type FactionTerritoryWarsCategoryEnum = "finsihed" | "ongoing";
+export type FactionTerritoryWarsCategoryEnum = "finished" | "ongoing";

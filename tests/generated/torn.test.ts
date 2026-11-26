@@ -249,6 +249,14 @@ describe("TornEndpoint Integration Tests", () => {
     );
 
     it(
+      "torn.rankedwartemplates should succeed",
+      async () => {
+        await expectApiSuccess(() => client.torn.rankedwartemplates());
+      },
+      TEST_TIMEOUT,
+    );
+
+    it(
       "torn.rockpaperscissors should succeed",
       async () => {
         await expectApiSuccess(() => client.torn.rockpaperscissors());
